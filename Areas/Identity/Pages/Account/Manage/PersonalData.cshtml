@@ -1,0 +1,37 @@
+﻿@page
+@model PersonalDataModel
+@{
+    ViewData["Title"] = "Dữ liệu cá nhân";
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
+}
+
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h5 class="card-title mb-4">
+            <i class="bi bi-database me-2"></i>Dữ liệu cá nhân
+        </h5>
+
+        <p>Tài khoản của bạn chứa dữ liệu cá nhân mà bạn đã cung cấp. Trang này cho phép bạn tải xuống hoặc xóa dữ liệu đó.</p>
+
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            <strong>Xóa dữ liệu sẽ xóa vĩnh viễn tài khoản của bạn và không thể khôi phục lại.</strong>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+            <form id="download-data" asp-page="DownloadPersonalData" method="post">
+                <button class="btn btn-outline-primary" type="submit">
+                    <i class="bi bi-download me-2"></i>Tải xuống dữ liệu
+                </button>
+            </form>
+
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">
+                <i class="bi bi-trash me-2"></i>Xóa tài khoản
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

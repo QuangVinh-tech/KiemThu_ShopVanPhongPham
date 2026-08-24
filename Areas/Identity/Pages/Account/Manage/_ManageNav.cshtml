@@ -1,0 +1,36 @@
+﻿
+@{
+}
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)"
+           asp-page="./Index">
+            <i class="bi bi-person me-2"></i>Hồ sơ
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.EmailNavClass(ViewContext)"
+           asp-page="./Email">
+            <i class="bi bi-envelope me-2"></i>Email
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)"
+           asp-page="./ChangePassword">
+            <i class="bi bi-key me-2"></i>Mật khẩu
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"
+           asp-page="./TwoFactorAuthentication">
+            <i class="bi bi-shield-lock me-2"></i>Xác thực 2 bước
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @ManageNavPages.PersonalDataNavClass(ViewContext)"
+           asp-page="./PersonalData">
+            <i class="bi bi-database me-2"></i>Dữ liệu cá nhân
+        </a>
+    </li>
+</ul>

@@ -1,0 +1,50 @@
+﻿@model ShopVanPhongPham.Models.Product
+
+<div class="wf-product-card">
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id" class="wf-product-thumb">
+        <img src="@Model.ImageUrl"
+             alt="@Model.Name"
+             onerror="this.src='/assets/images/placeholder.jpg'" />
+    </a>
+    <form asp-controller="Wishlist" asp-action="Toggle" method="post" style="display:contents">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="productId" value="@Model.Id" />
+        <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
+        <button type="submit" class="wf-product-wish border-0 bg-transparent p-0" title="Yêu thích">
+            @if (ViewBag.WishlistIds != null && ((HashSet<int>)ViewBag.WishlistIds).Contains(Model.Id))
+            {
+                <i class="bi bi-heart-fill text-danger"></i>
+            }
+            else
+            {
+                <i class="bi bi-heart"></i>
+            }
+        </button>
+    </form>
+
+    <div class="wf-product-body">
+        <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id" class="wf-product-name text-decoration-none" title="@Model.Name">
+            @Model.Name
+        </a>
+        <div class="wf-product-rating">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+            <span>(0)</span>
+        </div>
+
+        <div class="wf-product-footer">
+            <span class="wf-product-price">@Model.Price.ToString("N0")đ</span>
+
+            <form asp-controller="ShoppingCart"
+                  asp-action="AddToCart"
+                  method="post"
+                  style="display:contents">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <input type="hidden" name="quantity" value="1" />
+                <button type="submit" class="wf-product-cart-btn btn-add-cart" data-product-id="@Model.Id" title="Thêm vào giỏ">
+                    <i class="bi bi-cart-plus"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

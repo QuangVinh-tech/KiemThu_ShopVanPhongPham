@@ -1,0 +1,40 @@
+﻿@model ShopVanPhongPham.Models.News
+@{
+    ViewData["Title"] = "Đăng tin mới";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="d-flex align-items-center mb-4">
+    <a asp-area="Admin" asp-controller="News" asp-action="Index"
+       class="btn btn-outline-secondary me-3">← Quay lại</a>
+    <h2 class="fw-bold mb-0">Đăng tin mới</h2>
+</div>
+
+<div class="card shadow-sm" style="max-width:700px">
+    <div class="card-body">
+        <form asp-area="Admin" asp-controller="News" asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Tiêu đề <span class="text-danger">*</span>
+                </label>
+                <input asp-for="Title" class="form-control" placeholder="VD: Khai trương chi nhánh mới" />
+                <span asp-validation-for="Title" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Nội dung <span class="text-danger">*</span>
+                </label>
+                <textarea asp-for="Content" class="form-control" rows="8"
+                          placeholder="Nội dung bài viết..."></textarea>
+                <span asp-validation-for="Content" class="text-danger small"></span>
+            </div>
+            <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">
+                Đăng tin
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

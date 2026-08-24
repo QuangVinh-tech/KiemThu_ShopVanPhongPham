@@ -1,0 +1,21 @@
+@page
+@model ResetAuthenticatorModel
+@{
+    ViewData["Title"] = "Đặt lại ứng dụng xác thực";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h5 class="card-title mb-4"><i class="bi bi-arrow-repeat me-2"></i>@ViewData["Title"]</h5>
+
+        <div class="alert alert-warning">
+            <p class="mb-1">Nếu bạn đặt lại mã ứng dụng xác thực, bạn sẽ phải cấu hình lại ứng dụng xác thực bằng mã mới.</p>
+            <p class="mb-0">Nếu không tiếp tục bước này, bạn sẽ không thể đăng nhập bằng ứng dụng xác thực hiện tại.</p>
+        </div>
+
+        <form method="post">
+            <button class="btn btn-danger" type="submit">Đặt lại ứng dụng xác thực</button>
+        </form>
+    </div>
+</div>

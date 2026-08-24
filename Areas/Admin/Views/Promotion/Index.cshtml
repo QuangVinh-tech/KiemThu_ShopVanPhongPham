@@ -1,0 +1,66 @@
+﻿@model List<ShopVanPhongPham.Models.Promotion>
+@{
+    ViewData["Title"] = "Quản lý khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">Quản lý khuyến mãi</h2>
+    <a asp-area="Admin" asp-controller="Promotion" asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle me-1"></i>Thêm khuyến mãi
+    </a>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Ảnh</th>
+                    <th>Tiêu đề</th>
+                    <th>Mã</th>
+                    <th class="text-end">Giảm</th>
+                    <th>Áp dụng cho</th>
+                    <th>Thời gian</th>
+                    <th class="text-center">Trạng thái</th>
+                    <th class="text-center">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    var p = Model[i];
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td><img src="@p.ImageUrl" style="width:50px;height:50px;object-fit:cover" class="rounded" /></td>
+                        <td>@p.Title</td>
+                        <td><span class="badge bg-secondary">@p.Code</span></td>
+                        <td class="text-end text-danger fw-bold">-@p.DiscountPercent%</td>
+                        <td class="small">@(p.Product != null ? p.Product.Name : "Toàn giỏ hàng")</td>
+                        <td class="small">@p.StartDate.ToString("dd/MM/yyyy") - @p.EndDate.ToString("dd/MM/yyyy")</td>
+                        <td class="text-center">
+                            @if (p.IsActive)
+                            {
+                                <span class="badge bg-success">Đang chạy</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Tắt</span>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a asp-area="Admin" asp-controller="Promotion" asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-warning me-1"><i class="bi bi-pencil"></i></a>
+                            <a asp-area="Admin" asp-controller="Promotion" asp-action="Delete" asp-route-id="@p.Id" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

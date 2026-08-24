@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ShopVanPhongPham.Models.News>
+@{
+    ViewData["Title"] = "Tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h2 class="fw-bold mb-0">Quản lý tin tức</h2>
+    <a asp-area="Admin" asp-controller="News" asp-action="Create" class="btn btn-success">+ Đăng tin mới</a>
+</div>
+
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">@ViewBag.Success</div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tiêu đề</th>
+                    <th>Ngày đăng</th>
+                    <th style="width:180px">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var news in Model)
+                {
+                    <tr>
+                        <td>@news.Id</td>
+                        <td>@news.Title</td>
+                        <td>@news.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <a asp-area="Admin" asp-controller="News" asp-action="Edit"
+                               asp-route-id="@news.Id" class="btn btn-sm btn-outline-primary">Sửa</a>
+                            <a asp-area="Admin" asp-controller="News" asp-action="Delete"
+                               asp-route-id="@news.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (!Model.Any())
+        {
+            <p class="text-muted text-center py-3">Chưa có tin tức nào.</p>
+        }
+    </div>
+</div>

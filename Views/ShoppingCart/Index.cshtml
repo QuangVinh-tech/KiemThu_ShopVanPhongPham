@@ -1,0 +1,333 @@
+﻿    @model IEnumerable<ShopVanPhongPham.Models.ShoppingCartItem>
+
+    @{
+        ViewData["Title"] = "Giỏ Hàng";
+        var relatedProducts = ViewBag.RelatedProducts as List<ShopVanPhongPham.Models.Product>;
+    }
+
+    @section Styles {
+        <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+    }
+
+    <section class="cart-page py-5">
+        <div class="container">
+
+            <nav class="breadcrumb-bar">
+                <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                <span class="mx-1">›</span>
+                <span>Giỏ hàng</span>
+            </nav>
+
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["SuccessMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+                </div>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["ErrorMessage"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+                </div>
+            }
+
+            <div class="cart-heading">
+                <h2>
+                    Giỏ hàng của bạn
+                    <span class="item-count">(@Model.Count() sản phẩm)</span>
+                </h2>
+                <a asp-controller="Product" asp-action="Shop" class="continue-shopping-link">
+                    <i class="bi bi-arrow-left me-1"></i>Tiếp tục mua hàng
+                </a>
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="cart-card cart-empty">
+                    <i class="bi bi-cart-x" style="font-size:3rem;color:#c3c6cc;"></i>
+                    <h4 class="text-muted mt-3">Giỏ hàng của bạn đang trống</h4>
+                    <a asp-controller="Product" asp-action="Shop" class="btn btn-checkout mt-3 d-inline-flex" style="width:auto;">
+                        <i class="bi bi-shop"></i>Tiếp tục mua sắm
+                    </a>
+                </div>
+            }
+            else
+            {
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <div class="cart-card">
+                            <div class="table-responsive">
+                                <table class="cart-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:36px;"></th>
+                                            <th>Sản phẩm</th>
+                                            <th class="text-end">Đơn giá</th>
+                                            <th class="text-center">Số lượng</th>
+                                            <th class="text-end">Thành tiền</th>
+                                            <th style="width:50px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cartItemsBody">
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr data-item-id="@item.Id">
+                                                <td class="cart-select-cell">
+                                                    <input type="checkbox" class="cart-item-select" data-item-id="@item.Id" checked />
+                                                </td>
+                                                <td class="cart-item-info-cell">
+                                                    <div class="cart-item-info">
+                                                        <img src="@item.Product!.ImageUrl"
+                                                             alt="@item.Product.Name"
+                                                             class="cart-item-thumb"
+                                                             onerror="this.src='/assets/images/placeholder.jpg'" />
+                                                        <div>
+                                                            <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.ProductId" class="cart-item-name">
+                                                                @item.Product.Name
+                                                            </a>
+                                                            <div class="cart-item-category">@item.Product.Category</div>
+                                                            <div class="cart-item-stock"><i class="bi bi-check-circle-fill me-1"></i>Còn hàng</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end cart-price cart-price-cell">@item.Product.Price.ToString("N0") ₫</td>
+                                                <td class="text-center cart-qty-cell">
+                                                    <div class="cart-qty">
+                                                        <form asp-action="Decrease" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                                            <button type="submit" class="cart-qty-btn" title="Giảm số lượng">−</button>
+                                                        </form>
+                                                        <span class="cart-qty-value">@item.Quantity</span>
+                                                        <form asp-action="Increase" method="post">
+                                                            @Html.AntiForgeryToken()
+                                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                                            <button type="submit" class="cart-qty-btn" title="Tăng số lượng">+</button>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                                <td class="text-end cart-subtotal cart-subtotal-cell">
+                                                    @((item.Product.Price * item.Quantity).ToString("N0")) ₫
+                                                </td>
+                                                <td class="cart-remove-cell">
+                                                    <form asp-action="Remove" method="post">
+                                                        @Html.AntiForgeryToken()
+                                                        <input type="hidden" name="id" value="@item.Id" />
+                                                        <button type="submit" class="cart-item-remove" title="Xóa sản phẩm">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="cart-table-footer">
+                                <div class="d-flex align-items-center gap-4">
+                                    <label class="cart-select-all">
+                                        <input type="checkbox" id="selectAllItems" class="cart-item-select" checked />
+                                        Chọn tất cả
+                                    </label>
+                                    <form id="deleteSelectedForm" asp-action="Clear" method="post" class="m-0">
+                                        @Html.AntiForgeryToken()
+                                        <button type="button" id="deleteSelectedBtn" class="cart-delete-selected">
+                                            <i class="bi bi-trash"></i>Xóa đã chọn
+                                        </button>
+                                    </form>
+                                </div>
+                                <button type="button" class="btn-cart-update" onclick="location.reload()">
+                                    <i class="bi bi-arrow-clockwise me-1"></i>Cập nhật giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                    <div class="order-summary-card">
+                        <h5>Tóm tắt đơn hàng</h5>
+
+                        @if (ViewBag.PromoCode == null)
+                        {
+                            <form class="voucher-form" asp-action="ApplyPromotion" method="post">
+                                @Html.AntiForgeryToken()
+                                <input type="text" name="code" class="form-control" placeholder="Nhập mã giảm giá" />
+                                <button type="submit" class="btn btn-outline-secondary">
+                                    <i class="bi bi-tag me-1"></i>Áp dụng
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="voucher-form d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success">
+                                    <i class="bi bi-tag-fill me-1"></i>@ViewBag.PromoCode (-@ViewBag.DiscountPercent%)
+                                </span>
+                                <form asp-action="RemovePromotion" method="post" class="m-0">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Hủy mã</button>
+                                </form>
+                            </div>
+                        }
+
+                        <div class="summary-row">
+                            <span>Tạm tính (@Model.Count() sản phẩm)</span>
+                            <span>@(((decimal)ViewBag.SubTotal).ToString("N0")) ₫</span>
+                        </div>
+
+                        @if ((decimal)(ViewBag.Discount ?? 0m) > 0)
+                        {
+                            <div class="summary-row text-success">
+                                <span>Giảm giá</span>
+                                <span>-@(((decimal)ViewBag.Discount).ToString("N0")) ₫</span>
+                            </div>
+                        }
+
+                        <div class="summary-row">
+                            <span>Phí vận chuyển</span>
+                            <span class="text-success fw-semibold">Miễn phí</span>
+                        </div>
+
+                        <div class="summary-total">
+                            <span>Tổng cộng</span>
+                            <span>@(((decimal)ViewBag.CartTotal).ToString("N0")) ₫</span>
+                        </div>
+                        <div class="summary-note">(Đã bao gồm VAT nếu có)</div>
+
+                        <a asp-controller="Orders" asp-action="Checkout" class="btn btn-checkout w-100">
+                            Tiến hành thanh toán <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i class="bi bi-truck"></i>
+                                <div>
+                                    <strong>Giao hàng toàn quốc</strong>
+                                    <span class="text-muted">Nhận hàng từ 1 - 3 ngày</span>
+                                </div>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="bi bi-arrow-repeat"></i>
+                                <div>
+                                    <strong>Đổi trả dễ dàng</strong>
+                                    <span class="text-muted">Đổi trả trong 7 ngày</span>
+                                </div>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="bi bi-patch-check"></i>
+                                <div>
+                                    <strong>Sản phẩm chính hãng</strong>
+                                    <span class="text-muted">Cam kết 100% chính hãng</span>
+                                </div>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="bi bi-shield-check"></i>
+                                <div>
+                                    <strong>Thanh toán an toàn</strong>
+                                    <span class="text-muted">Bảo mật thông tin tuyệt đối</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (relatedProducts != null && relatedProducts.Any())
+            {
+                <div class="related-products">
+                    <h4>Có thể bạn cũng cần</h4>
+                    <div class="row g-3">
+                        @foreach (var p in relatedProducts)
+                        {
+                            <div class="col-6 col-md-3">
+                                <div class="related-card">
+                                    <a asp-controller="Product" asp-action="Detail" asp-route-id="@p.Id">
+                                        <img src="@p.ImageUrl" alt="@p.Name" class="related-card-img"
+                                             onerror="this.src='/assets/images/placeholder.jpg'" />
+                                    </a>
+                                    <div class="related-card-body">
+                                        <a asp-controller="Product" asp-action="Detail" asp-route-id="@p.Id" class="related-card-name">
+                                            @p.Name
+                                        </a>
+                                        <div class="related-card-footer">
+                                            <span class="related-card-price">@p.Price.ToString("N0") ₫</span>
+                                            <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post" class="m-0">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="productId" value="@p.Id" />
+                                                <input type="hidden" name="quantity" value="1" />
+                                                <button type="submit" class="related-add-btn" title="Thêm vào giỏ">
+                                                    <i class="bi bi-cart-plus"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    @section Scripts {
+        <script>
+            (function () {
+                var selectAll = document.getElementById('selectAllItems');
+                var itemChecks = Array.from(document.querySelectorAll('.cart-item-select[data-item-id]'));
+                var deleteBtn = document.getElementById('deleteSelectedBtn');
+
+                function refreshDeleteState() {
+                    var anyChecked = itemChecks.some(function (c) { return c.checked; });
+                    if (deleteBtn) deleteBtn.disabled = !anyChecked;
+                }
+
+                if (selectAll) {
+                    selectAll.addEventListener('change', function () {
+                        itemChecks.forEach(function (c) { c.checked = selectAll.checked; });
+                        refreshDeleteState();
+                    });
+                }
+
+                itemChecks.forEach(function (c) {
+                    c.addEventListener('change', function () {
+                        if (selectAll) selectAll.checked = itemChecks.every(function (x) { return x.checked; });
+                        refreshDeleteState();
+                    });
+                });
+
+                if (deleteBtn) {
+                    deleteBtn.addEventListener('click', async function () {
+                        var selectedIds = itemChecks.filter(function (c) { return c.checked; })
+                            .map(function (c) { return c.dataset.itemId; });
+                        if (selectedIds.length === 0) return;
+
+                        var allSelected = selectedIds.length === itemChecks.length;
+                        deleteBtn.disabled = true;
+
+                        if (allSelected) {
+                            document.getElementById('deleteSelectedForm').submit();
+                            return;
+                        }
+
+                        var token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                        for (const id of selectedIds) {
+                            var fd = new FormData();
+                            fd.append('id', id);
+                            if (token) fd.append('__RequestVerificationToken', token);
+                            await fetch('@Url.Action("Remove", "ShoppingCart")', { method: 'POST', body: fd });
+                        }
+                        location.reload();
+                    });
+                }
+
+                refreshDeleteState();
+            })();
+
+           
+        </script>
+    }

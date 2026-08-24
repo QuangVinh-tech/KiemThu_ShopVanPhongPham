@@ -1,0 +1,209 @@
+﻿@model IEnumerable<ShopVanPhongPham.Models.Product>
+
+@{
+    ViewData["Title"] = "Trang chủ - Shop Văn Phòng Phẩm";
+    var categories = ViewBag.Categories as IEnumerable<dynamic>;
+    var featured = Model.Take(6);
+
+    // Nhãn hiển thị + icon thân thiện cho từng mã danh mục
+    var catLabels = new Dictionary<string, string>
+    {
+        ["But"] = "Bút viết",
+        ["So"] = "Sổ tay",
+        ["DungCu"] = "Dụng cụ",
+        ["Giay"] = "Giấy in"
+    };
+    var catIcons = new Dictionary<string, string>
+    {
+        ["But"] = "bi-pencil-fill",
+        ["So"] = "bi-journal-bookmark-fill",
+        ["DungCu"] = "bi-tools",
+        ["Giay"] = "bi-file-earmark-fill"
+    };
+}
+
+<section class="py-4">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Sidebar danh mục -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sidebar-card p-0">
+                    <ul class="sidebar-cat-list p-3">
+                        @if (categories != null)
+                        {
+                            foreach (var c in categories)
+                            {
+                                string code = c.Name;
+                                string label = catLabels.ContainsKey(code) ? catLabels[code] : code;
+                                <li>
+                                    <a asp-controller="Product" asp-action="Shop" asp-route-category="@code">
+                                        @label <span class="count">(@c.Count)</span>
+                                    </a>
+                                </li>
+                            }
+                        }
+                        <li>
+                            <a asp-controller="Product" asp-action="Shop">
+                                Xem thêm <i class="bi bi-chevron-down"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-promo">
+                    <div class="text-uppercase small fw-semibold text-muted mb-1">Ưu đãi mùa tựu trường</div>
+                    <div class="promo-badge">Giảm đến 20%</div>
+                    <p class="small text-muted mt-2 mb-3">Áp dụng cho một số sản phẩm</p>
+                    <a asp-controller="Product" asp-action="Shop" class="btn btn-wf-dark btn-sm px-4">Xem ngay</a>
+                </div>
+            </div>
+
+            <!-- Nội dung chính -->
+            <div class="col-lg-9">
+                <!-- Hero / banner (carousel) -->
+                <div id="heroCarousel" class="carousel slide wf-hero-carousel" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="wf-hero" style="background-image:url('/assets/images/banners/banner-1-chaomung.png')">
+                                <div>
+                                    <span class="wf-hero-tag">Chào mừng</span>
+                                    <h1>Văn phòng phẩm<br />Chất lượng &ndash; Giá tốt</h1>
+                                    <p>Đa dạng sản phẩm, đáp ứng mọi nhu cầu học tập và làm việc.</p>
+                                    <a href="/Product/Shop" class="btn btn-wf-dark btn-lg px-4">Mua sắm ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="wf-hero wf-hero-alt" style="background-image:url('/assets/images/banners/banner-2-tuutruong.png')">
+                                <div>
+                                    <span class="wf-hero-tag">Ưu đãi mùa tựu trường</span>
+                                    <h1>Giảm đến 20%<br />Đồ dùng học tập</h1>
+                                    <p>Chuẩn bị năm học mới với giá ưu đãi trên hàng loạt sản phẩm.</p>
+                                    <a href="/Product/Shop" class="btn btn-wf-dark btn-lg px-4">Xem ưu đãi</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="wf-hero" style="background-image:url('/assets/images/banners/banner-3-mienphivanchuyen.png')">
+                                <div>
+                                    <span class="wf-hero-tag">Miễn phí vận chuyển</span>
+                                    <h1>Giao hàng nhanh<br />Toàn quốc</h1>
+                                    <p>Đơn hàng từ 300.000đ được miễn phí vận chuyển toàn quốc.</p>
+                                    <a href="/Product/Shop" class="btn btn-wf-dark btn-lg px-4">Mua sắm ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                        <span class="wf-carousel-arrow"><i class="bi bi-chevron-left"></i></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                        <span class="wf-carousel-arrow"><i class="bi bi-chevron-right"></i></span>
+                    </button>
+
+                    <div class="carousel-indicators wf-carousel-indicators">
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                    </div>
+                </div>
+
+                <!-- Feature strip -->
+                <div class="wf-features-strip">
+                    <div class="wf-feature">
+                        <i class="bi bi-truck"></i>
+                        <div>
+                            <strong>Giao hàng nhanh</strong>
+                            <span>Toàn quốc</span>
+                        </div>
+                    </div>
+                    <div class="wf-feature">
+                        <i class="bi bi-arrow-repeat"></i>
+                        <div>
+                            <strong>Đổi trả dễ dàng</strong>
+                            <span>Trong 7 ngày</span>
+                        </div>
+                    </div>
+                    <div class="wf-feature">
+                        <i class="bi bi-patch-check"></i>
+                        <div>
+                            <strong>Sản phẩm chính hãng</strong>
+                            <span>100% uy tín</span>
+                        </div>
+                    </div>
+                    <div class="wf-feature">
+                        <i class="bi bi-headset"></i>
+                        <div>
+                            <strong>Hỗ trợ 24/7</strong>
+                            <span>Tư vấn tận tâm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danh mục nổi bật -->
+                <div class="wf-section-title">
+                    <h4>Danh mục nổi bật</h4>
+                    <a asp-controller="Product" asp-action="Shop">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="row g-3">
+                    @if (categories != null)
+                    {
+                        foreach (var c in categories)
+                        {
+                            string code = c.Name;
+                            string label = catLabels.ContainsKey(code) ? catLabels[code] : code;
+                            string icon = catIcons.ContainsKey(code) ? catIcons[code] : "bi-box-seam";
+                            <div class="col-4 col-md-2">
+                                <a asp-controller="Product" asp-action="Shop" asp-route-category="@code" class="cat-icon-card text-decoration-none">
+                                    <span class="cat-icon-box"><i class="bi @icon"></i></span>
+                                    <span>@label</span>
+                                </a>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <!-- Banner khuyến mãi -->
+                <div class="wf-promo-banner">
+                    <div>
+                        <span class="wf-hero-tag wf-hero-tag-light">Ưu đãi có hạn</span>
+                        <h3>Mua 2 tặng 1 dụng cụ học tập</h3>
+                        <p>Áp dụng cho các sản phẩm dụng cụ học tập, số lượng có hạn.</p>
+                    </div>
+                    <a asp-controller="Product" asp-action="Shop" asp-route-category="DungCu" class="btn btn-wf-outline btn-lg px-4">
+                        Săn ưu đãi <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
+
+                <!-- Sản phẩm nổi bật -->
+                <div class="wf-section-title">
+                    <h4>Sản phẩm nổi bật</h4>
+                    <a asp-controller="Product" asp-action="Shop">Xem tất cả <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="row g-3">
+                    @foreach (var product in featured)
+                    {
+                        <div class="col-6 col-md-4">
+                            @await Html.PartialAsync("_Product", product)
+                        </div>
+                    }
+                </div>
+
+                <!-- Đăng ký nhận tin -->
+                <div class="wf-newsletter">
+                    <div>
+                        <h4>Nhận tin khuyến mãi</h4>
+                        <p>Đăng ký để nhận thông báo về ưu đãi và sản phẩm mới sớm nhất.</p>
+                    </div>
+                    <form class="wf-newsletter-form" onsubmit="return false;">
+                        <input type="email" class="form-control" placeholder="Nhập email của bạn" required />
+                        <button type="submit" class="btn btn-wf-dark px-4">Đăng ký</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

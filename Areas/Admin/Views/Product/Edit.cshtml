@@ -1,0 +1,75 @@
+﻿@model ShopVanPhongPham.Models.Product
+@{
+    ViewData["Title"] = "Sửa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+       class="btn btn-outline-secondary me-3">← Quay lại</a>
+    <h2 class="fw-bold mb-0">✏️ Sửa sản phẩm</h2>
+</div>
+
+<div class="card shadow-sm" style="max-width:600px">
+    <div class="card-body">
+        <form asp-area="Admin" asp-controller="Product" asp-action="Edit"
+              method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ImageUrl" />
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Tên sản phẩm</label>
+                <input asp-for="Name" class="form-control" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Mô tả</label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Giá (đ)</label>
+                <input asp-for="Price" class="form-control" type="number" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Danh mục</label>
+                <select asp-for="Category" class="form-select">
+                    <option value="But">Bút</option>
+                    <option value="So">Sổ/Tập</option>
+                    <option value="DungCu">Dụng cụ</option>
+                    <option value="Giay">Giấy</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Ảnh hiện tại</label><br />
+                <img src="@Model.ImageUrl" style="max-height:100px;object-fit:cover"
+                     class="rounded mb-2" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Đổi ảnh mới <span class="text-muted">(không bắt buộc)</span>
+                </label>
+                <input type="file" name="imageFile" class="form-control"
+                       accept="image/*" onchange="previewImage(this)" />
+                <img id="preview" src="#" alt="Xem trước"
+                     class="mt-2 rounded d-none"
+                     style="max-height:150px;object-fit:cover" />
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100">
+                 Lưu thay đổi
+            </button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            const img = document.getElementById('preview');
+            if (input.files && input.files[0]) {
+                img.src = URL.createObjectURL(input.files[0]);
+                img.classList.remove('d-none');
+            }
+        }
+    </script>
+}

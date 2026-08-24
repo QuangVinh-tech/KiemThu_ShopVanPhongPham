@@ -1,0 +1,48 @@
+@page
+@model EnableAuthenticatorModel
+@{
+    ViewData["Title"] = "Cấu hình ứng dụng xác thực";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h5 class="card-title mb-4"><i class="bi bi-shield-lock me-2"></i>@ViewData["Title"]</h5>
+
+        <p>Để dùng ứng dụng xác thực, làm theo các bước sau:</p>
+        <ol>
+            <li>
+                <p>
+                    Tải ứng dụng xác thực hai bước trên điện thoại, ví dụ
+                    <strong>Google Authenticator</strong> hoặc <strong>Microsoft Authenticator</strong>.
+                </p>
+            </li>
+            <li>
+                <p>Quét mã QR bên dưới bằng ứng dụng đó, hoặc nhập thủ công mã: <kbd>@Model.SharedKey</kbd></p>
+                <img src="@Model.QrCodeImageUrl" alt="QR code xác thực 2 bước" class="my-3 border rounded p-2" />
+            </li>
+            <li>
+                <p>Sau khi quét/nhập mã, ứng dụng sẽ hiện 1 mã gồm 6 số. Nhập mã đó vào ô dưới để xác nhận:</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form id="send-code" method="post">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Code" class="form-control" autocomplete="off" placeholder="Nhập mã 6 số" />
+                                <label asp-for="Input.Code">Mã xác thực</label>
+                                <span asp-validation-for="Input.Code" class="text-danger"></span>
+                            </div>
+                            <button type="submit" class="w-100 btn btn-lg btn-primary">Xác minh</button>
+                            <div asp-validation-summary="ModelOnly" class="text-danger mt-2"></div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

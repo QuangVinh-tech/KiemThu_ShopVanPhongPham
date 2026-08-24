@@ -1,0 +1,38 @@
+﻿@model ShopVanPhongPham.Models.Product
+@{
+    ViewData["Title"] = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+       class="btn btn-outline-secondary me-3">← Quay lại</a>
+    <h2 class="fw-bold mb-0"> Xóa sản phẩm</h2>
+</div>
+
+<div class="card shadow-sm" style="max-width:500px">
+    <div class="card-body">
+        <div class="alert alert-danger">
+            Bạn có chắc muốn xóa sản phẩm <strong>@Model.Name</strong> không?
+        </div>
+        <img src="@Model.ImageUrl" class="img-fluid rounded mb-3"
+             style="max-height:200px;object-fit:cover"
+             onerror="this.src='/assets/images/hopbut.jpg'" />
+        <p><strong>Giá:</strong> @Model.Price.ToString("N0") đ</p>
+        <p><strong>Danh mục:</strong> @Model.Category</p>
+
+        <form asp-area="Admin" asp-controller="Product" asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-danger flex-grow-1">
+                     Xác nhận xóa
+                </button>
+                <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+                   class="btn btn-outline-secondary flex-grow-1">
+                    Hủy
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

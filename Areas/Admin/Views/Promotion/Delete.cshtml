@@ -1,0 +1,25 @@
+﻿@model ShopVanPhongPham.Models.Promotion
+@{
+    ViewData["Title"] = "Xóa khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a asp-area="Admin" asp-controller="Promotion" asp-action="Index" class="btn btn-outline-secondary me-3">← Quay lại</a>
+    <h2 class="fw-bold mb-0 text-danger">Xóa khuyến mãi</h2>
+</div>
+
+<div class="card shadow-sm" style="max-width:500px">
+    <div class="card-body text-center">
+        <img src="@Model.ImageUrl" style="width:100px;height:100px;object-fit:cover" class="rounded mb-3" />
+        <h5>Bạn có chắc muốn xóa khuyến mãi "<strong>@Model.Title</strong>" (mã <strong>@Model.Code</strong>)?</h5>
+        <p class="text-muted">Hành động này không thể hoàn tác.</p>
+
+        <form asp-area="Admin" asp-controller="Promotion" asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger px-4">Xác nhận xóa</button>
+            <a asp-area="Admin" asp-controller="Promotion" asp-action="Index" class="btn btn-outline-secondary px-4">Hủy</a>
+        </form>
+    </div>
+</div>

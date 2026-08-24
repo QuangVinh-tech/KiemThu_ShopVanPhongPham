@@ -1,0 +1,98 @@
+﻿@model List<ShopVanPhongPham.Models.Promotion>
+@{
+    ViewData["Title"] = "Khuyến mãi";
+}
+
+<section class="shop-page py-4">
+    <div class="container">
+
+        <nav class="wf-breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Trang chủ</a> <span>&rsaquo;</span>
+            <span class="active">Khuyến mãi</span>
+        </nav>
+
+        <h2 class="mb-1">Khuyến mãi đang diễn ra</h2>
+        <p class="text-muted small mb-4">Săn ngay các ưu đãi giảm giá hấp dẫn từ VanPhamPro trước khi hết hạn.</p>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <div style="font-size:3rem">🎁</div>
+                <h5 class="text-muted mt-3">Hiện chưa có chương trình khuyến mãi nào</h5>
+                <p class="text-muted small">Hãy quay lại sau, chúng tôi luôn có nhiều ưu đãi mới mỗi tháng.</p>
+                <a asp-controller="Product" asp-action="Shop" class="btn btn-wf-outline mt-2">
+                    Xem tất cả sản phẩm
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="row g-4">
+                @foreach (var promo in Model)
+                {
+                    var daysLeft = (promo.EndDate.Date - DateTime.Today).Days;
+                    <div class="col-md-6 col-lg-4">
+                        <div class="wf-promo-card">
+                            <div class="wf-promo-card-img">
+                                <img src="@promo.ImageUrl"
+                                     alt="@promo.Title"
+                                     onerror="this.src='/assets/images/placeholder.jpg'" />
+                                <span class="wf-promo-badge">-@promo.DiscountPercent%</span>
+                            </div>
+                            <div class="wf-promo-card-body">
+                                <h5 class="wf-promo-card-title">@promo.Title</h5>
+                                <p class="wf-promo-card-desc">@promo.Description</p>
+
+                                <div class="wf-promo-meta">
+                                    <span class="small text-muted">
+                                        <i class="bi bi-tag"></i>
+                                        @(promo.Product != null ? promo.Product.Name : "Áp dụng toàn giỏ hàng")
+                                    </span>
+                                    <span class="small text-muted">
+                                        <i class="bi bi-clock"></i>
+                                        @if (daysLeft <= 0)
+                                        {
+                                            <span>Kết thúc hôm nay</span>
+                                        }
+                                        else
+                                        {
+                                            <span>Còn @daysLeft ngày (đến @promo.EndDate.ToString("dd/MM/yyyy"))</span>
+                                        }
+                                    </span>
+                                </div>
+
+                                @if (!string.IsNullOrEmpty(promo.Code))
+                                {
+                                    <div class="wf-promo-code" id="code-@promo.Id">
+                                        <span>Mã: <strong>@promo.Code</strong></span>
+                                        <button type="button" class="btn btn-wf-outline btn-sm"
+                                                onclick="copyPromoCode('@promo.Code', this)">
+                                            <i class="bi bi-clipboard"></i> Copy
+                                        </button>
+                                    </div>
+                                }
+
+                                <a asp-controller="Product"
+                                   asp-action="@(promo.Product != null ? "Detail" : "Shop")"
+                                   asp-route-id="@(promo.Product != null ? promo.ProductId : null)"
+                                   class="btn btn-wf-dark w-100 mt-3">
+                                    @(promo.Product != null ? "Mua ngay" : "Mua sắm ngay")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+<script>
+    function copyPromoCode(code, btn) {
+        navigator.clipboard.writeText(code).then(function () {
+            var original = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check2"></i> Đã copy';
+            setTimeout(function () { btn.innerHTML = original; }, 1500);
+        });
+    }
+</script>

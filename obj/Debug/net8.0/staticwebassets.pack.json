@@ -1,0 +1,521 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\ShopVanPhongPham\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ShopVanPhongPham.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ShopVanPhongPham.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\bootstrap\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\bootstrap\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\bootstrap\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\dropdown\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\dropdown\\css\\style.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\dropdown\\js\\navbar-dropdown.js",
+      "PackagePath": "staticwebassets\\assets\\dropdown\\js\\navbar-dropdown.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\formoid\\formoid.min.js",
+      "PackagePath": "staticwebassets\\assets\\formoid\\formoid.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\aecb30df-9aad-4583-9269-17f9c627dbdb.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\aecb30df-9aad-4583-9269-17f9c627dbdb.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\anna-bratiychuk-3w2aurzeesu-unsplash-815x1223.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\anna-bratiychuk-3w2aurzeesu-unsplash-815x1223.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\b8b63674-a2ce-4b2d-b112-44a5bf5016cd.png",
+      "PackagePath": "staticwebassets\\assets\\images\\b8b63674-a2ce-4b2d-b112-44a5bf5016cd.png"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\bamkim.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\bamkim.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\bangkeo.png",
+      "PackagePath": "staticwebassets\\assets\\images\\bangkeo.png"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\banners\\banner-1-chaomung.png",
+      "PackagePath": "staticwebassets\\assets\\images\\banners\\banner-1-chaomung.png"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\banners\\banner-2-tuutruong.png",
+      "PackagePath": "staticwebassets\\assets\\images\\banners\\banner-2-tuutruong.png"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\banners\\banner-3-mienphivanchuyen.png",
+      "PackagePath": "staticwebassets\\assets\\images\\banners\\banner-3-mienphivanchuyen.png"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\brent-ninaber-vlpefxuqynm-unsplash-2000x1125.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\brent-ninaber-vlpefxuqynm-unsplash-2000x1125.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\butchib2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\butchib2.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\butthienlong.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\butthienlong.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\coffee-beans-2258839-960.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\coffee-beans-2258839-960.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\coffee-icon-sign-symbol-design-free-png.webp",
+      "PackagePath": "staticwebassets\\assets\\images\\coffee-icon-sign-symbol-design-free-png.webp"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\giancarlo-duarte-rthw0pwclhw-unsplash-815x543.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\giancarlo-duarte-rthw0pwclhw-unsplash-815x543.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\giayA4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\giayA4.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\hashes.json",
+      "PackagePath": "staticwebassets\\assets\\images\\hashes.json"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\hopbut.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\hopbut.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\jeremy-yap-jn-hagwe4yw-unsplash-815x1223.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\jeremy-yap-jn-hagwe4yw-unsplash-815x1223.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\keovanphong.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\keovanphong.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\keovanphong1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\keovanphong1.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\logo.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\logo.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\mbr-1920x1372.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\mbr-1920x1372.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\mohammad-amirahmadi-tk2ifgn60xo-unsplash-815x1019.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\mohammad-amirahmadi-tk2ifgn60xo-unsplash-815x1019.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\nathan-dumlao-nbjho6wmrww-unsplash-815x1223.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\nathan-dumlao-nbjho6wmrww-unsplash-815x1223.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\promotions\\29610a66-767c-4572-a5da-084190c58a0c.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\promotions\\29610a66-767c-4572-a5da-084190c58a0c.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\promotions\\f45daae4-6fa2-48ce-bbc7-22f670319007.png",
+      "PackagePath": "staticwebassets\\assets\\images\\promotions\\f45daae4-6fa2-48ce-bbc7-22f670319007.png"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\sotay.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\sotay.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\tap200trang.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\tap200trang.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\tetiana-shyshkina-4lqjr8gu-bg-unsplash-815x1222.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\tetiana-shyshkina-4lqjr8gu-bg-unsplash-815x1222.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\images\\thuocke30cm.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\thuocke30cm.jpg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\mobirise\\css\\mbr-additional.css",
+      "PackagePath": "staticwebassets\\assets\\mobirise\\css\\mbr-additional.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\parallax\\jarallax.css",
+      "PackagePath": "staticwebassets\\assets\\parallax\\jarallax.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\parallax\\jarallax.js",
+      "PackagePath": "staticwebassets\\assets\\parallax\\jarallax.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\smoothscroll\\smooth-scroll.js",
+      "PackagePath": "staticwebassets\\assets\\smoothscroll\\smooth-scroll.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\socicon\\css\\styles.css",
+      "PackagePath": "staticwebassets\\assets\\socicon\\css\\styles.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\socicon\\fonts\\socicon.eot",
+      "PackagePath": "staticwebassets\\assets\\socicon\\fonts\\socicon.eot"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\socicon\\fonts\\socicon.svg",
+      "PackagePath": "staticwebassets\\assets\\socicon\\fonts\\socicon.svg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\socicon\\fonts\\socicon.ttf",
+      "PackagePath": "staticwebassets\\assets\\socicon\\fonts\\socicon.ttf"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\socicon\\fonts\\socicon.woff",
+      "PackagePath": "staticwebassets\\assets\\socicon\\fonts\\socicon.woff"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\socicon\\fonts\\socicon.woff2",
+      "PackagePath": "staticwebassets\\assets\\socicon\\fonts\\socicon.woff2"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\theme\\css\\style.css",
+      "PackagePath": "staticwebassets\\assets\\theme\\css\\style.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\theme\\js\\script.js",
+      "PackagePath": "staticwebassets\\assets\\theme\\js\\script.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.css",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.eot",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.eot"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.svg",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.svg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.ttf",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.ttf"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.woff",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons-bold\\mobirise-icons-bold.woff"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons2\\mobirise2.css",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons2\\mobirise2.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons2\\mobirise2.eot",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons2\\mobirise2.eot"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons2\\mobirise2.svg",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons2\\mobirise2.svg"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons2\\mobirise2.ttf",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons2\\mobirise2.ttf"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\web\\assets\\mobirise-icons2\\mobirise2.woff",
+      "PackagePath": "staticwebassets\\assets\\web\\assets\\mobirise-icons2\\mobirise2.woff"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\assets\\ytplayer\\index.js",
+      "PackagePath": "staticwebassets\\assets\\ytplayer\\index.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\css\\auth.css",
+      "PackagePath": "staticwebassets\\css\\auth.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\css\\cart.css",
+      "PackagePath": "staticwebassets\\css\\cart.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\css\\wireframe.css",
+      "PackagePath": "staticwebassets\\css\\wireframe.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\ShopVanPhongPham\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ShopVanPhongPham.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ShopVanPhongPham.props",
+      "PackagePath": "build\\ShopVanPhongPham.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ShopVanPhongPham.props",
+      "PackagePath": "buildMultiTargeting\\ShopVanPhongPham.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ShopVanPhongPham.props",
+      "PackagePath": "buildTransitive\\ShopVanPhongPham.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

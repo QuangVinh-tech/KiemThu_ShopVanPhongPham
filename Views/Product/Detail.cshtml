@@ -1,0 +1,159 @@
+﻿@model ShopVanPhongPham.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="product-detail py-4">
+    <div class="container">
+        <nav class="wf-breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Trang chủ</a> <span>&rsaquo;</span>
+            <a asp-controller="Product" asp-action="Shop" asp-route-category="@Model.Category">@Model.Category</a> <span>&rsaquo;</span>
+            <span class="active">@Model.Name</span>
+        </nav>
+
+        <div class="row g-4">
+            <!-- Gallery -->
+            <div class="col-lg-5">
+                <div class="pd-gallery">
+                    <div class="pd-thumbs">
+                        <div class="pd-thumb active"><img src="@Model.ImageUrl" alt="@Model.Name" onerror="this.src='/assets/images/placeholder.jpg'" /></div>
+                        <div class="pd-thumb"><img src="@Model.ImageUrl" alt="@Model.Name" onerror="this.src='/assets/images/placeholder.jpg'" /></div>
+                        <div class="pd-thumb"><img src="@Model.ImageUrl" alt="@Model.Name" onerror="this.src='/assets/images/placeholder.jpg'" /></div>
+                    </div>
+                    <div class="pd-main-image">
+                        <img src="@Model.ImageUrl" alt="@Model.Name" onerror="this.src='/assets/images/placeholder.jpg'" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thông tin sản phẩm -->
+            <div class="col-lg-4">
+                <div class="small text-muted mb-1">@Model.Category</div>
+                <h2 class="h4 fw-bold">@Model.Name</h2>
+
+                <div class="wf-product-rating mb-2">
+                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                    <span>4.8 &nbsp;|&nbsp; Đã bán 1.256</span>
+                </div>
+
+                <div class="fs-3 fw-bold" style="color:var(--wf-price)">@Model.Price.ToString("N0")đ</div>
+                <div class="text-success small fw-semibold mb-3"><i class="bi bi-check-circle-fill me-1"></i>Còn hàng</div>
+
+                <p class="text-muted small">@Model.Description</p>
+                <hr />
+
+                <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="productId" value="@Model.Id" />
+
+                    <label class="fw-semibold small mb-2 d-block">Số lượng</label>
+                    <div class="pd-qty mb-3">
+                        <button type="button" class="pd-qty-minus">−</button>
+                        <input type="number" name="quantity" value="1" min="1" />
+                        <button type="button" class="pd-qty-plus">+</button>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-wf-dark btn-lg flex-grow-1">
+                            <i class="bi bi-cart-plus me-1"></i>Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                </form>
+
+                <form asp-controller="Wishlist" asp-action="Toggle" method="post" class="mt-2">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                    <button type="submit" class="btn btn-wf-outline btn-lg w-100">
+                        @if (ViewBag.IsWished == true)
+                        {
+                            <i class="bi bi-heart-fill text-danger me-1"></i> @:Đã yêu thích
+                        }
+                        else
+                        {
+                            <i class="bi bi-heart me-1"></i> @:Thêm vào yêu thích
+                        }
+                    </button>
+                </form>
+
+                <a asp-controller="Product" asp-action="Shop"
+                   class="d-inline-block mt-3 small text-muted">&larr; Tiếp tục mua sắm</a>
+            </div>
+
+            <!-- Info box bên phải -->
+            <div class="col-lg-3">
+                <div class="pd-info-box mb-3">
+                    <div class="pd-info-row">
+                        <i class="bi bi-truck"></i>
+                        <div><strong>Giao hàng toàn quốc</strong><span>Nhận hàng từ 1 - 3 ngày</span></div>
+                    </div>
+                    <div class="pd-info-row">
+                        <i class="bi bi-arrow-repeat"></i>
+                        <div><strong>Đổi trả dễ dàng</strong><span>Đổi trả trong 7 ngày</span></div>
+                    </div>
+                    <div class="pd-info-row">
+                        <i class="bi bi-patch-check"></i>
+                        <div><strong>Sản phẩm chính hãng</strong><span>Cam kết 100% chính hãng</span></div>
+                    </div>
+                    <div class="pd-info-row">
+                        <i class="bi bi-shield-check"></i>
+                        <div><strong>Thanh toán khi nhận hàng</strong><span>Áp dụng cho đơn hàng nội thành</span></div>
+                    </div>
+                </div>
+
+                <div class="pd-info-box">
+                    <div class="pd-info-row">
+                        <div><strong>Thương hiệu</strong></div><span class="ms-auto text-muted">@Model.Category</span>
+                    </div>
+                    <div class="pd-info-row">
+                        <div><strong>Mã sản phẩm</strong></div><span class="ms-auto text-muted">SP-@Model.Id.ToString("D4")</span>
+                    </div>
+                    <div class="pd-info-row">
+                        <div><strong>Xuất xứ</strong></div><span class="ms-auto text-muted">Việt Nam</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs mô tả / đánh giá -->
+        <div class="mt-5">
+            <ul class="nav pd-tabs border-bottom" id="pdTab" role="tablist">
+                <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pd-desc" type="button">Mô tả sản phẩm</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pd-review" type="button">Đánh giá</button></li>
+                <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#pd-qa" type="button">Hỏi đáp</button></li>
+            </ul>
+            <div class="tab-content pt-3">
+                <div class="tab-pane fade show active" id="pd-desc">
+                    <p class="text-muted">@Model.Description</p>
+                </div>
+                <div class="tab-pane fade" id="pd-review">
+                    <p class="text-muted">Chưa có đánh giá cho sản phẩm này.</p>
+                </div>
+                <div class="tab-pane fade" id="pd-qa">
+                    <p class="text-muted">Chưa có câu hỏi nào.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.querySelector('.pd-qty-plus')?.addEventListener('click', function () {
+            const input = document.querySelector('.pd-qty input');
+            input.value = (parseInt(input.value) || 1) + 1;
+        });
+        document.querySelector('.pd-qty-minus')?.addEventListener('click', function () {
+            const input = document.querySelector('.pd-qty input');
+            input.value = Math.max(1, (parseInt(input.value) || 1) - 1);
+        });
+        document.querySelectorAll('.pd-thumb').forEach(function (thumb) {
+            thumb.addEventListener('click', function () {
+                document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+                document.querySelector('.pd-main-image img').src = thumb.querySelector('img').src;
+            });
+        });
+    </script>
+}

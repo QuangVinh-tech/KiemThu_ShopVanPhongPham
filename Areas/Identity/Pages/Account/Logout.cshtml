@@ -1,0 +1,40 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Đăng xuất";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="py-5" style="min-height:80vh; background:#f8f9fa;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
+                <div class="card shadow border-0 rounded-4 p-4 text-center">
+                    <i class="bi bi-box-arrow-right text-warning" style="font-size:3rem;"></i>
+                    <h3 class="fw-bold mt-2">Đăng xuất</h3>
+
+                    @if (User.Identity?.IsAuthenticated ?? false)
+                    {
+                        <p class="text-muted small mb-4">Bạn có chắc muốn đăng xuất không?</p>
+                        <form asp-area="Identity" asp-page="/Account/Logout"
+                              asp-route-returnUrl="@Url.Action("Index","Home")"
+                              method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-warning fw-bold w-100 py-2 rounded-3">
+                                <i class="bi bi-box-arrow-right me-2"></i>Xác nhận đăng xuất
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <p class="text-muted small mb-4">Bạn đã đăng xuất thành công.</p>
+                        <a asp-controller="Home" asp-action="Index"
+                           class="btn btn-warning fw-bold w-100 py-2 rounded-3">
+                            <i class="bi bi-house me-2"></i>Về trang chủ
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

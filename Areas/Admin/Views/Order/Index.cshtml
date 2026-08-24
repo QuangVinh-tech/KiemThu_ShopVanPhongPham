@@ -1,0 +1,159 @@
+﻿@using ShopVanPhongPham.Models
+@model List<Order>
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    string? currentFilter = ViewBag.StatusFilter;
+
+    string BadgeClass(string s) => s switch
+    {
+        "Đang giao" => "bg-info text-dark",
+        "Đã giao" => "bg-success",
+        "Đã hủy" => "bg-danger",
+        _ => "bg-warning text-dark"
+    };
+}
+
+<h2 class="fw-bold mb-4">Quản lý đơn hàng</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show">
+        @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+@* Bộ lọc theo trạng thái *@
+<ul class="nav nav-pills mb-4">
+    <li class="nav-item">
+        <a class="nav-link @(string.IsNullOrEmpty(currentFilter) ? "active" : "")"
+           asp-action="Index">
+            Tất cả <span class="badge bg-secondary ms-1">@ViewBag.TotalOrders</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(currentFilter == "Chờ xử lý" ? "active" : "")"
+           asp-action="Index" asp-route-status="Chờ xử lý">
+            Chờ xử lý <span class="badge bg-warning text-dark ms-1">@ViewBag.PendingOrders</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(currentFilter == "Đang giao" ? "active" : "")"
+           asp-action="Index" asp-route-status="Đang giao">
+            Đang giao <span class="badge bg-info text-dark ms-1">@ViewBag.ShippingOrders</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(currentFilter == "Đã giao" ? "active" : "")"
+           asp-action="Index" asp-route-status="Đã giao">
+            Đã giao <span class="badge bg-success ms-1">@ViewBag.DoneOrders</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(currentFilter == "Đã hủy" ? "active" : "")"
+           asp-action="Index" asp-route-status="Đã hủy">
+            Đã hủy <span class="badge bg-danger ms-1">@ViewBag.CancelledOrders</span>
+        </a>
+    </li>
+</ul>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Chưa có đơn hàng nào.</div>
+}
+else
+{
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Khách hàng</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Sản phẩm</th>
+                        <th class="text-end">Tổng tiền</th>
+                        <th>Thời gian</th>
+                        <th>Trạng thái</th>
+                        <th style="width:230px">Cập nhật</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model)
+                    {
+                        var status = string.IsNullOrEmpty(order.Status) ? "Chờ xử lý" : order.Status;
+                        <tr>
+                            <td>
+                                <a asp-action="Detail" asp-route-id="@order.Id">#@order.Id</a>
+                            </td>
+                            <td>@order.FirstName @order.LastName</td>
+                            <td>@order.Email</td>
+                            <td>@order.Address</td>
+                            <td>
+                                @foreach (var detail in order.OrderDetails!)
+                                {
+                                    <small class="d-block">
+                                        @detail.Product?.Name x @detail.Quantity
+                                    </small>
+                                }
+                            </td>
+                            <td class="text-end fw-bold text-danger">
+                                @order.OrderTotal.ToString("N0") ₫
+                                @if (order.DiscountAmount > 0)
+                                {
+                                    <br />
+
+                                    <small class="text-success fw-normal">
+                                        -@order.DiscountAmount.ToString("N0") ₫
+                                        @if (!string.IsNullOrEmpty(order.PromotionCode))
+                                        {
+                                            @:(@order.PromotionCode)
+                                        }
+                                    </small>
+                                }
+                            </td>
+                            <td>
+                                <small>@order.OrderPlaced.ToString("dd/MM/yyyy HH:mm")</small>
+                            </td>
+                            <td>
+                                <span class="badge @BadgeClass(status)">@status</span>
+                            </td>
+                            <td>
+                                <form asp-action="UpdateStatus" method="post" class="d-flex gap-2">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="orderId" value="@order.Id" />
+                                    <input type="hidden" name="filter" value="@currentFilter" />
+                                    <select name="status" class="form-select form-select-sm">
+                                        @foreach (var s in (List<string>)ViewBag.StatusList)
+                                        {
+                                            if (s == status)
+                                            {
+                                                <option value="@s" selected>@s</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@s">@s</option>
+                                            }
+                                        }
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-primary text-nowrap">
+                                        Lưu
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ShopVanPhongPham.Models.Category>
+@{
+    ViewData["Title"] = "Danh mục sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="d-flex align-items-center justify-content-between mb-4">
+    <h2 class="fw-bold mb-0">Danh mục sản phẩm</h2>
+    <a asp-area="Admin" asp-controller="Category" asp-action="Create"
+       class="btn btn-success">+ Thêm danh mục</a>
+</div>
+
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success">@ViewBag.Success</div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên danh mục</th>
+                    <th style="width:180px">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>@category.Name</td>
+                        <td>
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Edit"
+                               asp-route-id="@category.Id" class="btn btn-sm btn-outline-primary">Sửa</a>
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Delete"
+                               asp-route-id="@category.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (!Model.Any())
+        {
+            <p class="text-muted text-center py-3">Chưa có danh mục nào.</p>
+        }
+    </div>
+</div>

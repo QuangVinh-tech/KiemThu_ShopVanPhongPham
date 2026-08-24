@@ -1,0 +1,17 @@
+﻿@model List<ShopVanPhongPham.Models.Category>
+
+<ul class="sidebar-cat-list p-3">
+    <li>
+        <a asp-controller="Product" asp-action="Shop" class="fw-bold">
+            Tất cả sản phẩm
+        </a>
+    </li>
+    @foreach (var cat in Model)
+    {
+        <li>
+            <a asp-controller="Product" asp-action="Shop" asp-route-category="@cat.Name">
+                @cat.Name
+            </a>
+        </li>
+    }
+</ul>

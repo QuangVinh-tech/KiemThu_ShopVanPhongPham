@@ -1,0 +1,32 @@
+@page
+@model ShowRecoveryCodesModel
+@{
+    ViewData["Title"] = "Mã khôi phục";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h5 class="card-title mb-4"><i class="bi bi-key me-2"></i>@ViewData["Title"]</h5>
+
+        <div class="alert alert-danger">
+            <strong>Hãy lưu lại các mã này ở nơi an toàn.</strong>
+            Nếu bạn mất thiết bị xác thực và không còn mã khôi phục, bạn sẽ mất quyền truy cập vào tài khoản.
+        </div>
+
+        <div class="row">
+            @for (var row = 0; row < Model.RecoveryCodes.Length; row += 2)
+            {
+                <div class="col-6 mb-2"><code>@Model.RecoveryCodes[row]</code></div>
+                @if (row + 1 < Model.RecoveryCodes.Length)
+                {
+                    <div class="col-6 mb-2"><code>@Model.RecoveryCodes[row + 1]</code></div>
+                }
+            }
+        </div>
+
+        <a asp-page="./TwoFactorAuthentication" class="btn btn-primary mt-3">Quay lại</a>
+    </div>
+</div>

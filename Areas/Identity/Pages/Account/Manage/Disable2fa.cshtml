@@ -1,0 +1,24 @@
+@page
+@model Disable2faModel
+@{
+    ViewData["Title"] = "Tắt xác thực 2 bước";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<div class="card shadow-sm">
+    <div class="card-body p-4">
+        <h5 class="card-title mb-4"><i class="bi bi-shield-x me-2"></i>@ViewData["Title"]</h5>
+
+        <div class="alert alert-warning">
+            <strong>Đây là hành động cần thận trọng.</strong>
+            <p class="mb-0">
+                Tắt xác thực 2 bước sẽ không yêu cầu thêm mã xác minh khi đăng nhập, làm giảm độ an toàn của tài khoản.
+                Hãy chắc chắn trước khi tiếp tục.
+            </p>
+        </div>
+
+        <form method="post">
+            <button class="btn btn-danger" type="submit">Tắt xác thực 2 bước</button>
+        </form>
+    </div>
+</div>

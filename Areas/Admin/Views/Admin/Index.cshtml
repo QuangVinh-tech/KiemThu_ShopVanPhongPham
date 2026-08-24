@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    // Tạo URL một lần, dùng lại trong onclick
+    var urlProduct = Url.Action("Index", "Product", new { area = "Admin" });
+    var urlOrder = Url.Action("Index", "Order", new { area = "Admin" });
+    var urlUser = Url.Action("Index", "User", new { area = "Admin" });
+    var urlPending = Url.Action("Index", "Order", new { area = "Admin", status = "Chờ xử lý" });
+    var urlShip = Url.Action("Index", "Order", new { area = "Admin", status = "Đang giao" });
+    var urlDone = Url.Action("Index", "Order", new { area = "Admin", status = "Đã giao" });
+    var urlCancel = Url.Action("Index", "Order", new { area = "Admin", status = "Đã hủy" });
+}
+
+<h2 class="fw-bold mb-4">Dashboard</h2>
+
+@* 4 thẻ thống kê — dùng onclick="location.href" để chắc chắn navigate *@
+<div class="row g-4 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card-plain" onclick="location.href='@urlProduct'">
+            <div class="stat-icon-box"><i class="bi bi-box-seam"></i></div>
+            <div>
+                <div class="stat-label">Sản phẩm</div>
+                <div class="stat-value">@ViewBag.TotalProducts</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card-plain" onclick="location.href='@urlOrder'">
+            <div class="stat-icon-box"><i class="bi bi-receipt"></i></div>
+            <div>
+                <div class="stat-label">Đơn hàng</div>
+                <div class="stat-value">@ViewBag.TotalOrders</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card-plain" onclick="location.href='@urlUser'">
+            <div class="stat-icon-box"><i class="bi bi-people"></i></div>
+            <div>
+                <div class="stat-label">Người dùng</div>
+                <div class="stat-value">@ViewBag.TotalUsers</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card-plain stat-card-static">
+            <div class="stat-icon-box"><i class="bi bi-cash-stack"></i></div>
+            <div>
+                <div class="stat-label">Doanh thu</div>
+                <div class="stat-value">@(((decimal)ViewBag.TotalRevenue).ToString("N0")) đ</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Trạng thái đơn hàng — mỗi dòng click được *@
+<div class="card shadow-sm">
+    <div class="card-header fw-bold bg-light">Đơn hàng theo trạng thái</div>
+    <div class="card-body p-0">
+        <div class="list-group list-group-flush">
+            <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
+                 onclick="location.href='@urlPending'">
+                <span>Chờ xử lý</span>
+                <span class="status-count-box">@ViewBag.PendingOrders</span>
+            </div>
+            <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
+                 onclick="location.href='@urlShip'">
+                <span>Đang giao</span>
+                <span class="status-count-box">@ViewBag.ShippingOrders</span>
+            </div>
+            <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
+                 onclick="location.href='@urlDone'">
+                <span>Đã giao</span>
+                <span class="status-count-box">@ViewBag.DoneOrders</span>
+            </div>
+            <div class="list-group-item status-row d-flex justify-content-between align-items-center px-4 py-3"
+                 onclick="location.href='@urlCancel'">
+                <span>Đã hủy</span>
+                <span class="status-count-box">@ViewBag.CancelledOrders</span>
+            </div>
+        </div>
+    </div>
+</div>

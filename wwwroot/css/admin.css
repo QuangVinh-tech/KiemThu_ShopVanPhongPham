@@ -1,0 +1,392 @@
+﻿:root {
+    --vpp-black: #1a1a1a;
+    --vpp-dark2: #222226;
+    --vpp-text: #2b2d33;
+    --vpp-muted: #8a8f98;
+    --vpp-border: #e5e7eb;
+    --vpp-border-strong: #d7dae0;
+    --vpp-bg: #f7f8fa;
+    --vpp-accent: #d9534f;
+    --vpp-accent-dark: #b83832;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--vpp-bg);
+}
+
+/* ---------------- Layout ---------------- */
+.admin-wrapper {
+    min-height: 100vh;
+}
+
+/* ---------------- Sidebar ---------------- */
+.admin-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--vpp-black) 0%, var(--vpp-dark2) 60%, var(--vpp-text) 100%);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+}
+
+    .admin-sidebar .sidebar-brand {
+        padding: 1.25rem 1.25rem;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .admin-sidebar .sidebar-logo {
+        width: 56px;
+        height: 56px;
+        border: 1.5px solid rgba(255,255,255,.35);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: rgba(255,255,255,.6);
+    }
+
+    .admin-sidebar .sidebar-brand h5 {
+        color: #fff;
+        letter-spacing: .5px;
+        margin: 0;
+    }
+
+    .admin-sidebar .sidebar-brand small {
+        color: rgba(255,255,255,.55);
+    }
+
+    .admin-sidebar .nav {
+        padding: 1rem .75rem;
+    }
+
+    .admin-sidebar .nav-link {
+        color: rgba(255,255,255,.75);
+        border-radius: 8px;
+        padding: .65rem 1rem;
+        margin-bottom: .25rem;
+        font-weight: 500;
+        border-left: 3px solid transparent;
+        transition: background .15s, color .15s, border-color .15s;
+    }
+
+        .admin-sidebar .nav-link i {
+            width: 1.25rem;
+            text-align: center;
+        }
+
+        .admin-sidebar .nav-link:hover {
+            color: #fff;
+            background: rgba(255,255,255,.06);
+        }
+
+        .admin-sidebar .nav-link.active {
+            color: #fff;
+            background: rgba(255,255,255,.10);
+            border-left-color: #fff;
+        }
+
+        .admin-sidebar .nav-link.text-back {
+            color: #e8a5a3;
+        }
+
+            .admin-sidebar .nav-link.text-back:hover {
+                color: #f3c4c2;
+                background: rgba(217, 83, 79, .16);
+            }
+
+    .admin-sidebar hr {
+        border-color: rgba(255,255,255,.1);
+        margin: .75rem 0;
+    }
+
+    .admin-sidebar.collapsed {
+        width: 0;
+        min-width: 0;
+        overflow: hidden;
+        padding: 0;
+    }
+
+/* ---------------- Topbar ---------------- */
+.admin-topbar {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    padding: .75rem 1.5rem;
+    gap: 1rem;
+}
+
+    .admin-topbar .topbar-toggle {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        color: var(--vpp-black);
+        line-height: 1;
+        padding: .25rem .5rem;
+        flex-shrink: 0;
+    }
+
+    .admin-topbar .topbar-brand {
+        margin: 0;
+        color: var(--vpp-black);
+        white-space: nowrap;
+        flex-shrink: 0;
+        margin-right: .5rem;
+    }
+
+    .admin-topbar .admin-search {
+        position: relative;
+        flex: 1 1 auto;
+        max-width: 560px;
+        margin: 0 1rem;
+    }
+
+        .admin-topbar .admin-search i {
+            position: absolute;
+            left: .9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--vpp-muted);
+        }
+
+        .admin-topbar .admin-search input {
+            width: 100%;
+            border: 1px solid var(--vpp-border-strong);
+            border-radius: 24px;
+            padding: .5rem 1rem .5rem 2.4rem;
+            background: var(--vpp-bg);
+            font-size: .9rem;
+        }
+
+            .admin-topbar .admin-search input:focus {
+                outline: none;
+                border-color: var(--vpp-black);
+                background: #fff;
+            }
+
+    .admin-topbar .topbar-icon-btn {
+        position: relative;
+        color: var(--vpp-black);
+        font-size: 1.25rem;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--vpp-bg);
+        transition: background .15s;
+    }
+
+        .admin-topbar .topbar-icon-btn:hover {
+            background: var(--vpp-border);
+        }
+
+    .admin-topbar .topbar-badge {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        background: var(--vpp-accent);
+        color: #fff;
+        font-size: .65rem;
+        font-weight: 700;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+    }
+
+    .admin-topbar .topbar-profile {
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        text-decoration: none;
+        padding: .25rem .5rem;
+        border-radius: 10px;
+    }
+
+        .admin-topbar .topbar-profile:hover {
+            background: var(--vpp-bg);
+        }
+
+        .admin-topbar .topbar-profile::after {
+            margin-left: .4rem;
+        }
+
+    .admin-topbar .profile-avatar {
+        width: 38px;
+        height: 38px;
+        border: 1.5px solid var(--vpp-border-strong);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--vpp-black);
+        background: var(--vpp-bg);
+        flex-shrink: 0;
+    }
+
+    .admin-topbar .profile-info {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+
+    .admin-topbar .profile-name {
+        font-weight: 700;
+        color: var(--vpp-black);
+        font-size: .9rem;
+    }
+
+    .admin-topbar .profile-role {
+        font-size: .75rem;
+        color: var(--vpp-muted);
+    }
+
+/* ---------------- Content ---------------- */
+.admin-content {
+    flex: 1 1 auto;
+    padding: 1.75rem;
+}
+
+    /* ---------------- Cards ---------------- */
+    .admin-content .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    }
+
+    .admin-content .card-header {
+        border-radius: 12px 12px 0 0 !important;
+        font-weight: 600;
+    }
+
+/* ---------------- Stat cards (Dashboard) ---------------- */
+.stat-card-plain {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #fff;
+    border: 1px solid var(--vpp-border);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, border-color .15s;
+    box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    height: 100%;
+}
+
+    .stat-card-plain:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,.08);
+        border-color: var(--vpp-black);
+    }
+
+    .stat-card-plain.stat-card-static {
+        cursor: default;
+    }
+
+        .stat-card-plain.stat-card-static:hover {
+            transform: none;
+            border-color: var(--vpp-border);
+            box-shadow: 0 2px 10px rgba(0,0,0,.04);
+        }
+
+.stat-icon-box {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border: 1.5px solid var(--vpp-border-strong);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--vpp-black);
+    background: var(--vpp-bg);
+}
+
+.stat-label {
+    font-size: .85rem;
+    color: var(--vpp-muted);
+    margin-bottom: .15rem;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--vpp-black);
+}
+
+/* ---------------- Tables ---------------- */
+.admin-content table thead.table-dark th,
+.admin-content table thead.table-admin th {
+    background: linear-gradient(135deg, var(--vpp-black) 0%, var(--vpp-dark2) 100%);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+}
+
+.admin-content .table > :not(caption) > * > * {
+    vertical-align: middle;
+}
+
+/* ---------------- Buttons & badges ---------------- */
+.admin-content .btn {
+    border-radius: 8px;
+}
+
+.admin-content .btn-outline-secondary {
+    border-radius: 8px;
+}
+
+.admin-content .nav-pills .nav-link {
+    border-radius: 50px;
+    font-weight: 500;
+    color: var(--vpp-black);
+}
+
+    .admin-content .nav-pills .nav-link.active {
+        background: var(--vpp-black);
+        color: #fff;
+    }
+
+    .admin-content .nav-pills .nav-link:not(.active):hover {
+        background: var(--vpp-bg);
+    }
+
+/* ---------------- Status row hover (Dashboard) ---------------- */
+.status-row {
+    cursor: pointer;
+    transition: background .1s;
+}
+
+    .status-row:hover {
+        background: var(--vpp-bg);
+    }
+
+.status-count-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+    padding: .35rem .9rem;
+    border: 1px solid var(--vpp-border-strong);
+    border-radius: 8px;
+    font-weight: 700;
+    color: var(--vpp-black);
+    background: #fff;
+}

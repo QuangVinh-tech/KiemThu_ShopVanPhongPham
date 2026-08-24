@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Liên Hệ";
+}
+
+<section class="contact-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h2 class="text-center mb-4">Liên Hệ Với Chúng Tôi</h2>
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["SuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                }
+
+                <div class="card shadow-sm">
+                    <div class="card-body p-4">
+                        <form asp-controller="Home" asp-action="Contact" method="post">
+                            @Html.AntiForgeryToken()
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Họ và tên <span class="text-danger">*</span></label>
+                                <input type="text" name="fullName" class="form-control" placeholder="Nhập họ và tên của bạn" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="email" name="email" class="form-control" placeholder="example@email.com" required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="tel" name="phone" class="form-control" placeholder="0901 234 567" />
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Chủ đề</label>
+                                <select name="subject" class="form-select">
+                                    <option value="">-- Chọn chủ đề --</option>
+                                    <option value="Tư vấn sản phẩm">Tư vấn sản phẩm</option>
+                                    <option value="Đặt hàng số lượng lớn">Đặt hàng số lượng lớn</option>
+                                    <option value="Khiếu nại / Góp ý">Khiếu nại / Góp ý</option>
+                                    <option value="Khác">Khác</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Nội dung tin nhắn <span class="text-danger">*</span></label>
+                                <textarea name="message" class="form-control" rows="5"
+                                          placeholder="Nhập nội dung bạn muốn liên hệ..." required></textarea>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    📨 Gửi tin nhắn
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Thông tin liên hệ -->
+                <div class="row mt-4 text-center">
+                    <div class="col-md-4">
+                        <i class="bi bi-geo-alt fs-3 text-primary"></i>
+                        <p class="mt-2">123 Nguyễn Văn A,<br>Q.1, TP.HCM</p>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="bi bi-telephone fs-3 text-primary"></i>
+                        <p class="mt-2">0901 234 567<br>0987 654 321</p>
+                    </div>
+                    <div class="col-md-4">
+                        <i class="bi bi-envelope fs-3 text-primary"></i>
+                        <p class="mt-2">lienhe@shopvpp.vn<br>support@shopvpp.vn</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,126 @@
+﻿@model IEnumerable<ShopVanPhongPham.Models.Product>
+
+@{
+    ViewData["Title"] = "Danh Mục Sản Phẩm";
+    var categories = ViewBag.Categories as List<string> ?? new List<string>();
+    var currentCategory = ViewBag.Category as string;
+    var currentSort = ViewBag.Sort as string;
+    decimal? minPrice = ViewBag.MinPrice;
+    decimal? maxPrice = ViewBag.MaxPrice;
+    var pageTitle = string.IsNullOrEmpty(currentCategory) ? "Tất cả sản phẩm" : currentCategory;
+}
+
+<section class="shop-page py-4">
+    <div class="container">
+
+        <nav class="wf-breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Trang chủ</a> <span>&rsaquo;</span>
+            <span class="active">Danh mục sản phẩm</span>
+        </nav>
+
+        <div class="row g-4">
+            <!-- Sidebar bộ lọc -->
+            <div class="col-lg-3">
+                <div class="sidebar-card">
+                    <h6>Danh mục sản phẩm</h6>
+                    <ul class="sidebar-cat-list">
+                        <li>
+                            <a asp-action="Shop" asp-route-search="@ViewBag.Search"
+                               asp-route-minPrice="@minPrice" asp-route-maxPrice="@maxPrice" asp-route-sort="@currentSort"
+                               class="@(string.IsNullOrEmpty(currentCategory) ? "active" : "")">
+                                Tất cả sản phẩm
+                            </a>
+                        </li>
+                        @foreach (var cat in categories)
+                        {
+                            <li>
+                                <a asp-action="Shop" asp-route-category="@cat" asp-route-search="@ViewBag.Search"
+                                   asp-route-minPrice="@minPrice" asp-route-maxPrice="@maxPrice" asp-route-sort="@currentSort"
+                                   class="@(currentCategory == cat ? "active" : "")">
+                                    @cat
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="sidebar-card">
+                    <h6>Bộ lọc</h6>
+                    <form asp-action="Shop" method="get">
+                        <input type="hidden" name="search" value="@ViewBag.Search" />
+                        <input type="hidden" name="category" value="@currentCategory" />
+                        <input type="hidden" name="sort" value="@currentSort" />
+
+                        <label class="small text-muted mb-2 d-block">Khoảng giá (đ)</label>
+                        <div class="d-flex gap-2 mb-3">
+                            <input type="number" name="minPrice" min="0" step="1000"
+                                   class="form-control form-control-sm" placeholder="Từ"
+                                   value="@(minPrice?.ToString())" />
+                            <input type="number" name="maxPrice" min="0" step="1000"
+                                   class="form-control form-control-sm" placeholder="Đến"
+                                   value="@(maxPrice?.ToString())" />
+                        </div>
+
+                        <button type="submit" class="btn btn-wf-outline btn-sm w-100 mb-2">Áp dụng</button>
+                        <a asp-action="Shop" asp-route-search="@ViewBag.Search" asp-route-category="@currentCategory"
+                           class="btn btn-link btn-sm w-100 text-muted">Xóa bộ lọc giá</a>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Nội dung chính -->
+            <div class="col-lg-9">
+                <h2 class="mb-1">@pageTitle</h2>
+                <p class="text-muted small mb-0">Sản phẩm chất lượng, chính hãng, giá tốt cho học tập và làm việc.</p>
+
+                <!-- Thanh lọc / tìm kiếm server-side -->
+                <form asp-action="Shop" method="get" class="wf-toolbar">
+                    <div class="d-flex flex-grow-1 gap-2 flex-wrap">
+                        <input name="search" value="@ViewBag.Search"
+                               type="text" class="form-control" style="max-width:280px"
+                               placeholder="Tìm sản phẩm..." />
+                        <input type="hidden" name="category" value="@currentCategory" />
+                        <input type="hidden" name="minPrice" value="@(minPrice?.ToString())" />
+                        <input type="hidden" name="maxPrice" value="@(maxPrice?.ToString())" />
+                        <button type="submit" class="btn btn-wf-outline btn-sm">
+                            <i class="bi bi-search"></i> Lọc
+                        </button>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="small text-muted">Tìm thấy @Model.Count() sản phẩm</span>
+                        <select name="sort" class="wf-select" onchange="this.form.submit()">
+                            <option value="" selected="@(string.IsNullOrEmpty(currentSort) ? "selected" : null)">Sắp xếp: Mặc định</option>
+                            <option value="price_asc" selected="@(currentSort == "price_asc" ? "selected" : null)">Giá tăng dần</option>
+                            <option value="price_desc" selected="@(currentSort == "price_desc" ? "selected" : null)">Giá giảm dần</option>
+                            <option value="name_asc" selected="@(currentSort == "name_asc" ? "selected" : null)">Tên A &rarr; Z</option>
+                            <option value="name_desc" selected="@(currentSort == "name_desc" ? "selected" : null)">Tên Z &rarr; A</option>
+                        </select>
+                    </div>
+                </form>
+
+                <!-- Hiển thị kết quả -->
+                @if (!Model.Any())
+                {
+                    <div class="text-center py-5">
+                        <div style="font-size:3rem">😕</div>
+                        <h5 class="text-muted mt-3">Không tìm thấy sản phẩm nào</h5>
+                        <a asp-action="Shop" class="btn btn-wf-outline mt-3">
+                            Xem tất cả sản phẩm
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="row g-3" id="productGrid">
+                        @foreach (var product in Model)
+                        {
+                            <div class="col-6 col-md-4 col-xl-3 product-item">
+                                @await Html.PartialAsync("_Product", product)
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,27 @@
+﻿@model ShopVanPhongPham.Models.Category
+@{
+    ViewData["Title"] = "Xóa danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="d-flex align-items-center mb-4">
+    <a asp-area="Admin" asp-controller="Category" asp-action="Index"
+       class="btn btn-outline-secondary me-3">← Quay lại</a>
+    <h2 class="fw-bold mb-0">Xóa danh mục</h2>
+</div>
+
+<div class="card shadow-sm border-danger" style="max-width:500px">
+    <div class="card-body">
+        <p>Bạn có chắc muốn xóa danh mục <strong>"@Model.Name"</strong> không?</p>
+        <p class="text-muted small">
+            Lưu ý: nếu còn sản phẩm đang thuộc danh mục này, việc xóa có thể gây lỗi.
+            Nên chuyển hết sản phẩm sang danh mục khác trước khi xóa.
+        </p>
+        <form asp-area="Admin" asp-controller="Category" asp-action="Delete" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger w-100 py-2 fw-semibold">
+                Xác nhận xóa
+            </button>
+        </form>
+    </div>
+</div>

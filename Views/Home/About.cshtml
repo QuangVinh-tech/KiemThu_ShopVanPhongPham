@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Giới thiệu - Shop Văn Phòng Phẩm";
+}
+
+<section class="py-4">
+    <div class="container">
+
+        <!-- Hero giới thiệu -->
+        <div class="wf-hero">
+            <div>
+                <span class="wf-hero-tag">Về chúng tôi</span>
+                <h1>VanPhamPro<br />Văn phòng phẩm cho mọi nhu cầu</h1>
+                <p>Đồng hành cùng học sinh, sinh viên và dân văn phòng từ năm 2015 với những sản phẩm chất lượng, giá cả hợp lý.</p>
+                <a asp-controller="Product" asp-action="Shop" class="btn btn-wf-dark btn-lg px-4">Khám phá sản phẩm</a>
+            </div>
+        </div>
+
+        <!-- Thống kê nhanh -->
+        <div class="wf-features-strip">
+            <div class="wf-feature wf-about-stat">
+                <div>
+                    <strong>10+</strong>
+                    <span>Năm hoạt động</span>
+                </div>
+            </div>
+            <div class="wf-feature wf-about-stat">
+                <div>
+                    <strong>500+</strong>
+                    <span>Sản phẩm</span>
+                </div>
+            </div>
+            <div class="wf-feature wf-about-stat">
+                <div>
+                    <strong>20.000+</strong>
+                    <span>Khách hàng</span>
+                </div>
+            </div>
+            <div class="wf-feature wf-about-stat">
+                <div>
+                    <strong>63</strong>
+                    <span>Tỉnh thành giao hàng</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Câu chuyện thương hiệu -->
+        <div class="wf-section-title">
+            <h4>Câu chuyện của chúng tôi</h4>
+        </div>
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7">
+                <p>
+                    VanPhamPro khởi đầu là một cửa hàng nhỏ chuyên cung cấp bút, vở và dụng cụ học tập cho học sinh trong khu vực.
+                    Qua nhiều năm, chúng tôi mở rộng danh mục sản phẩm để phục vụ cả nhu cầu văn phòng, từ giấy in, băng keo cho đến
+                    các thiết bị hỗ trợ công việc hàng ngày.
+                </p>
+                <p>
+                    Với phương châm <strong>"Chất lượng – Giá tốt – Phục vụ tận tâm"</strong>, chúng tôi luôn chọn lọc sản phẩm từ
+                    những thương hiệu uy tín, đảm bảo hàng chính hãng và giá cả cạnh tranh, đồng thời không ngừng cải thiện trải
+                    nghiệm mua sắm trực tuyến để khách hàng có thể đặt hàng nhanh chóng, thuận tiện mọi lúc mọi nơi.
+                </p>
+            </div>
+            <div class="col-lg-5">
+                <div class="sidebar-card">
+                    <h6>Vì sao chọn chúng tôi?</h6>
+                    <ul class="wf-about-list">
+                        <li><i class="bi bi-check2-circle"></i> Sản phẩm chính hãng, nguồn gốc rõ ràng</li>
+                        <li><i class="bi bi-check2-circle"></i> Giá cả hợp lý, nhiều ưu đãi theo mùa</li>
+                        <li><i class="bi bi-check2-circle"></i> Giao hàng nhanh chóng toàn quốc</li>
+                        <li><i class="bi bi-check2-circle"></i> Đổi trả dễ dàng trong 7 ngày</li>
+                        <li><i class="bi bi-check2-circle"></i> Hỗ trợ tư vấn tận tâm 24/7</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Giá trị cốt lõi -->
+        <div class="wf-section-title">
+            <h4>Giá trị cốt lõi</h4>
+        </div>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <div class="cat-icon-card">
+                    <span class="cat-icon-box"><i class="bi bi-patch-check-fill"></i></span>
+                    <span>Chất lượng</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="cat-icon-card">
+                    <span class="cat-icon-box"><i class="bi bi-tag-fill"></i></span>
+                    <span>Giá tốt</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="cat-icon-card">
+                    <span class="cat-icon-box"><i class="bi bi-lightning-charge-fill"></i></span>
+                    <span>Nhanh chóng</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="cat-icon-card">
+                    <span class="cat-icon-box"><i class="bi bi-heart-fill"></i></span>
+                    <span>Tận tâm</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA liên hệ -->
+        <div class="wf-promo-banner">
+            <div>
+                <span class="wf-hero-tag wf-hero-tag-light">Cần hỗ trợ?</span>
+                <h3>Có câu hỏi cho chúng tôi?</h3>
+                <p>Đội ngũ tư vấn luôn sẵn sàng hỗ trợ bạn mọi lúc.</p>
+            </div>
+            <a asp-controller="Home" asp-action="Contact" class="btn btn-wf-outline btn-lg px-4">
+                Liên hệ ngay <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</section>

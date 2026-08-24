@@ -1,0 +1,301 @@
+﻿@using ShopVanPhongPham.Models
+@model List<ShoppingCartItem>
+@{
+    ViewData["Title"] = "Thanh toán";
+    var subTotal = (decimal)ViewBag.SubTotal;
+    var discount = (decimal)(ViewBag.Discount ?? 0m);
+    var shippingFee = 20000m;
+    var grandTotal = subTotal - discount + shippingFee;
+}
+<section class="py-4">
+    <div class="container">
+
+        <nav class="wf-breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Trang chủ</a> <span>&rsaquo;</span>
+            <a asp-controller="ShoppingCart" asp-action="Index">Giỏ hàng</a> <span>&rsaquo;</span>
+            <span class="active">Thanh toán</span>
+        </nav>
+
+        <h2 class="fw-bold mb-0">Thanh toán</h2>
+
+        <!-- Stepper -->
+        <div class="wf-stepper">
+            <div class="wf-step active">
+                <span class="circle">1</span>
+                <span>Thông tin giao hàng</span>
+            </div>
+            <div class="wf-step-line"></div>
+            <div class="wf-step">
+                <span class="circle">2</span>
+                <span>Thanh toán</span>
+            </div>
+            <div class="wf-step-line"></div>
+            <div class="wf-step">
+                <span class="circle">3</span>
+                <span>Xác nhận đơn hàng</span>
+            </div>
+            <div class="wf-step-line"></div>
+            <div class="wf-step">
+                <span class="circle">4</span>
+                <span>Hoàn tất</span>
+            </div>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">Vui lòng điền đầy đủ thông tin.</div>
+        }
+
+        <div class="row g-4">
+
+            <div class="col-lg-7">
+                <form asp-action="Checkout" method="post">
+                    @Html.AntiForgeryToken()
+
+                    <div class="checkout-card">
+                        <h6>1. Thông tin giao hàng</h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">
+                                    Họ <span class="text-danger">*</span>
+                                </label>
+                                <input name="firstName" class="form-control"
+                                       placeholder="Nguyễn" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">
+                                    Tên <span class="text-danger">*</span>
+                                </label>
+                                <input name="lastName" class="form-control"
+                                       placeholder="Văn A" required />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">
+                                    Số điện thoại <span class="text-danger">*</span>
+                                </label>
+                                <input name="phone" class="form-control"
+                                       placeholder="0901234567" required />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">
+                                    Email (không bắt buộc)
+                                </label>
+                                <input name="email" type="email" class="form-control"
+                                       placeholder="email@example.com" />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label small fw-semibold">
+                                    Địa chỉ nhận hàng <span class="text-danger">*</span>
+                                </label>
+                                <textarea name="address" class="form-control" rows="2"
+                                          placeholder="Số nhà, đường, phường, quận, tỉnh/thành"
+                                          required></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label small fw-semibold">Ghi chú đơn hàng (không bắt buộc)</label>
+                                <textarea name="note" class="form-control" rows="2"
+                                          placeholder="Ví dụ: Giao hàng giờ hành chính, không gọi trước..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-card">
+                        <h6>2. Phương thức giao hàng</h6>
+                        <label class="pay-option checked">
+                            <input class="form-check-input me-2" type="radio" name="shippingMethod" value="standard" checked>
+                            <div>
+                                <strong>Giao hàng tiêu chuẩn</strong>
+                                <div class="text-muted small">Nhận hàng từ 1 - 3 ngày</div>
+                            </div>
+                            <span class="price-tag">20.000đ</span>
+                        </label>
+                        <label class="pay-option">
+                            <input class="form-check-input me-2" type="radio" name="shippingMethod" value="express">
+                            <div>
+                                <strong>Giao hàng nhanh</strong>
+                                <div class="text-muted small">Nhận hàng trong ngày (nội thành HN, HCM)</div>
+                            </div>
+                            <span class="price-tag">40.000đ</span>
+                        </label>
+                        <label class="pay-option">
+                            <input class="form-check-input me-2" type="radio" name="shippingMethod" value="pickup">
+                            <div>
+                                <strong>Nhận tại cửa hàng</strong>
+                                <div class="text-muted small">Nhận hàng tại cửa hàng gần bạn</div>
+                            </div>
+                            <span class="price-tag">Miễn phí</span>
+                        </label>
+                    </div>
+
+                    <div class="checkout-card">
+                        <h6>3. Phương thức thanh toán</h6>
+
+                        <label class="pay-option checked" id="cod-option">
+                            <input class="form-check-input me-2" type="radio"
+                                   name="paymentMethod" value="COD" id="cod" checked>
+                            <div>
+                                <strong>Thanh toán khi nhận hàng (COD)</strong>
+                                <div class="text-muted small">Thanh toán bằng tiền mặt khi nhận hàng</div>
+                            </div>
+                            <i class="bi bi-cash-coin fs-5"></i>
+                        </label>
+
+                        <label class="pay-option" id="bank-option">
+                            <input class="form-check-input me-2" type="radio"
+                                   name="paymentMethod" value="QR" id="qr">
+                            <div>
+                                <strong>Chuyển khoản ngân hàng</strong>
+                                <div class="text-muted small">Chuyển khoản qua tài khoản ngân hàng</div>
+                            </div>
+                            <i class="bi bi-bank fs-5"></i>
+                        </label>
+
+                        <label class="pay-option">
+                            <input class="form-check-input me-2" type="radio"
+                                   name="paymentMethod" value="CARD" disabled>
+                            <div>
+                                <strong>Thanh toán bằng thẻ</strong>
+                                <div class="text-muted small">Visa, MasterCard, JCB, ATM nội địa</div>
+                            </div>
+                            <i class="bi bi-credit-card fs-5"></i>
+                        </label>
+
+                        <label class="pay-option">
+                            <input class="form-check-input me-2" type="radio"
+                                   name="paymentMethod" value="WALLET" disabled>
+                            <div>
+                                <strong>Ví điện tử</strong>
+                                <div class="text-muted small">Momo, ZaloPay, VnPay...</div>
+                            </div>
+                            <i class="bi bi-wallet2 fs-5"></i>
+                        </label>
+
+                        <div id="qrPreview" class="text-center border rounded-3 p-3 mt-2 d-none">
+                            <img src="@ViewBag.QrPreviewUrl" alt="VietQR"
+                                 style="max-width:220px;" class="mb-2" />
+                            <p class="text-muted small mb-0">
+                                Quét mã để chuyển khoản. Mã đơn hàng chính xác sẽ hiện
+                                ở trang xác nhận sau khi bạn bấm "Đặt hàng ngay".
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-3">
+                        <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-wf-outline">
+                            &larr; Quay lại giỏ hàng
+                        </a>
+                        <button type="submit" class="btn btn-wf-dark flex-grow-1">
+                            Đặt hàng ngay
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="order-summary-card">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0">Đơn hàng (@Model.Sum(i => i.Quantity) sản phẩm)</h5>
+                        <a asp-controller="ShoppingCart" asp-action="Index" class="small">Chỉnh sửa</a>
+                    </div>
+
+                    @foreach (var item in Model)
+                    {
+                        <div class="order-line">
+                            <img src="@item.Product!.ImageUrl" alt="@item.Product.Name" onerror="this.src='/assets/images/placeholder.jpg'" />
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold">@item.Product.Name</div>
+                                <div class="text-muted small">SL: @item.Quantity</div>
+                            </div>
+                            <div class="fw-semibold">
+                                @((item.Product.Price * item.Quantity).ToString("N0")) đ
+                            </div>
+                        </div>
+                    }
+
+                    <div class="summary-row mt-3">
+                        <span>Tạm tính</span>
+                        <span>@subTotal.ToString("N0") đ</span>
+                    </div>
+
+                    @if (discount > 0)
+                    {
+                        <div class="summary-row text-success">
+                            <span>Giảm giá (@ViewBag.PromoCode)</span>
+                            <span>-@discount.ToString("N0") đ</span>
+                        </div>
+                    }
+
+                    <div class="summary-row">
+                        <span>Phí vận chuyển</span>
+                        <span>@shippingFee.ToString("N0") đ</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Tổng cộng</span>
+                        <span>@grandTotal.ToString("N0") đ</span>
+                    </div>
+                    <div class="summary-note">(Đã bao gồm VAT nếu có)</div>
+
+                    @if (ViewBag.PromoCode == null)
+                    {
+                        <form class="voucher-form" asp-controller="ShoppingCart" asp-action="ApplyPromotion" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="returnUrl" value="@Url.Action("Checkout", "Orders")" />
+                            <input type="text" name="code" class="form-control" placeholder="Nhập mã giảm giá" />
+                            <button type="submit" class="btn btn-wf-outline">Áp dụng</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="voucher-form d-flex justify-content-between align-items-center">
+                            <span class="badge bg-success">
+                                <i class="bi bi-tag-fill me-1"></i>@ViewBag.PromoCode (-@ViewBag.DiscountPercent%)
+                            </span>
+                            <form asp-controller="ShoppingCart" asp-action="RemovePromotion" method="post" class="m-0">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="returnUrl" value="@Url.Action("Checkout", "Orders")" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Hủy mã</button>
+                            </form>
+                        </div>
+                    }
+
+                    <p class="text-center text-muted small mt-3 mb-0">
+                        <i class="bi bi-lock me-1"></i>Thông tin của bạn được bảo mật tuyệt đối
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const radios = document.querySelectorAll('input[name="paymentMethod"]');
+            const qrBox = document.getElementById('qrPreview');
+            const options = document.querySelectorAll('.pay-option');
+
+            radios.forEach(radio => {
+                radio.addEventListener('change', function () {
+                    qrBox.classList.toggle('d-none', this.value !== 'QR');
+                    options.forEach(o => o.classList.remove('checked'));
+                    this.closest('.pay-option')?.classList.add('checked');
+                });
+            });
+
+            document.querySelectorAll('input[name="shippingMethod"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    document.querySelectorAll('input[name="shippingMethod"]').forEach(r => {
+                        r.closest('.pay-option')?.classList.remove('checked');
+                    });
+                    this.closest('.pay-option')?.classList.add('checked');
+                });
+            });
+        });
+
+       
+    </script>
+}
