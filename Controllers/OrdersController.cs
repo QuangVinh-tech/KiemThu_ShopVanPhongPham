@@ -31,6 +31,13 @@ public class OrdersController : Controller
 
         return (promo.Code, Math.Round(subTotal * promo.DiscountPercent / 100m));
     }
+
+    private static decimal GetShippingFee(string? shippingMethod) => shippingMethod switch
+    {
+        "express" => 40000m,
+        "pickup" => 0m,
+        _ => 20000m // standard (mặc định)
+    };
     public OrdersController(IOrderRepository orderRepo,
                             IShoppingCartRepository cartRepo,
                             UserManager<IdentityUser> userManager,
@@ -76,7 +83,7 @@ public class OrdersController : Controller
     public async Task<IActionResult> Checkout(
      string firstName, string lastName,
      string phone, string address,
-     string paymentMethod)
+     string paymentMethod, string? shippingMethod)
     {
         if (string.IsNullOrWhiteSpace(firstName) ||
             string.IsNullOrWhiteSpace(lastName) ||
@@ -93,6 +100,7 @@ public class OrdersController : Controller
         var cartItems = _cartRepo.GetCartItems();
         var subTotal = _cartRepo.GetCartTotal();
         var (promoCode, discount) = GetActiveDiscount(subTotal);
+        var shippingFee = GetShippingFee(shippingMethod);
 
         var order = new Order
         {
@@ -101,7 +109,7 @@ public class OrdersController : Controller
             Email = userEmail,
             Phone = phone,
             Address = address,
-            OrderTotal = subTotal - discount,
+            OrderTotal = subTotal - discount + shippingFee,
             PromotionCode = promoCode,
             DiscountAmount = discount,
             OrderPlaced = DateTime.Now,

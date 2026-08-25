@@ -6,6 +6,8 @@
     var discount = (decimal)(ViewBag.Discount ?? 0m);
     var shippingFee = 20000m;
     var grandTotal = subTotal - discount + shippingFee;
+    var shippingFeesJson = "{\"standard\":20000,\"express\":40000,\"pickup\":0}";
+    var baseForShipping = subTotal - discount;
 }
 <section class="py-4">
     <div class="container">
@@ -230,11 +232,11 @@
 
                     <div class="summary-row">
                         <span>Phí vận chuyển</span>
-                        <span>@shippingFee.ToString("N0") đ</span>
+                        <span id="shippingFeeDisplay">@shippingFee.ToString("N0") đ</span>
                     </div>
                     <div class="summary-total">
                         <span>Tổng cộng</span>
-                        <span>@grandTotal.ToString("N0") đ</span>
+                        <span id="grandTotalDisplay">@grandTotal.ToString("N0") đ</span>
                     </div>
                     <div class="summary-note">(Đã bao gồm VAT nếu có)</div>
 
@@ -292,6 +294,16 @@
                         r.closest('.pay-option')?.classList.remove('checked');
                     });
                     this.closest('.pay-option')?.classList.add('checked');
+
+                    var shippingFees = @Html.Raw(shippingFeesJson);
+                    var baseAmount = @baseForShipping.ToString("F0", System.Globalization.CultureInfo.InvariantCulture);
+                    var fee = shippingFees[this.value] ?? 20000;
+                    var total = baseAmount + fee;
+
+                    document.getElementById('shippingFeeDisplay').textContent =
+                        fee.toLocaleString('vi-VN') + ' đ';
+                    document.getElementById('grandTotalDisplay').textContent =
+                        total.toLocaleString('vi-VN') + ' đ';
                 });
             });
         });

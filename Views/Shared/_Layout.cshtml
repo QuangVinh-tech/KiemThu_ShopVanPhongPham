@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using ShopVanPhongPham.Models.Interfaces
+@using ShopVanPhongPham.Data
 @inject IWishlistRepository WishlistRepo
 @inject UserManager<IdentityUser> UserManager
+@inject AppDbContext DbContext
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -35,7 +37,9 @@
         <div class="header-main">
             <div class="container header-main-inner">
                 <a class="brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <span class="brand-icon"><i class="bi bi-pencil-square"></i></span>
+                    <span class="brand-icon">
+                        <img src="~/assets/images/logo.jpg" alt="VanPhamPro Logo" class="brand-logo" />
+                    </span>
                     <span class="brand-text">
                         <strong>VanPhamPro</strong>
 
@@ -104,8 +108,8 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                     <li><a asp-area="" asp-controller="Product" asp-action="Shop">Sản phẩm</a></li>
                     <li><a asp-area="" asp-controller="Promotion" asp-action="Index">Khuyến mãi</a></li>
-                    <li><a href="#">Tin tức</a></li>
-                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a asp-area="" asp-controller="News" asp-action="Index">Tin tức</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">Giới thiệu</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Liên hệ</a></li>
                 </ul>
             </div>
@@ -121,18 +125,15 @@
         <div class="offcanvas-body p-0">
             <ul class="sidebar-cat-list p-3">
                 @{
-                    var navCategories = ViewBag.NavCategories as List<string>;
+                    var navCategories = DbContext.Categories.OrderBy(c => c.Name).ToList();
                 }
-                @if (navCategories != null && navCategories.Any())
+                <li><a asp-controller="Product" asp-action="Shop">Tất cả sản phẩm</a></li>
+                @if (navCategories.Any())
                 {
                     foreach (var cat in navCategories)
                     {
-                        <li><a asp-controller="Product" asp-action="Shop" asp-route-category="@cat">@cat</a></li>
+                        <li><a asp-controller="Product" asp-action="Shop" asp-route-category="@cat.Name">@cat.Name</a></li>
                     }
-                }
-                else
-                {
-                    <li><a asp-controller="Product" asp-action="Shop">Tất cả sản phẩm</a></li>
                 }
             </ul>
         </div>
@@ -204,6 +205,7 @@
         document.addEventListener('click', async function (e) {
             const btn = e.target.closest('.btn-add-cart');
             if (!btn) return;
+            e.preventDefault();
 
             const productId = btn.dataset.productId;
             const fd = new FormData();
@@ -214,8 +216,29 @@
 
             btn.disabled = true;
             try {
-                const res = await fetch('/ShoppingCart/AddToCart', { method: 'POST', body: fd });
+                const res = await fetch('/ShoppingCart/AddToCart', {
+                    method: 'POST',
+                    body: fd,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (res.redirected || !res.ok) {
+                    // Chưa đăng nhập hoặc lỗi khác → theo đúng luồng cũ (chuyển trang, ví dụ sang trang đăng nhập)
+                    window.location.href = res.url || '/ShoppingCart';
+                    return;
+                }
+
                 const data = await res.json();
+
+                if (data.requiresLogin) {
+                    window.location.href = '/Identity/Account/Login?returnUrl=' + encodeURIComponent(window.location.pathname);
+                    return;
+                }
+
+                if (!data.success) {
+                    btn.disabled = false;
+                    return;
+                }
 
                 const cartLink = document.querySelector('a[href*="ShoppingCart"]');
                 let badge = cartLink?.querySelector('.action-badge');

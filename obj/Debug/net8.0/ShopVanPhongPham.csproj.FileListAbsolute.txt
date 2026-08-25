@@ -1436,3 +1436,4 @@ D:\ShopVanPhongPham\obj\Debug\net8.0\refint\ShopVanPhongPham.dll
 D:\ShopVanPhongPham\obj\Debug\net8.0\ShopVanPhongPham.pdb
 D:\ShopVanPhongPham\obj\Debug\net8.0\ShopVanPhongPham.genruntimeconfig.cache
 D:\ShopVanPhongPham\obj\Debug\net8.0\ref\ShopVanPhongPham.dll
+D:\ShopVanPhongPham\obj\Debug\net8.0\ShopVanPhongPham.sourcelink.json

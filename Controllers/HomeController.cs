@@ -47,6 +47,8 @@ public class HomeController : Controller
         return View(products.ToList());
     }
 
+    public IActionResult About() => View();
+
     public IActionResult Contact() => View();
 
     [Authorize]

@@ -95,12 +95,28 @@ namespace ShopVanPhongPham.Controllers
         [HttpPost]
         public IActionResult AddToCart(int productId, int quantity = 1)
         {
+            bool wantsJson = Request.Headers["Accept"].ToString().Contains("application/json");
+
             if (!User.Identity!.IsAuthenticated)
+            {
+                if (wantsJson)
+                    return Json(new { success = false, requiresLogin = true });
                 return RedirectToLogin(Url.Action("Detail", "Product", new { id = productId }));
+            }
 
             var product = _context.Products.Find(productId);
-            if (product == null) return NotFound();
+            if (product == null)
+            {
+                if (wantsJson)
+                    return Json(new { success = false, message = "Sản phẩm không tồn tại." });
+                return NotFound();
+            }
+
             _cart.AddToCart(product, quantity);
+
+            if (wantsJson)
+                return Json(new { success = true, cartCount = _cart.GetCartCount(), productName = product.Name });
+
             TempData["SuccessMessage"] = $"Đã thêm \"{product.Name}\" vào giỏ hàng!";
             return RedirectToAction("Index");
         }

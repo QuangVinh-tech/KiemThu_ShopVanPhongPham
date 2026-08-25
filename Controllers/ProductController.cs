@@ -21,7 +21,7 @@ public class ProductController : Controller
         _wishlistRepo = wishlistRepo;
         _userManager = userManager;
     }
-    public IActionResult Shop(string? search, string? category)
+    public IActionResult Shop(string? search, string? category, decimal? minPrice, decimal? maxPrice, string? sort)
     {
         var allProducts = _productRepo.GetAllProducts();
 
@@ -42,9 +42,27 @@ public class ProductController : Controller
         if (!string.IsNullOrEmpty(category))
             products = products.Where(p => p.Category != null && p.Category.Name == category);
 
+        if (minPrice.HasValue)
+            products = products.Where(p => p.Price >= minPrice.Value);
+
+        if (maxPrice.HasValue)
+            products = products.Where(p => p.Price <= maxPrice.Value);
+
+        products = sort switch
+        {
+            "price_asc" => products.OrderBy(p => p.Price),
+            "price_desc" => products.OrderByDescending(p => p.Price),
+            "name_asc" => products.OrderBy(p => p.Name),
+            "name_desc" => products.OrderByDescending(p => p.Name),
+            _ => products
+        };
+
         ViewBag.Search = search;
         ViewBag.Category = category;
         ViewBag.Categories = categories;
+        ViewBag.MinPrice = minPrice;
+        ViewBag.MaxPrice = maxPrice;
+        ViewBag.Sort = sort;
 
         if (User.Identity!.IsAuthenticated)
         {
