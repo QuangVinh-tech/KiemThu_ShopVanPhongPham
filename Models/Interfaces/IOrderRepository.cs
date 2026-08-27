@@ -7,5 +7,8 @@
         List<Order> GetOrdersByEmail(string email);
         Order? GetOrderById(int id);
         void UpdateOrder(Order order);
+
+     
+        (bool Success, string Message) CancelOrder(int orderId, string userEmail);
     }
 }
