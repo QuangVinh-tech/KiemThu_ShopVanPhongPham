@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShopVanPhongPham.Data;
+using ShopVanPhongPham.Models;
 using ShopVanPhongPham.Models.Interfaces;
 using ShopVanPhongPham.Models.Services;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +17,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
 
-    // Th�ng b�o l?i password ti?ng Vi?t
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
@@ -39,6 +39,11 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
+
+// ← THÊM: đăng ký Momo
+builder.Services.AddScoped<IMomoService, MomoService>();
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

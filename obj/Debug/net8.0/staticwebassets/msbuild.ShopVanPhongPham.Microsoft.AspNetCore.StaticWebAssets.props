@@ -512,22 +512,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\promotions\29610a66-767c-4572-a5da-084190c58a0c.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\promotions\315896d8-f59c-4684-a2eb-ec3487a2fbdf.png))">
-      <SourceType>Package</SourceType>
-      <SourceId>ShopVanPhongPham</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/ShopVanPhongPham</BasePath>
-      <RelativePath>assets/images/promotions/315896d8-f59c-4684-a2eb-ec3487a2fbdf.png</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\promotions\315896d8-f59c-4684-a2eb-ec3487a2fbdf.png))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\images\promotions\f45daae4-6fa2-48ce-bbc7-22f670319007.png))">
       <SourceType>Package</SourceType>
       <SourceId>ShopVanPhongPham</SourceId>

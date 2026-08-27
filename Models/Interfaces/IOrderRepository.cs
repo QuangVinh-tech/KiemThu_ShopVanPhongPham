@@ -6,7 +6,6 @@
         List<Order> GetAllOrders();
         List<Order> GetOrdersByEmail(string email);
         Order? GetOrderById(int id);
-        (bool success, string message) CancelOrder(int orderId, string email);
+        void UpdateOrder(Order order);
     }
-
 }

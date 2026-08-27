@@ -15,6 +15,8 @@ public class OrdersController : Controller
     private readonly UserManager<IdentityUser> _userManager;
     private readonly IConfiguration _config;
     private readonly AppDbContext _context;
+    private readonly IMomoService _momoService;
+
     private (string? code, decimal discount) GetActiveDiscount(decimal subTotal)
     {
         var promoCode = HttpContext.Session.GetString("PromoCode");
@@ -36,22 +38,25 @@ public class OrdersController : Controller
     {
         "express" => 40000m,
         "pickup" => 0m,
-        _ => 20000m // standard (mặc định)
+        _ => 20000m
     };
+
     public OrdersController(IOrderRepository orderRepo,
                             IShoppingCartRepository cartRepo,
                             UserManager<IdentityUser> userManager,
                             IConfiguration config,
-                            AppDbContext context)
+                            AppDbContext context,
+                            IMomoService momoService)
     {
         _orderRepo = orderRepo;
         _cartRepo = cartRepo;
         _context = context;
         _userManager = userManager;
         _config = config;
+        _momoService = momoService;
     }
 
-    // GET /Orders/Checkout
+  
     [Authorize]
     public IActionResult Checkout()
     {
@@ -76,7 +81,7 @@ public class OrdersController : Controller
 
         return View(cartItems);
     }
-    // POST /Orders/Checkout
+
     [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -98,6 +103,17 @@ public class OrdersController : Controller
         var userEmail = user?.Email ?? "";
 
         var cartItems = _cartRepo.GetCartItems();
+
+     
+        foreach (var item in cartItems)
+        {
+            if (item.Product!.Stock < item.Quantity)
+            {
+                ModelState.AddModelError("", $"\"{item.Product.Name}\" chỉ còn {item.Product.Stock} sản phẩm, không đủ số lượng bạn đặt.");
+                return View(cartItems);
+            }
+        }
+
         var subTotal = _cartRepo.GetCartTotal();
         var (promoCode, discount) = GetActiveDiscount(subTotal);
         var shippingFee = GetShippingFee(shippingMethod);
@@ -124,14 +140,47 @@ public class OrdersController : Controller
         };
 
         var placedOrder = _orderRepo.PlaceOrder(order);
+
+ 
+        foreach (var item in cartItems)
+        {
+            var product = _context.Products.Find(item.ProductId);
+            if (product != null)
+            {
+                product.Stock -= item.Quantity;
+                if (product.Stock < 0) product.Stock = 0;
+            }
+        }
+        _context.SaveChanges();
+
         _cartRepo.ClearCart();
         HttpContext.Session.SetInt32("CartCount", 0);
         HttpContext.Session.Remove("PromoCode");
 
+  
+        if (placedOrder.PaymentMethod == "Momo")
+        {
+            var momoModel = new OrderInfoModel
+            {
+                OrderId = placedOrder.Id.ToString(),
+                Amount = (double)placedOrder.OrderTotal,
+                OrderInfo = $"Thanh toan don hang #{placedOrder.Id}"
+            };
+
+            var momoResult = await _momoService.CreatePaymentAsync(momoModel);
+
+            if (momoResult.ResultCode == 0 && !string.IsNullOrEmpty(momoResult.PayUrl))
+            {
+                return Redirect(momoResult.PayUrl);
+            }
+
+            TempData["Error"] = "Không tạo được thanh toán Momo: " + momoResult.Message;
+        }
+
         return RedirectToAction("CheckoutComplete", new { orderId = placedOrder.Id });
     }
 
-    // GET /Orders/CheckoutComplete
+
     public IActionResult CheckoutComplete(int orderId)
     {
         var order = _orderRepo.GetOrderById(orderId);
@@ -150,7 +199,63 @@ public class OrdersController : Controller
         return View(order);
     }
 
-    // GET /Orders/MyOrders
+    
+    [HttpGet]
+    public IActionResult MomoReturn()
+    {
+        var result = _momoService.PaymentExecuteAsync(Request.Query);
+        var realOrderIdStr = result.OrderId.Split('_')[0];
+
+        if (int.TryParse(realOrderIdStr, out int orderId))
+        {
+            var order = _orderRepo.GetOrderById(orderId);
+            if (order != null)
+            {
+                order.PaymentStatus = result.Success ? "Đã thanh toán" : "Chưa thanh toán";
+                _orderRepo.UpdateOrder(order);
+
+            
+                if (!result.Success)
+                {
+                    foreach (var detail in order.OrderDetails)
+                    {
+                        var product = _context.Products.Find(detail.ProductId);
+                        if (product != null)
+                        {
+                            product.Stock += detail.Quantity;
+                        }
+                    }
+                    _context.SaveChanges();
+                }
+            }
+        }
+
+        TempData[result.Success ? "Success" : "Error"] =
+            result.Success ? "Thanh toán Momo thành công!" : "Thanh toán Momo thất bại: " + result.Message;
+
+        return RedirectToAction("CheckoutComplete", new { orderId = realOrderIdStr });
+    }
+
+   
+    [HttpPost]
+    public IActionResult MomoNotify()
+    {
+        var result = _momoService.PaymentExecuteAsync(Request.Query);
+        var realOrderIdStr = result.OrderId.Split('_')[0];
+
+        if (int.TryParse(realOrderIdStr, out int orderId))
+        {
+            var order = _orderRepo.GetOrderById(orderId);
+            if (order != null && result.Success)
+            {
+                order.PaymentStatus = "Đã thanh toán";
+                _orderRepo.UpdateOrder(order);
+            }
+        }
+
+        return Ok();
+    }
+
     [Authorize]
     public async Task<IActionResult> MyOrders()
     {

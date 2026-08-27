@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "D:\\ShopVanPhongPham\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|d:\\shopvanphongpham\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|d:\\shopvanphongpham\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -35,31 +31,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OrdersController.cs",
-              "DocumentMoniker": "D:\\ShopVanPhongPham\\Controllers\\OrdersController.cs",
-              "RelativeDocumentMoniker": "Controllers\\OrdersController.cs",
-              "ToolTip": "D:\\ShopVanPhongPham\\Controllers\\OrdersController.cs",
-              "RelativeToolTip": "Controllers\\OrdersController.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAIwLYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T01:50:08.505Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "Contact.cshtml",
               "DocumentMoniker": "D:\\ShopVanPhongPham\\Views\\Home\\Contact.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
               "ToolTip": "D:\\ShopVanPhongPham\\Views\\Home\\Contact.cshtml",
               "RelativeToolTip": "Views\\Home\\Contact.cshtml",
-              "ViewState": "AgIAAGwAAAAAAAAAAAAAABMAAABWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-24T09:04:19.37Z"
+              "WhenOpened": "2026-08-24T09:04:19.37Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\ShopVanPhongPham\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
@@ -71,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",

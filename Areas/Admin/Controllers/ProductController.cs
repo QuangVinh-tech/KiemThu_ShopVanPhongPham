@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering; 
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models;
@@ -24,12 +24,12 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
         {
             if (TempData["Success"] != null)
                 ViewBag.Success = TempData["Success"];
-            return View(_context.Products.Include(p => p.Category).ToList());  
+            return View(_context.Products.Include(p => p.Category).ToList());
         }
 
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");   
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -52,7 +52,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             }
 
             ModelState.Remove("ImageUrl");
-            ModelState.Remove("Category"); 
+            ModelState.Remove("Category");
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values
@@ -60,7 +60,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
                     .Select(e => e.ErrorMessage)
                     .ToList();
                 ViewBag.DebugErrors = string.Join(" | ", errors);
-                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);   
+                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
                 return View(product);
             }
 
@@ -74,7 +74,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
         {
             var product = _context.Products.Find(id);
             if (product == null) return NotFound();
-            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);  
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -93,7 +93,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             }
 
             ModelState.Remove("ImageUrl");
-            ModelState.Remove("Category");   
+            ModelState.Remove("Category");
 
             if (!ModelState.IsValid)
             {
@@ -102,13 +102,45 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
                     .Select(e => e.ErrorMessage)
                     .ToList();
                 ViewBag.DebugErrors = string.Join(" | ", errors);
-                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);   
+                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             }
 
             _context.Products.Update(product);
             _context.SaveChanges();
             TempData["Success"] = $"Đã cập nhật \"{product.Name}\" thành công!";
             return RedirectToAction("Index");
+        }
+
+    
+        public IActionResult Stock(string? q)
+        {
+            var products = _context.Products.Include(p => p.Category).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(q))
+            {
+                products = products.Where(p => p.Name.Contains(q));
+            }
+
+            ViewBag.Query = q;
+            return View(products.OrderBy(p => p.Name).ToList());
+        }
+
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateStock(int id, int stock)
+        {
+            var product = _context.Products.Find(id);
+            if (product == null)
+                return Json(new { success = false, message = "Không tìm thấy sản phẩm." });
+
+            if (stock < 0)
+                return Json(new { success = false, message = "Số lượng không được nhỏ hơn 0." });
+
+            product.Stock = stock;
+            _context.SaveChanges();
+
+            return Json(new { success = true, stock = product.Stock });
         }
 
         public IActionResult Delete(int id)
