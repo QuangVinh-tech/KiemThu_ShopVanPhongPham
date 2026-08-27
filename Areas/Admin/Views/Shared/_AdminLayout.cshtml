@@ -2,6 +2,7 @@
 @inject ShopVanPhongPham.Data.AppDbContext DbContext
 @{
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
 
     bool IsActive(string controller) =>
         string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase);
@@ -37,10 +38,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex justify-content-between align-items-center @(IsActive("Product") ? "active" : "")"
+                    <a class="nav-link d-flex justify-content-between align-items-center @(IsActive("Product") && currentAction != "Stock" ? "active" : "")"
                        asp-area="Admin" asp-controller="Product" asp-action="Index">
                         <span><i class="bi bi-box me-2"></i>Sản phẩm</span>
                         <i class="bi bi-chevron-down small"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(IsActive("Product") && currentAction == "Stock" ? "active" : "")"
+                       asp-area="Admin" asp-controller="Product" asp-action="Stock">
+                        <i class="bi bi-box-seam me-2"></i>Tồn kho
                     </a>
                 </li>
                 <li class="nav-item">

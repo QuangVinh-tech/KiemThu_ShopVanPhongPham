@@ -31,7 +31,7 @@ namespace ShopVanPhongPham.Models.Services
         public List<Order> GetAllOrders()
         {
             return _context.Orders
-                .Include(o => o.OrderDetails)   // không còn CS8620
+                .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
                 .OrderByDescending(o => o.OrderPlaced)
                 .ToList();
@@ -46,12 +46,19 @@ namespace ShopVanPhongPham.Models.Services
                 .OrderByDescending(o => o.OrderPlaced)
                 .ToList();
         }
+
         public Order? GetOrderById(int id)
         {
             return _context.Orders
                 .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.Id == id);
+        }
+
+        public void UpdateOrder(Order order)
+        {
+            _context.Orders.Update(order);
+            _context.SaveChanges();
         }
     }
 }

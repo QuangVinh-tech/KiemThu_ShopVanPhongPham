@@ -15,7 +15,7 @@ namespace ShopVanPhongPham.Controllers
             _context = context;
         }
 
-        // Xem giỏ hàng → vẫn cho phép xem dù chưa đăng nhập
+
         public IActionResult Index()
         {
             var items = _cart.GetCartItems();
@@ -29,7 +29,6 @@ namespace ShopVanPhongPham.Controllers
                 var promo = _context.Promotions.FirstOrDefault(p => p.Code == promoCode);
                 var today = DateTime.Today;
 
-                // Nếu mã bị admin xóa/tắt hoặc hết hạn giữa chừng → tự động gỡ khỏi session
                 if (promo == null || !promo.IsActive || promo.StartDate > today || promo.EndDate < today)
                 {
                     HttpContext.Session.Remove("PromoCode");
@@ -51,7 +50,7 @@ namespace ShopVanPhongPham.Controllers
             return View(items);
         }
 
-        // POST: Áp dụng mã giảm giá
+
         [HttpPost]
         public IActionResult ApplyPromotion(string code, string? returnUrl)
         {
@@ -83,7 +82,8 @@ namespace ShopVanPhongPham.Controllers
 
             return Redirect(returnUrl ?? Url.Action("Index")!);
         }
-        // POST: Hủy mã đang áp dụng
+
+
         [HttpPost]
         public IActionResult RemovePromotion(string? returnUrl)
         {
@@ -112,6 +112,29 @@ namespace ShopVanPhongPham.Controllers
                 return NotFound();
             }
 
+
+            if (product.Stock <= 0)
+            {
+                var msg = $"\"{product.Name}\" đã hết hàng.";
+                if (wantsJson)
+                    return Json(new { success = false, message = msg });
+                TempData["ErrorMessage"] = msg;
+                return RedirectToAction("Detail", "Product", new { id = productId });
+            }
+
+
+            var currentQty = _cart.GetCartItems()
+                .FirstOrDefault(x => x.ProductId == productId)?.Quantity ?? 0;
+
+            if (currentQty + quantity > product.Stock)
+            {
+                var msg = $"Chỉ còn {product.Stock} \"{product.Name}\" trong kho.";
+                if (wantsJson)
+                    return Json(new { success = false, message = msg });
+                TempData["ErrorMessage"] = msg;
+                return RedirectToAction("Detail", "Product", new { id = productId });
+            }
+
             _cart.AddToCart(product, quantity);
 
             if (wantsJson)
@@ -137,6 +160,17 @@ namespace ShopVanPhongPham.Controllers
         {
             if (!User.Identity!.IsAuthenticated)
                 return RedirectToLogin(Url.Action("Index"));
+
+
+            var product = _context.Products.Find(productId);
+            var currentQty = _cart.GetCartItems()
+                .FirstOrDefault(x => x.ProductId == productId)?.Quantity ?? 0;
+
+            if (product != null && currentQty >= product.Stock)
+            {
+                TempData["ErrorMessage"] = $"Chỉ còn {product.Stock} \"{product.Name}\" trong kho.";
+                return RedirectToAction("Index");
+            }
 
             _cart.IncreaseQuantity(productId);
             return RedirectToAction("Index");
@@ -164,7 +198,6 @@ namespace ShopVanPhongPham.Controllers
             return RedirectToAction("Index");
         }
 
-        // ← Helper: chuyển về trang Login, sau khi login xong sẽ quay lại đúng trang xem (GET)
         private IActionResult RedirectToLogin(string? returnUrl)
         {
             TempData["ErrorMessage"] = "Bạn cần đăng nhập để thực hiện chức năng này.";

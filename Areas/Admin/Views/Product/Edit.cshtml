@@ -3,13 +3,17 @@
     ViewData["Title"] = "Sửa sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
 <div class="d-flex align-items-center mb-4">
     <a asp-area="Admin" asp-controller="Product" asp-action="Index"
        class="btn btn-outline-secondary me-3">← Quay lại</a>
     <h2 class="fw-bold mb-0">✏️ Sửa sản phẩm</h2>
 </div>
-
+@if (ViewBag.DebugErrors != null)
+{
+    <div class="alert alert-danger">
+        <strong>Lỗi validation:</strong> @ViewBag.DebugErrors
+    </div>
+}
 <div class="card shadow-sm" style="max-width:600px">
     <div class="card-body">
         <form asp-area="Admin" asp-controller="Product" asp-action="Edit"
@@ -17,7 +21,6 @@
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="ImageUrl" />
-
             <div class="mb-3">
                 <label class="form-label fw-semibold">Tên sản phẩm</label>
                 <input asp-for="Name" class="form-control" required />
@@ -32,12 +35,18 @@
             </div>
             <div class="mb-3">
                 <label class="form-label fw-semibold">Danh mục</label>
-                <select asp-for="Category" class="form-select">
-                    <option value="But">Bút</option>
-                    <option value="So">Sổ/Tập</option>
-                    <option value="DungCu">Dụng cụ</option>
-                    <option value="Giay">Giấy</option>
+                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-select">
+                    <option value="">-- Chọn danh mục --</option>
                 </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Số lượng tồn kho <span class="text-danger">*</span>
+                </label>
+                <input asp-for="Stock" class="form-control"
+                       type="number" min="0" step="1" />
+                <span asp-validation-for="Stock" class="text-danger small"></span>
+                <div class="form-text">Số lượng sản phẩm hiện có trong kho.</div>
             </div>
             <div class="mb-3">
                 <label class="form-label fw-semibold">Ảnh hiện tại</label><br />
@@ -54,14 +63,12 @@
                      class="mt-2 rounded d-none"
                      style="max-height:150px;object-fit:cover" />
             </div>
-
             <button type="submit" class="btn btn-warning w-100">
-                 Lưu thay đổi
+                Lưu thay đổi
             </button>
         </form>
     </div>
 </div>
-
 @section Scripts {
     <script>
         function previewImage(input) {
@@ -72,4 +79,5 @@
             }
         }
     </script>
+    <partial name="_ValidationScriptsPartial" />
 }

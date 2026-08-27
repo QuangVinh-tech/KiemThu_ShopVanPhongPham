@@ -3,13 +3,11 @@
     ViewData["Title"] = "Thêm sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
 <div class="d-flex align-items-center mb-4">
     <a asp-area="Admin" asp-controller="Product" asp-action="Index"
        class="btn btn-outline-secondary me-3">← Quay lại</a>
     <h2 class="fw-bold mb-0">Thêm sản phẩm</h2>
 </div>
-
 @* Hiện lỗi debug nếu có *@
 @if (ViewBag.DebugErrors != null)
 {
@@ -17,13 +15,11 @@
         <strong>Lỗi validation:</strong> @ViewBag.DebugErrors
     </div>
 }
-
 <div class="card shadow-sm" style="max-width:600px">
     <div class="card-body">
         <form asp-area="Admin" asp-controller="Product" asp-action="Create"
               method="post" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
-
             <div class="mb-3">
                 <label class="form-label fw-semibold">
                     Tên sản phẩm <span class="text-danger">*</span>
@@ -31,13 +27,11 @@
                 <input asp-for="Name" class="form-control" placeholder="VD: Bút bi Thiên Long" />
                 <span asp-validation-for="Name" class="text-danger small"></span>
             </div>
-
             <div class="mb-3">
                 <label class="form-label fw-semibold">Mô tả</label>
                 <textarea asp-for="Description" class="form-control" rows="3"
                           placeholder="Mô tả ngắn..."></textarea>
             </div>
-
             <div class="row g-3 mb-3">
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">
@@ -55,7 +49,16 @@
                     </select>
                 </div>
             </div>
-
+            <div class="mb-3">
+                <label class="form-label fw-semibold">
+                    Số lượng tồn kho <span class="text-danger">*</span>
+                </label>
+                <input asp-for="Stock" class="form-control"
+                       type="number" min="0" step="1"
+                       placeholder="VD: 50" value="0" />
+                <span asp-validation-for="Stock" class="text-danger small"></span>
+                <div class="form-text">Số lượng sản phẩm hiện có trong kho.</div>
+            </div>
             <div class="mb-4">
                 <label class="form-label fw-semibold">
                     Ảnh sản phẩm
@@ -68,14 +71,12 @@
                      style="max-height:150px; object-fit:cover" />
                 <div class="form-text">Nếu không chọn ảnh sẽ dùng ảnh mặc định.</div>
             </div>
-
             <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">
                 Thêm sản phẩm
             </button>
         </form>
     </div>
 </div>
-
 @section Scripts {
     <script>
         function previewImage(input) {

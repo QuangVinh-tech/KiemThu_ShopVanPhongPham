@@ -13,7 +13,7 @@
         </nav>
 
         <div class="row g-4">
-            <!-- Gallery -->
+        
             <div class="col-lg-5">
                 <div class="pd-gallery">
                     <div class="pd-thumbs">
@@ -27,7 +27,6 @@
                 </div>
             </div>
 
-            <!-- Thông tin sản phẩm -->
             <div class="col-lg-4">
                 <div class="small text-muted mb-1">@Model.Category</div>
                 <h2 class="h4 fw-bold">@Model.Name</h2>
@@ -38,28 +37,49 @@
                 </div>
 
                 <div class="fs-3 fw-bold" style="color:var(--wf-price)">@Model.Price.ToString("N0")đ</div>
-                <div class="text-success small fw-semibold mb-3"><i class="bi bi-check-circle-fill me-1"></i>Còn hàng</div>
+
+                @if (Model.Stock > 0)
+                {
+                    <div class="text-success small fw-semibold mb-3">
+                        <i class="bi bi-check-circle-fill me-1"></i>Còn hàng (@Model.Stock sản phẩm)
+                    </div>
+                }
+                else
+                {
+                    <div class="text-danger small fw-semibold mb-3">
+                        <i class="bi bi-x-circle-fill me-1"></i>Hết hàng
+                    </div>
+                }
 
                 <p class="text-muted small">@Model.Description</p>
                 <hr />
 
-                <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
-                    @Html.AntiForgeryToken()
-                    <input type="hidden" name="productId" value="@Model.Id" />
+                @if (Model.Stock > 0)
+                {
+                    <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="productId" value="@Model.Id" />
 
-                    <label class="fw-semibold small mb-2 d-block">Số lượng</label>
-                    <div class="pd-qty mb-3">
-                        <button type="button" class="pd-qty-minus">−</button>
-                        <input type="number" name="quantity" value="1" min="1" />
-                        <button type="button" class="pd-qty-plus">+</button>
-                    </div>
+                        <label class="fw-semibold small mb-2 d-block">Số lượng</label>
+                        <div class="pd-qty mb-3">
+                            <button type="button" class="pd-qty-minus">−</button>
+                            <input type="number" name="quantity" value="1" min="1" max="@Model.Stock" />
+                            <button type="button" class="pd-qty-plus">+</button>
+                        </div>
 
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-wf-dark btn-lg flex-grow-1">
-                            <i class="bi bi-cart-plus me-1"></i>Thêm vào giỏ hàng
-                        </button>
-                    </div>
-                </form>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-wf-dark btn-lg flex-grow-1">
+                                <i class="bi bi-cart-plus me-1"></i>Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-secondary btn-lg w-100" disabled>
+                        <i class="bi bi-x-circle me-1"></i>Hết hàng
+                    </button>
+                }
 
                 <form asp-controller="Wishlist" asp-action="Toggle" method="post" class="mt-2">
                     @Html.AntiForgeryToken()
@@ -81,7 +101,7 @@
                    class="d-inline-block mt-3 small text-muted">&larr; Tiếp tục mua sắm</a>
             </div>
 
-            <!-- Info box bên phải -->
+       
             <div class="col-lg-3">
                 <div class="pd-info-box mb-3">
                     <div class="pd-info-row">
@@ -116,7 +136,7 @@
             </div>
         </div>
 
-        <!-- Tabs mô tả / đánh giá -->
+       
         <div class="mt-5">
             <ul class="nav pd-tabs border-bottom" id="pdTab" role="tablist">
                 <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#pd-desc" type="button">Mô tả sản phẩm</button></li>
@@ -142,7 +162,8 @@
     <script>
         document.querySelector('.pd-qty-plus')?.addEventListener('click', function () {
             const input = document.querySelector('.pd-qty input');
-            input.value = (parseInt(input.value) || 1) + 1;
+            const max = parseInt(input.getAttribute('max')) || 9999;
+            input.value = Math.min(max, (parseInt(input.value) || 1) + 1);
         });
         document.querySelector('.pd-qty-minus')?.addEventListener('click', function () {
             const input = document.querySelector('.pd-qty input');

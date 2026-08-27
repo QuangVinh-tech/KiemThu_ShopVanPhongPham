@@ -1,0 +1,159 @@
+﻿@model List<ShopVanPhongPham.Models.Product>
+@{
+    ViewData["Title"] = "Quản lý tồn kho";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a asp-area="Admin" asp-controller="Product" asp-action="Index"
+       class="btn btn-outline-secondary me-3">← Quay lại</a>
+    <h2 class="fw-bold mb-0"><i class="bi bi-box-seam me-2"></i>Quản lý tồn kho</h2>
+</div>
+
+<div class="card shadow-sm mb-3">
+    <div class="card-body py-2">
+        <form method="get" class="d-flex" role="search">
+            <input type="text" name="q" value="@ViewBag.Query" class="form-control me-2"
+                   placeholder="Tìm theo tên sản phẩm..." />
+            <button type="submit" class="btn btn-outline-primary">
+                <i class="bi bi-search"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<div id="alertBox" class="alert d-none" role="alert"></div>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width:60px">#</th>
+                    <th style="width:60px">Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Danh mục</th>
+                    <th class="text-center" style="width:260px">Số lượng tồn kho</th>
+                    <th class="text-center" style="width:120px">Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    var p = Model[i];
+                    <tr data-product-id="@p.Id">
+                        <td>@(i + 1)</td>
+                        <td>
+                            <img src="@p.ImageUrl" style="width:44px;height:44px;object-fit:cover"
+                                 class="rounded" />
+                        </td>
+                        <td>@p.Name</td>
+                        <td><span class="badge bg-secondary">@p.Category</span></td>
+                        <td>
+                            <div class="input-group input-group-sm mx-auto" style="max-width:220px">
+                                <button type="button" class="btn btn-outline-secondary btn-decrease">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                                <input type="number" min="0" step="1" class="form-control text-center stock-input"
+                                       value="@p.Stock" />
+                                <button type="button" class="btn btn-outline-secondary btn-increase">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                                <button type="button" class="btn btn-success btn-save">
+                                    Lưu
+                                </button>
+                            </div>
+                        </td>
+                        <td class="text-center status-cell">
+                            @if (p.Stock <= 0)
+                            {
+                                <span class="badge bg-danger">Hết hàng</span>
+                            }
+                            else if (p.Stock <= 10)
+                            {
+                                <span class="badge bg-warning text-dark">Sắp hết</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Còn hàng</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.AntiForgeryToken()
+@section Scripts {
+    <script>
+        function showAlert(message, isSuccess) {
+            const box = document.getElementById('alertBox');
+            box.textContent = message;
+            box.className = 'alert ' + (isSuccess ? 'alert-success' : 'alert-danger');
+            box.classList.remove('d-none');
+            setTimeout(() => box.classList.add('d-none'), 3000);
+        }
+
+        function getToken() {
+            const el = document.querySelector('input[name="__RequestVerificationToken"]');
+            return el ? el.value : '';
+        }
+
+        function updateStatusBadge(row, stock) {
+            const cell = row.querySelector('.status-cell');
+            if (stock <= 0) {
+                cell.innerHTML = '<span class="badge bg-danger">Hết hàng</span>';
+            } else if (stock <= 10) {
+                cell.innerHTML = '<span class="badge bg-warning text-dark">Sắp hết</span>';
+            } else {
+                cell.innerHTML = '<span class="badge bg-success">Còn hàng</span>';
+            }
+        }
+
+        document.querySelectorAll('tbody tr').forEach(row => {
+            const input = row.querySelector('.stock-input');
+            const decreaseBtn = row.querySelector('.btn-decrease');
+            const increaseBtn = row.querySelector('.btn-increase');
+            const saveBtn = row.querySelector('.btn-save');
+            const productId = row.dataset.productId;
+
+            decreaseBtn.addEventListener('click', () => {
+                const val = Math.max(0, (parseInt(input.value) || 0) - 1);
+                input.value = val;
+            });
+
+            increaseBtn.addEventListener('click', () => {
+                const val = (parseInt(input.value) || 0) + 1;
+                input.value = val;
+            });
+
+            saveBtn.addEventListener('click', async () => {
+                const stock = parseInt(input.value) || 0;
+                saveBtn.disabled = true;
+                try {
+                    const res = await fetch('@Url.Action("UpdateStock", "Product", new { area = "Admin" })', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'RequestVerificationToken': getToken()
+                        },
+                        body: `id=${encodeURIComponent(productId)}&stock=${encodeURIComponent(stock)}`
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        updateStatusBadge(row, data.stock);
+                        showAlert('Đã cập nhật tồn kho thành công!', true);
+                    } else {
+                        showAlert(data.message || 'Cập nhật thất bại.', false);
+                    }
+                } catch (e) {
+                    showAlert('Có lỗi xảy ra, vui lòng thử lại.', false);
+                } finally {
+                    saveBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+}
