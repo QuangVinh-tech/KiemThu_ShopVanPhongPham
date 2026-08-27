@@ -18,6 +18,7 @@ namespace ShopVanPhongPham.Data
         public DbSet<Promotion> Promotions { get; set; }
         public DbSet<WishlistItem> WishlistItems { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<AuditLog> AuditLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

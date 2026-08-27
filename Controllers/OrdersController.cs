@@ -161,4 +161,23 @@ public class OrdersController : Controller
                                .ToList();
         return View(orders);
     }
+
+    // POST /Orders/Cancel
+    [Authorize]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Cancel(int orderId)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null) return Challenge();
+
+        var (success, message) = _orderRepo.CancelOrder(orderId, user.Email ?? "");
+
+        if (success)
+            TempData["Success"] = message;
+        else
+            TempData["Error"] = message;
+
+        return RedirectToAction("MyOrders");
+    }
 }
