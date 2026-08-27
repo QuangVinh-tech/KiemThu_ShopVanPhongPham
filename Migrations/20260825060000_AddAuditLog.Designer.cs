@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopVanPhongPham.Data;
 
@@ -11,9 +12,11 @@ using ShopVanPhongPham.Data;
 namespace ShopVanPhongPham.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260825060000_AddAuditLog")]
+    partial class AddAuditLog
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -434,9 +437,6 @@ namespace ShopVanPhongPham.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Stock")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -451,8 +451,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/butthienlong.jpg",
                             Name = "Bút bi Thiên Long",
-                            Price = 5000m,
-                            Stock = 0
+                            Price = 5000m
                         },
                         new
                         {
@@ -461,8 +460,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/butchib2.jpg",
                             Name = "Bút chì 2B",
-                            Price = 4000m,
-                            Stock = 0
+                            Price = 4000m
                         },
                         new
                         {
@@ -471,8 +469,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/sotay.jpg",
                             Name = "Sổ tay A5",
-                            Price = 35000m,
-                            Stock = 0
+                            Price = 35000m
                         },
                         new
                         {
@@ -481,8 +478,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/tap200trang.jpg",
                             Name = "Tập 200 trang",
-                            Price = 15000m,
-                            Stock = 0
+                            Price = 15000m
                         },
                         new
                         {
@@ -491,8 +487,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/thuocke30cm.jpg",
                             Name = "Thước kẻ 30cm",
-                            Price = 8000m,
-                            Stock = 0
+                            Price = 8000m
                         },
                         new
                         {
@@ -501,8 +496,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/keovanphong1.jpg",
                             Name = "Kéo văn phòng",
-                            Price = 25000m,
-                            Stock = 0
+                            Price = 25000m
                         },
                         new
                         {
@@ -511,8 +505,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/bamkim.jpg",
                             Name = "Bấm kim",
-                            Price = 30000m,
-                            Stock = 0
+                            Price = 30000m
                         },
                         new
                         {
@@ -521,8 +514,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/giayA4.jpg",
                             Name = "Giấy A4 500 tờ",
-                            Price = 85000m,
-                            Stock = 0
+                            Price = 85000m
                         },
                         new
                         {
@@ -531,8 +523,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/bangkeo.png",
                             Name = "Băng keo trong",
-                            Price = 10000m,
-                            Stock = 0
+                            Price = 10000m
                         },
                         new
                         {
@@ -541,8 +532,7 @@ namespace ShopVanPhongPham.Migrations
                             Description = "",
                             ImageUrl = "/assets/images/hopbut.jpg",
                             Name = "Hộp bút để bàn",
-                            Price = 45000m,
-                            Stock = 0
+                            Price = 45000m
                         });
                 });
 

@@ -41,7 +41,7 @@
                                  class="rounded" />
                         </td>
                         <td>@p.Name</td>
-                        <td><span class="badge bg-secondary">@p.Category</span></td>
+                        <td><span class="badge bg-secondary">@(p.Category?.Name ?? "Chưa phân loại")</span></td>
                         <td class="text-end text-danger fw-bold">
                             @p.Price.ToString("N0") đ
                         </td>

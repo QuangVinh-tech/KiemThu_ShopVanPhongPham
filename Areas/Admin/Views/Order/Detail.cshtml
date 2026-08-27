@@ -43,6 +43,15 @@
                         <th>Trạng thái</th>
                         <td><span class="badge @badgeClass">@status</span></td>
                     </tr>
+                    <tr><th>Hình thức TT</th><td>@Model.PaymentMethod</td></tr>
+                    <tr>
+                        <th>Thanh toán</th>
+                        <td>
+                            <span class="badge @(Model.PaymentStatus == "Đã thanh toán" ? "bg-success" : "bg-warning text-dark")">
+                                @Model.PaymentStatus
+                            </span>
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -88,7 +97,65 @@
     </div>
 </div>
 
-@* Cập nhật trạng thái từ trang detail *@
+@* Xác nhận thanh toán VietQR *@
+@if (Model.PaymentMethod == "QR")
+{
+    <div class="card shadow-sm mt-4" style="max-width:400px">
+        <div class="card-header">Xác nhận thanh toán VietQR</div>
+        <div class="card-body">
+            @if (Model.PaymentStatus == "Đã thanh toán")
+            {
+                <p class="text-success mb-0"><i class="bi bi-check-circle-fill me-1"></i>Đơn hàng đã được xác nhận thanh toán.</p>
+            }
+            else
+            {
+                <p class="text-muted small">Kiểm tra đã nhận được tiền qua VietQR trước khi xác nhận. Thao tác này sẽ được ghi lại vào nhật ký hệ thống.</p>
+                <form asp-action="ConfirmPayment" asp-controller="Order" asp-area="Admin" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="orderId" value="@Model.Id" />
+                    <input type="hidden" name="returnId" value="@Model.Id" />
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-lg me-1"></i>Xác nhận đã thanh toán
+                    </button>
+                </form>
+            }
+        </div>
+    </div>
+}
+
+@* Nhật ký (Audit log) của đơn hàng *@
+@{
+    var logs = ViewBag.AuditLogs as List<AuditLog> ?? new List<AuditLog>();
+}
+@if (logs.Any())
+{
+    <div class="card shadow-sm mt-4">
+        <div class="card-header">Nhật ký hoạt động (Audit log)</div>
+        <div class="card-body p-0">
+            <table class="table table-sm mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Hành động</th>
+                        <th>Thực hiện bởi</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var log in logs)
+                    {
+                        <tr>
+                            <td class="text-nowrap">@log.PerformedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@log.Action</td>
+                            <td>@log.PerformedBy</td>
+                            <td class="text-muted small">@log.Note</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
 <div class="card shadow-sm mt-4" style="max-width:400px">
     <div class="card-header">Cập nhật trạng thái</div>
     <div class="card-body">

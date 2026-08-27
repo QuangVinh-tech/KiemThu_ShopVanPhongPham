@@ -62,6 +62,42 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             return RedirectToAction("Index", new { status = filter });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConfirmPayment(int orderId, int? returnId)
+        {
+            var order = _context.Orders.Find(orderId);
+            if (order == null) return NotFound();
+
+            var oldStatus = order.PaymentStatus;
+
+            if (order.PaymentStatus != "Đã thanh toán")
+            {
+                order.PaymentStatus = "Đã thanh toán";
+
+                _context.AuditLogs.Add(new AuditLog
+                {
+                    OrderId = order.Id,
+                    Action = "Xác nhận thanh toán VietQR",
+                    PerformedBy = User.Identity?.Name ?? "Admin",
+                    PerformedAt = DateTime.Now,
+                    Note = $"Trạng thái thanh toán: \"{oldStatus}\" → \"Đã thanh toán\""
+                });
+
+                _context.SaveChanges();
+                TempData["Success"] = $"Đã xác nhận thanh toán cho đơn #{orderId}";
+            }
+            else
+            {
+                TempData["Success"] = $"Đơn #{orderId} đã được xác nhận thanh toán trước đó.";
+            }
+
+            if (returnId.HasValue)
+                return RedirectToAction("Detail", new { id = returnId.Value });
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Detail(int id)
         {
             var order = _context.Orders
@@ -69,6 +105,12 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
                 .ThenInclude(od => od.Product)
                 .FirstOrDefault(o => o.Id == id);
             if (order == null) return NotFound();
+
+            ViewBag.AuditLogs = _context.AuditLogs
+                .Where(a => a.OrderId == id)
+                .OrderByDescending(a => a.PerformedAt)
+                .ToList();
+
             return View(order);
         }
     }

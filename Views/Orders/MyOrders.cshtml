@@ -4,8 +4,35 @@
     ViewData["Title"] = "Đơn hàng của tôi";
 }
 
+@{
+    // Trả về class màu badge phù hợp với từng trạng thái đơn hàng
+    string StatusBadgeClass(string? status) => (status ?? "Chờ xử lý") switch
+    {
+        "Chờ xử lý" => "bg-warning text-dark",
+        "Đang giao" => "bg-info text-dark",
+        "Đã giao" => "bg-success",
+        "Đã hủy" => "bg-secondary",
+        _ => "bg-warning text-dark"
+    };
+}
+
 <div class="container py-4">
     <h2 class="fw-bold mb-4">📦 Đơn hàng của tôi</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
 
     @if (!Model.Any())
     {
@@ -30,11 +57,14 @@
                         <th>Địa chỉ</th>
                         <th class="text-end">Tổng tiền</th>
                         <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var order in Model)
                     {
+                        var status = order.Status ?? "Chờ xử lý";
+                        var canCancel = status == "Chờ xử lý";
                         <tr>
                             <td><strong>#@order.Id</strong></td>
                             <td>@order.OrderPlaced.ToString("dd/MM/yyyy HH:mm")</td>
@@ -44,9 +74,26 @@
                                 @order.OrderTotal.ToString("N0") ₫
                             </td>
                             <td class="text-center">
-                                <span class="badge bg-warning text-dark">
-                                    @(order.Status ?? "Chờ xử lý")
+                                <span class="badge @StatusBadgeClass(order.Status)">
+                                    @status
                                 </span>
+                            </td>
+                            <td class="text-center">
+                                @if (canCancel)
+                                {
+                                    <form asp-action="Cancel" asp-controller="Orders" method="post"
+                                          onsubmit="return confirm('Bạn có chắc muốn hủy đơn hàng #@order.Id không?');">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="orderId" value="@order.Id" />
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            ✕ Hủy đơn
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small">—</span>
+                                }
                             </td>
                         </tr>
                     }
