@@ -96,6 +96,13 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Promotion promotion, IFormFile? imageFile)
         {
+            if (promotion.Id <= 0 || !_context.Promotions.Any(p => p.Id == promotion.Id))
+            {
+                ModelState.AddModelError("", "Không tìm thấy khuyến mãi cần sửa (thiếu Id).");
+                ViewBag.Products = _context.Products.OrderBy(p => p.Name).ToList();
+                return View(promotion);
+            }
+
             if (imageFile != null && imageFile.Length > 0)
             {
                 var fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);

@@ -20,6 +20,7 @@ namespace ShopVanPhongPham.Data
         public DbSet<News> News { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<NewsletterSubscriber> NewsletterSubscribers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,10 @@ namespace ShopVanPhongPham.Data
             );
             modelBuilder.Entity<Review>()
                .HasIndex(r => new { r.OrderId, r.ProductId, r.UserId })
+               .IsUnique();
+
+            modelBuilder.Entity<NewsletterSubscriber>()
+               .HasIndex(s => s.Email)
                .IsUnique();
         }
     }

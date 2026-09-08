@@ -1,0 +1,80 @@
+﻿@model List<ShopVanPhongPham.Models.Product>
+@{
+    ViewData["Title"] = "Mùa tựu trường - VanPhamPro Shop";
+}
+
+<section class="shop-page py-4">
+    <div class="container">
+
+        <nav class="wf-breadcrumb">
+            <a asp-controller="Home" asp-action="Index">Trang chủ</a> <span>&rsaquo;</span>
+            <span class="active">Mùa tựu trường</span>
+        </nav>
+
+        <!-- Hero banner chủ đề tựu trường -->
+        <div class="wf-promo-banner" style="background: linear-gradient(135deg, #2b6777 0%, #52ab98 100%); color:#fff;">
+            <div>
+                <span class="wf-hero-tag wf-hero-tag-light">Mùa tựu trường 2026</span>
+                <h3 style="color:#fff;">Sắm đồ dùng học tập - Vững bước năm học mới</h3>
+                <p style="color:#e8f5f2;">Bút, sổ, dụng cụ học tập, giấy in... giảm giá đến 30%, chuẩn bị sẵn sàng cho ngày khai giảng.</p>
+            </div>
+            <a href="#tuu-truong-products" class="btn btn-wf-outline btn-lg px-4" style="border-color:#fff; color:#fff;">
+                Mua sắm ngay <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+
+        <!-- Danh mục nổi bật trong chương trình -->
+        <div class="row g-3 my-2">
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Shop" asp-route-category="But" class="cat-icon-card text-decoration-none">
+                    <span class="cat-icon-box"><i class="bi bi-pencil-fill"></i></span>
+                    <span>Bút viết</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Shop" asp-route-category="So" class="cat-icon-card text-decoration-none">
+                    <span class="cat-icon-box"><i class="bi bi-journal-bookmark-fill"></i></span>
+                    <span>Sổ tay</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Shop" asp-route-category="DungCu" class="cat-icon-card text-decoration-none">
+                    <span class="cat-icon-box"><i class="bi bi-tools"></i></span>
+                    <span>Dụng cụ</span>
+                </a>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Product" asp-action="Shop" asp-route-category="Giay" class="cat-icon-card text-decoration-none">
+                    <span class="cat-icon-box"><i class="bi bi-file-earmark-text-fill"></i></span>
+                    <span>Giấy in</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <div id="tuu-truong-products" class="wf-section-title mt-4">
+            <h4>Sản phẩm cho mùa tựu trường</h4>
+            <a asp-controller="Product" asp-action="Shop">Xem tất cả sản phẩm <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="text-center py-5">
+                <div style="font-size:3rem">🎒</div>
+                <h5 class="text-muted mt-3">Hiện chưa có sản phẩm nào trong chương trình này</h5>
+                <p class="text-muted small">Hãy quay lại sau, chúng tôi sẽ sớm cập nhật thêm sản phẩm mới.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row g-3">
+                @foreach (var product in Model)
+                {
+                    <div class="col-6 col-md-3">
+                        @await Html.PartialAsync("_Product", product)
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
