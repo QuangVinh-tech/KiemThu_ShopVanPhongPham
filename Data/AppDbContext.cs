@@ -19,6 +19,7 @@ namespace ShopVanPhongPham.Data
         public DbSet<WishlistItem> WishlistItems { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,6 +44,9 @@ namespace ShopVanPhongPham.Data
                 new Product { Id = 9, Name = "Băng keo trong", Price = 10000, ImageUrl = "/assets/images/bangkeo.png", CategoryId = 3 },
                 new Product { Id = 10, Name = "Hộp bút để bàn", Price = 45000, ImageUrl = "/assets/images/hopbut.jpg", CategoryId = 3 }
             );
+            modelBuilder.Entity<Review>()
+               .HasIndex(r => new { r.OrderId, r.ProductId, r.UserId })
+               .IsUnique();
         }
     }
 }
