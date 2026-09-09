@@ -198,12 +198,54 @@
                         <h4>Nhận tin khuyến mãi</h4>
                         <p>Đăng ký để nhận thông báo về ưu đãi và sản phẩm mới sớm nhất.</p>
                     </div>
-                    <form class="wf-newsletter-form" onsubmit="return false;">
-                        <input type="email" class="form-control" placeholder="Nhập email của bạn" required />
-                        <button type="submit" class="btn btn-wf-dark px-4">Đăng ký</button>
+                    <form id="newsletterForm" class="wf-newsletter-form">
+                        @Html.AntiForgeryToken()
+                        <input type="email" name="email" id="newsletterEmail" class="form-control" placeholder="Nhập email của bạn" required />
+                        <button type="submit" class="btn btn-wf-dark px-4" id="newsletterSubmitBtn">Đăng ký</button>
                     </form>
+                    <div id="newsletterMsg" class="mt-2 small"></div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const emailInput = document.getElementById('newsletterEmail');
+            const submitBtn = document.getElementById('newsletterSubmitBtn');
+            const msgBox = document.getElementById('newsletterMsg');
+            const token = document.querySelector('#newsletterForm input[name="__RequestVerificationToken"]').value;
+
+            submitBtn.disabled = true;
+            msgBox.textContent = '';
+
+            try {
+                const formData = new FormData();
+                formData.append('email', emailInput.value);
+                formData.append('__RequestVerificationToken', token);
+
+                const response = await fetch('@Url.Action("Subscribe", "Home")', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                msgBox.textContent = result.message;
+                msgBox.className = 'mt-2 small ' + (result.success ? 'text-success' : 'text-danger');
+
+                if (result.success) {
+                    emailInput.value = '';
+                }
+            } catch (err) {
+                msgBox.textContent = 'Có lỗi xảy ra, vui lòng thử lại sau.';
+                msgBox.className = 'mt-2 small text-danger';
+            } finally {
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+}

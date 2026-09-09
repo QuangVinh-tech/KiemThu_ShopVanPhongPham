@@ -18,6 +18,7 @@
     <div class="card-body">
         <form asp-area="Admin" asp-controller="Promotion" asp-action="Edit" method="post" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
 
             <div class="mb-3">
                 <label class="form-label fw-semibold">Tiêu đề <span class="text-danger">*</span></label>
