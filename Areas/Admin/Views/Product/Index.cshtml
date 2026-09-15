@@ -4,62 +4,113 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold mb-0"> Quản lý sản phẩm</h2>
-    <a asp-area="Admin" asp-controller="Product" asp-action="Create"
-       class="btn btn-success">
-        <i class="bi bi-plus-circle me-1"></i>Thêm sản phẩm
-    </a>
-</div>
-
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">@TempData["Success"]</div>
-}
-
-<div class="card shadow-sm">
-    <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Danh mục</th>
-                    <th class="text-end">Giá</th>
-                    <th class="text-center">Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (int i = 0; i < Model.Count; i++)
-                {
-                    var p = Model[i];
-                    <tr>
-                        <td>@(i + 1)</td>
-                        <td>
-                            <img src="@p.ImageUrl" style="width:50px;height:50px;object-fit:cover"
-                                 class="rounded" />
-                        </td>
-                        <td>@p.Name</td>
-                        <td><span class="badge bg-secondary">@p.Category</span></td>
-                        <td class="text-end text-danger fw-bold">
-                            @p.Price.ToString("N0") đ
-                        </td>
-                        <td class="text-center">
-                            <a asp-area="Admin" asp-controller="Product"
-                               asp-action="Edit" asp-route-id="@p.Id"
-                               class="btn btn-sm btn-warning me-1">
-                                <i class="bi bi-pencil"></i> Sửa
-                            </a>
-                            <a asp-area="Admin" asp-controller="Product"
-                               asp-action="Delete" asp-route-id="@p.Id"
-                               class="btn btn-sm btn-danger">
-                                <i class="bi bi-trash"></i> Xóa
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+<div class="product-index-page d-flex flex-column">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold mb-0"> Quản lý sản phẩm</h2>
+        <a asp-area="Admin" asp-controller="Product" asp-action="Create"
+           class="btn btn-success">
+            <i class="bi bi-plus-circle me-1"></i>Thêm sản phẩm
+        </a>
     </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th class="text-end">Giá</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int currentPage = ViewBag.CurrentPage;
+                        int pageSize = ViewBag.PageSize;
+                    }
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        var p = Model[i];
+                        <tr>
+                            <td>@((currentPage - 1) * pageSize + i + 1)</td>
+                            <td>
+                                <img src="@p.ImageUrl" style="width:50px;height:50px;object-fit:cover"
+                                     class="rounded" />
+                            </td>
+                            <td>@p.Name</td>
+                            <td><span class="badge bg-secondary">@p.Category</span></td>
+                            <td class="text-end text-danger fw-bold">
+                                @p.Price.ToString("N0") đ
+                            </td>
+                            <td class="text-center">
+                                <a asp-area="Admin" asp-controller="Product"
+                                   asp-action="Edit" asp-route-id="@p.Id"
+                                   class="btn btn-sm btn-warning me-1">
+                                    <i class="bi bi-pencil"></i> Sửa
+                                </a>
+                                <a asp-area="Admin" asp-controller="Product"
+                                   asp-action="Delete" asp-route-id="@p.Id"
+                                   class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @{
+        int totalPages = ViewBag.TotalPages;
+        int totalItems = ViewBag.TotalItems;
+    }
+    @if (totalItems > 0)
+    {
+        <div class="products-pagination mt-auto pt-4">
+            @if (totalPages > 1)
+            {
+                <nav aria-label="Phân trang sản phẩm">
+                    <ul class="pagination pagination-sm justify-content-center mb-2">
+                        <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-area="Admin" asp-controller="Product" asp-action="Index"
+                               asp-route-page="@(currentPage - 1)">
+                                <i class="bi bi-chevron-left"></i>
+                            </a>
+                        </li>
+
+                        @for (int p = 1; p <= totalPages; p++)
+                        {
+                            <li class="page-item @(p == currentPage ? "active" : "")">
+                                <a class="page-link" asp-area="Admin" asp-controller="Product" asp-action="Index"
+                                   asp-route-page="@p">@p</a>
+                            </li>
+                        }
+
+                        <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                            <a class="page-link" asp-area="Admin" asp-controller="Product" asp-action="Index"
+                               asp-route-page="@(currentPage + 1)">
+                                <i class="bi bi-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            }
+            <div class="text-muted small text-center">
+                Hiển thị @(Model.Count) / @totalItems sản phẩm — Trang @currentPage / @totalPages
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-muted small mt-3">Chưa có sản phẩm nào.</div>
+    }
 </div>

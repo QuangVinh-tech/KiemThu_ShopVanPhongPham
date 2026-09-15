@@ -390,3 +390,30 @@ body {
     color: var(--vpp-black);
     background: #fff;
 }
+
+/* ---------------- Pagination ---------------- */
+.admin-content .pagination .page-link {
+    color: var(--vpp-black);
+    border-color: var(--vpp-border-strong);
+}
+
+    .admin-content .pagination .page-link:hover {
+        background: var(--vpp-bg);
+        color: var(--vpp-black);
+    }
+
+.admin-content .pagination .page-item.active .page-link {
+    background: var(--vpp-black);
+    border-color: var(--vpp-black);
+    color: #fff;
+}
+
+.admin-content .pagination .page-item.disabled .page-link {
+    color: var(--vpp-muted);
+    background: #fff;
+    border-color: var(--vpp-border);
+}
+
+.product-index-page {
+    min-height: calc(100vh - 180px);
+}

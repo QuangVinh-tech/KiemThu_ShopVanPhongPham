@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering; 
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models;
@@ -20,16 +20,37 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             _env = env;
         }
 
-        public IActionResult Index()
+        private const int PageSize = 10;
+
+        public IActionResult Index(int page = 1)
         {
             if (TempData["Success"] != null)
                 ViewBag.Success = TempData["Success"];
-            return View(_context.Products.Include(p => p.Category).ToList());  
+
+            if (page < 1) page = 1;
+
+            var query = _context.Products.Include(p => p.Category)
+                                          .OrderByDescending(p => p.Id);
+
+            int totalItems = query.Count();
+            int totalPages = (int)Math.Ceiling(totalItems / (double)PageSize);
+            if (totalPages > 0 && page > totalPages) page = totalPages;
+
+            var products = query.Skip((page - 1) * PageSize)
+                                 .Take(PageSize)
+                                 .ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.TotalItems = totalItems;
+            ViewBag.PageSize = PageSize;
+
+            return View(products);
         }
 
         public IActionResult Create()
         {
-            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");   
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -52,7 +73,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             }
 
             ModelState.Remove("ImageUrl");
-            ModelState.Remove("Category"); 
+            ModelState.Remove("Category");
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values
@@ -60,7 +81,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
                     .Select(e => e.ErrorMessage)
                     .ToList();
                 ViewBag.DebugErrors = string.Join(" | ", errors);
-                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);   
+                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
                 return View(product);
             }
 
@@ -74,7 +95,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
         {
             var product = _context.Products.Find(id);
             if (product == null) return NotFound();
-            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);  
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -93,7 +114,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
             }
 
             ModelState.Remove("ImageUrl");
-            ModelState.Remove("Category");   
+            ModelState.Remove("Category");
 
             if (!ModelState.IsValid)
             {
@@ -102,7 +123,7 @@ namespace ShopVanPhongPham.Areas.Admin.Controllers
                     .Select(e => e.ErrorMessage)
                     .ToList();
                 ViewBag.DebugErrors = string.Join(" | ", errors);
-                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);   
+                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             }
 
             _context.Products.Update(product);
