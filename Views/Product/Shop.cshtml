@@ -89,11 +89,11 @@
                     <div class="d-flex align-items-center gap-2">
                         <span class="small text-muted">Tìm thấy @Model.Count() sản phẩm</span>
                         <select name="sort" class="wf-select" onchange="this.form.submit()">
-                            <option value="" selected="@(string.IsNullOrEmpty(currentSort) ? "selected" : null)">Sắp xếp: Mặc định</option>
-                            <option value="price_asc" selected="@(currentSort == "price_asc" ? "selected" : null)">Giá tăng dần</option>
-                            <option value="price_desc" selected="@(currentSort == "price_desc" ? "selected" : null)">Giá giảm dần</option>
-                            <option value="name_asc" selected="@(currentSort == "name_asc" ? "selected" : null)">Tên A &rarr; Z</option>
-                            <option value="name_desc" selected="@(currentSort == "name_desc" ? "selected" : null)">Tên Z &rarr; A</option>
+                            <option value="" selected="@(string.IsNullOrEmpty(currentSort))">Sắp xếp: Mặc định</option>
+                            <option value="price_asc" selected="@(currentSort == "price_asc")">Giá tăng dần</option>
+                            <option value="price_desc" selected="@(currentSort == "price_desc")">Giá giảm dần</option>
+                            <option value="name_asc" selected="@(currentSort == "name_asc")">Tên A &rarr; Z</option>
+                            <option value="name_desc" selected="@(currentSort == "name_desc")">Tên Z &rarr; A</option>
                         </select>
                     </div>
                 </form>
