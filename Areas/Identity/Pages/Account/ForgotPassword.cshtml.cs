@@ -1,26 +1,23 @@
 ﻿#nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
+using ShopVanPhongPham.Models.Interfaces;
 
 namespace ShopVanPhongPham.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly IOtpService _otpService;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IOtpService otpService)
         {
             _userManager = userManager;
-            _emailSender = emailSender;
+            _otpService = otpService;
         }
 
         [BindProperty]
@@ -35,33 +32,26 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return Page();
+
+            var email = Input.Email.Trim();
+            var user = await _userManager.FindByEmailAsync(email);
+
+            // Luôn hiện cùng một thông báo để không lộ email nào đã đăng ký
+            TempData["OtpInfo"] = "Nếu email tồn tại trong hệ thống, mã OTP đã được gửi. Vui lòng kiểm tra hộp thư (kể cả mục spam).";
+
+            if (user != null)
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null)
+                var (sent, message) = await _otpService.SendOtpAsync(email, OtpPurposes.ResetPassword);
+                if (!sent)
                 {
-                   
-                    return RedirectToPage("./ForgotPasswordConfirmation");
+                    TempData.Remove("OtpInfo");
+                    TempData["OtpError"] = message;
                 }
-
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ResetPassword",
-                    pageHandler: null,
-                    values: new { area = "Identity", code, email = Input.Email },
-                    protocol: Request.Scheme);
-
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Đặt lại mật khẩu - VPP Shop",
-                    $"Vui lòng đặt lại mật khẩu của bạn bằng cách <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>nhấn vào đây</a>.");
-
-                
-                return RedirectToPage("./ForgotPasswordConfirmation", new { link = callbackUrl });
             }
 
-            return Page();
+            return RedirectToPage("./ResetPassword", new { email });
         }
     }
 }

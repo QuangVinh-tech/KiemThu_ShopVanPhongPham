@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿
 
 @model ShopVanPhongPham.Models.ContactMessage
@@ -8,6 +9,19 @@
 }
 
 <div class="mb-4">
+=======
+﻿@model ShopVanPhongPham.Models.ContactMessage
+
+@{
+    ViewData["Title"] = "Chi tiết phản hồi";
+    Layout = "_AdminLayout";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">
+        <i class="bi bi-envelope-open me-2 text-primary"></i>Chi tiết phản hồi #@Model.Id
+    </h4>
+>>>>>>> Stashed changes
     <a asp-action="Index" class="btn btn-outline-secondary btn-sm">
         <i class="bi bi-arrow-left me-1"></i>Quay lại danh sách
     </a>
@@ -15,18 +29,29 @@
 
 @if (TempData["SuccessMessage"] != null)
 {
+<<<<<<< Updated upstream
     <div class="alert alert-success alert-dismissible fade show">
+=======
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+>>>>>>> Stashed changes
         <i class="bi bi-check-circle me-2"></i>@TempData["SuccessMessage"]
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
 }
 
 <div class="row g-4">
+<<<<<<< Updated upstream
     <!-- Thông tin tin nhắn -->
     <div class="col-md-8">
         <div class="card shadow-sm">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h5 class="mb-0"><i class="bi bi-envelope-open me-2"></i>@Model.Subject</h5>
+=======
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <strong>@Model.Subject</strong>
+>>>>>>> Stashed changes
                 @if (Model.IsRead)
                 {
                     <span class="badge bg-secondary">Đã đọc</span>
@@ -37,6 +62,7 @@
                 }
             </div>
             <div class="card-body">
+<<<<<<< Updated upstream
                 <div class="row mb-3">
                     <div class="col-sm-6">
                         <small class="text-muted d-block">Người gửi</small>
@@ -82,10 +108,29 @@
                         <i class="bi bi-save me-1"></i>Lưu ghi chú
                     </button>
                 </form>
+=======
+                <dl class="row mb-3">
+                    <dt class="col-sm-3">Họ tên</dt>
+                    <dd class="col-sm-9">@Model.FullName</dd>
+
+                    <dt class="col-sm-3">Email</dt>
+                    <dd class="col-sm-9"><a href="mailto:@Model.Email">@Model.Email</a></dd>
+
+                    <dt class="col-sm-3">Số điện thoại</dt>
+                    <dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Phone) ? "—" : Model.Phone)</dd>
+
+                    <dt class="col-sm-3">Thời gian gửi</dt>
+                    <dd class="col-sm-9">@Model.SentAt.ToString("dd/MM/yyyy HH:mm")</dd>
+                </dl>
+                <hr />
+                <h6 class="fw-bold">Nội dung</h6>
+                <p style="white-space: pre-line">@Model.Message</p>
+>>>>>>> Stashed changes
             </div>
         </div>
     </div>
 
+<<<<<<< Updated upstream
     <!-- Panel hành động -->
     <div class="col-md-4">
         <div class="card shadow-sm">
@@ -102,9 +147,32 @@
                     @Html.AntiForgeryToken()
                     <button type="submit" class="btn btn-outline-danger w-100">
                         <i class="bi bi-trash me-2"></i>Xóa tin nhắn
+=======
+    <div class="col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white"><strong>Ghi chú nội bộ</strong></div>
+            <div class="card-body">
+                <form asp-action="SaveNote" asp-route-id="@Model.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    <textarea name="adminNote" class="form-control mb-3" rows="6"
+                              placeholder="Ghi chú / phản hồi nội bộ...">@Model.AdminNote</textarea>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-save me-1"></i>Lưu ghi chú
+                    </button>
+                </form>
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="mt-2"
+                      onsubmit="return confirm('Bạn có chắc muốn xóa tin nhắn này?')">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-danger w-100">
+                        <i class="bi bi-trash me-1"></i>Xóa tin nhắn
+>>>>>>> Stashed changes
                     </button>
                 </form>
             </div>
         </div>
     </div>
+<<<<<<< Updated upstream
 </div>
+=======
+</div>
+>>>>>>> Stashed changes

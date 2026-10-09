@@ -1,23 +1,17 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using ShopVanPhongPham.Models.Interfaces;
 
 namespace ShopVanPhongPham.Areas.Identity.Pages.Account
 {
@@ -28,90 +22,54 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IOtpService _otpService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IOtpService otpService)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _otpService = otpService;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     Họ và tên người dùng.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập họ và tên")]
             [StringLength(100, ErrorMessage = "Họ và tên tối đa {1} ký tự.")]
             public string FullName { get; set; } = "";
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập email")]
             [EmailAddress(ErrorMessage = "Email không hợp lệ")]
             public string Email { get; set; } = "";
 
-            /// <summary>
-            ///     Số điện thoại người dùng.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
             [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
             public string PhoneNumber { get; set; } = "";
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
             [StringLength(100, ErrorMessage = "Mật khẩu phải có ít nhất {2} ký tự.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             public string Password { get; set; } = "";
 
-
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng xác nhận mật khẩu")]
             [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp.")]
             [DataType(DataType.Password)]
             public string ConfirmPassword { get; set; } = "";
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -122,63 +80,73 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
+            ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
+                return Page();
+
+            var email = Input.Email.Trim();
+
+            // Email đã tồn tại?
+            var existing = await _userManager.FindByEmailAsync(email);
+            if (existing != null)
             {
-                var user = CreateUser();
-
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
-
-                if (result.Succeeded)
+                if (existing.EmailConfirmed)
                 {
-                    _logger.LogInformation("User created a new account with password.");
-
-                    await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                    await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", Input.FullName));
-
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                    ModelState.AddModelError(string.Empty, "Email này đã được đăng ký.");
+                    return Page();
                 }
-                foreach (var error in result.Errors)
-                {
-                    var message = error.Code switch
-                    {
-                        "PasswordTooShort" => "Mật khẩu phải có ít nhất 6 ký tự.",
-                        "PasswordRequiresNonAlphanumeric" => "Mật khẩu phải có ít nhất 1 ký tự đặc biệt (vd: @, #, !).",
-                        "PasswordRequiresDigit" => "Mật khẩu phải có ít nhất 1 chữ số (0-9).",
-                        "PasswordRequiresLower" => "Mật khẩu phải có ít nhất 1 chữ thường (a-z).",
-                        "PasswordRequiresUpper" => "Mật khẩu phải có ít nhất 1 chữ hoa (A-Z).",
-                        "DuplicateEmail" => "Email này đã được đăng ký.",
-                        "DuplicateUserName" => "Tên tài khoản đã tồn tại.",
-                        "InvalidEmail" => "Email không hợp lệ.",
-                        _ => error.Description
-                    };
-                    ModelState.AddModelError(string.Empty, message);
-                }
+
+                // Đã đăng ký nhưng chưa xác thực: gửi lại OTP
+                var (resent, resentMsg) = await _otpService.SendOtpAsync(email, OtpPurposes.Register);
+                if (resent)
+                    TempData["OtpInfo"] = "Email này đã đăng ký nhưng chưa xác thực. Chúng tôi đã gửi lại mã OTP.";
+                else
+                    TempData["OtpError"] = resentMsg;
+
+                return RedirectToPage("./VerifyOtp", new { email, returnUrl });
             }
 
-            // If we got this far, something failed, redisplay form
+            var user = CreateUser();
+            await _userStore.SetUserNameAsync(user, email, CancellationToken.None);
+            await _emailStore.SetEmailAsync(user, email, CancellationToken.None);
+            var result = await _userManager.CreateAsync(user, Input.Password);
+
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User created a new account with password.");
+
+                await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", Input.FullName));
+
+                // Gửi OTP xác thực email, CHƯA đăng nhập cho tới khi nhập đúng mã
+                var (sent, message) = await _otpService.SendOtpAsync(email, OtpPurposes.Register);
+                if (sent)
+                    TempData["OtpInfo"] = message;
+                else
+                    TempData["OtpError"] = message;
+
+                return RedirectToPage("./VerifyOtp", new { email, returnUrl });
+            }
+
+            foreach (var error in result.Errors)
+            {
+                var message = error.Code switch
+                {
+                    "PasswordTooShort" => "Mật khẩu phải có ít nhất 6 ký tự.",
+                    "PasswordRequiresNonAlphanumeric" => "Mật khẩu phải có ít nhất 1 ký tự đặc biệt (vd: @, #, !).",
+                    "PasswordRequiresDigit" => "Mật khẩu phải có ít nhất 1 chữ số (0-9).",
+                    "PasswordRequiresLower" => "Mật khẩu phải có ít nhất 1 chữ thường (a-z).",
+                    "PasswordRequiresUpper" => "Mật khẩu phải có ít nhất 1 chữ hoa (A-Z).",
+                    "DuplicateEmail" => "Email này đã được đăng ký.",
+                    "DuplicateUserName" => "Tên tài khoản đã tồn tại.",
+                    "InvalidEmail" => "Email không hợp lệ.",
+                    _ => error.Description
+                };
+                ModelState.AddModelError(string.Empty, message);
+            }
+
             return Page();
         }
 
@@ -191,8 +159,7 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
             catch
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor.");
             }
         }
 
