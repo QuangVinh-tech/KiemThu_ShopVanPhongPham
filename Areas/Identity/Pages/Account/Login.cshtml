@@ -15,6 +15,10 @@
             <hr class="auth-hr" />
 
             <form id="account" method="post" novalidate>
+                @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                {
+                    <div class="alert alert-success py-2 small" role="alert">@Model.StatusMessage</div>
+                }
                 <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small" role="alert"></div>
 
                 <div class="auth-field">

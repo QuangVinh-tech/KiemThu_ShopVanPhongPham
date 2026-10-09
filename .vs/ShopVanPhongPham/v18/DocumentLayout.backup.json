@@ -1,0 +1,793 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\KiemThu_ShopVanPhongPham\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\wwwroot\\css\\mobile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:wwwroot\\css\\mobile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\views\\product\\shop.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:views\\product\\shop.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\resetpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\resetpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\wwwroot\\css\\auth.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:wwwroot\\css\\auth.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\forgotpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\forgotpassword.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\verifyemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\verifyemail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\verifyemail.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\verifyemail.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\services\\verificationcodeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:services\\verificationcodeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\services\\iverificationcodeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:services\\iverificationcodeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\services\\smtpemailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:services\\smtpemailsender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\services\\emailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:services\\emailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\wwwroot\\css\\wireframe.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:wwwroot\\css\\wireframe.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\views\\user\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\views\\order\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\views\\order\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\views\\contact\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\views\\contact\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\admin\\views\\news\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\admin\\views\\news\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\_managenav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\_managenav.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\showrecoverycodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\showrecoverycodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\resetauthenticator.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\resetauthenticator.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\generaterecoverycodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\generaterecoverycodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\enableauthenticator.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\enableauthenticator.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\disable2fa.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\disable2fa.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\deletepersonaldata.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\deletepersonaldata.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\personaldata.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\personaldata.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\twofactorauthentication.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\twofactorauthentication.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\areas\\identity\\pages\\account\\manage\\email.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:areas\\identity\\pages\\account\\manage\\email.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|e:\\kiemthu_shopvanphongpham\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB468340-A30F-4B48-A04A-314B220D1171}|ShopVanPhongPham.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAcwNAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T08:05:34.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "mobile.css",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\mobile.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\mobile.css",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\mobile.css",
+              "RelativeToolTip": "wwwroot\\css\\mobile.css",
+              "ViewState": "AgIAAJwBAAAAAAAAAAAowMIBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-10-09T08:02:31.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T06:55:45.097Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAcwDkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:54:00.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAPQAAAAAAAAAAAAUwBgBAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:10:24.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Shop.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Views\\Product\\Shop.cshtml",
+              "RelativeDocumentMoniker": "Views\\Product\\Shop.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Views\\Product\\Shop.cshtml",
+              "RelativeToolTip": "Views\\Product\\Shop.cshtml",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAUwH0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T03:09:17.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-09T07:01:10.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ResetPassword.cshtml.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:56:01.015Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\appsettings.json*",
+              "RelativeToolTip": "appsettings.json*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-08-25T01:10:38.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ForgotPassword.cshtml.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAqwDkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:55:26.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAUwHUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T06:56:14.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAADoAAAAAAAAAAAAUwF4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T06:55:12.324Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAUwIIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:54:47.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "auth.css",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\auth.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\auth.css",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\auth.css",
+              "RelativeToolTip": "wwwroot\\css\\auth.css",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAowMoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-10-09T06:56:50.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAUwK8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:54:26.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "VerifyEmail.cshtml.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAUwHEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:53:42.556Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "VerifyEmail.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\VerifyEmail.cshtml",
+              "ViewState": "AgIAACMAAAAAAAAAAAAUwEcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-10-09T06:52:59.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VerificationCodeService.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Services\\VerificationCodeService.cs",
+              "RelativeDocumentMoniker": "Services\\VerificationCodeService.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Services\\VerificationCodeService.cs",
+              "RelativeToolTip": "Services\\VerificationCodeService.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAYwAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:50:25.675Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IVerificationCodeService.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Services\\IVerificationCodeService.cs",
+              "RelativeDocumentMoniker": "Services\\IVerificationCodeService.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Services\\IVerificationCodeService.cs",
+              "RelativeToolTip": "Services\\IVerificationCodeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:49:47.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "SmtpEmailSender.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Services\\SmtpEmailSender.cs",
+              "RelativeDocumentMoniker": "Services\\SmtpEmailSender.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Services\\SmtpEmailSender.cs",
+              "RelativeToolTip": "Services\\SmtpEmailSender.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAADwvwgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:49:14.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "EmailSettings.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Services\\EmailSettings.cs",
+              "RelativeDocumentMoniker": "Services\\EmailSettings.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Services\\EmailSettings.cs",
+              "RelativeToolTip": "Services\\EmailSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T06:48:49.568Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAIwHYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T03:19:44.259Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Order\\Detail.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Order\\Detail.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Order\\Detail.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Order\\Detail.cshtml",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAowHMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T03:01:58.206Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAowJ8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T03:01:17.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "wireframe.css",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\wireframe.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\wireframe.css",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\wireframe.css",
+              "RelativeToolTip": "wwwroot\\css\\wireframe.css",
+              "ViewState": "AgIAAPYEAAAAAAAAAAAswDYFAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-08T03:20:32.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Contact\\Detail.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Contact\\Detail.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Contact\\Detail.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Contact\\Detail.cshtml",
+              "ViewState": "AgIAAIYAAAAAAAAAAAAowJ8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T03:00:42.513Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ProductController.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T02:58:48.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAIwHMAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T02:58:48.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "admin.css",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\admin.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\admin.css",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\wwwroot\\css\\admin.css",
+              "RelativeToolTip": "wwwroot\\css\\admin.css",
+              "ViewState": "AgIAAHsBAAAAAAAAAAAiwKMBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-09-08T02:58:48.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\User\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\User\\Index.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\User\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\User\\Index.cshtml",
+              "ViewState": "AgIAADsAAAAAAAAAAAAmwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T02:58:48.134Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\News\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\News\\Edit.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Admin\\Views\\News\\Edit.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\News\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-09-08T02:58:41.134Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "ChangePassword.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:45:03.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "_ManageNav.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAgwCIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:44:50.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\_Layout.cshtml",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAwwCEAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:44:33.863Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAmwCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:43:41.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "ShowRecoveryCodes.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\ShowRecoveryCodes.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAwwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:43:26.831Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ResetAuthenticator.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\ResetAuthenticator.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:43:15.022Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "GenerateRecoveryCodes.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\GenerateRecoveryCodes.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:42:44.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "EnableAuthenticator.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "ViewState": "AgIAABMAAAAAAAAAAAAcwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:42:20.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Disable2fa.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\Disable2fa.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:42:02.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "DeletePersonalData.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\DeletePersonalData.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:41:45.37Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "PersonalData.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\PersonalData.cshtml",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAuwCIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:41:31.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "TwoFactorAuthentication.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\TwoFactorAuthentication.cshtml",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAuwG8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:41:17.546Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Email.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Manage\\Email.cshtml",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAvwD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:40:04.304Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "Views\\Home\\Contact.cshtml",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAmwFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-25T01:10:24.513Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "E:\\KiemThu_ShopVanPhongPham\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "E:\\KiemThu_ShopVanPhongPham\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAgwFYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-25T01:10:24.748Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 136,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

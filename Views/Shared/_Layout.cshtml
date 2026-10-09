@@ -4,6 +4,10 @@
 @inject IWishlistRepository WishlistRepo
 @inject UserManager<IdentityUser> UserManager
 @inject AppDbContext DbContext
+@{
+    // Trang Tài khoản (Hồ sơ, Email, Mật khẩu...) -> ẩn nút/khung "Danh mục sản phẩm"
+    var hideCategory = Context.Request.Path.StartsWithSegments("/Identity/Account/Manage");
+}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -16,6 +20,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/wireframe.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
+    <link rel="stylesheet" href="~/css/mobile.css" asp-append-version="true" />
 </head>
 <body>
 
@@ -100,9 +105,12 @@
         <!-- Danh mục + menu chính -->
         <nav class="category-nav">
             <div class="container category-nav-inner">
-                <button class="category-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#categoryOffcanvas">
-                    <i class="bi bi-list"></i> Danh mục sản phẩm
-                </button>
+                @if (!hideCategory)
+                {
+                    <button class="category-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#categoryOffcanvas">
+                        <i class="bi bi-list"></i> Danh mục sản phẩm
+                    </button>
+                }
 
                 <ul class="main-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
@@ -116,28 +124,31 @@
         </nav>
     </header>
 
-    <!-- Offcanvas danh mục (mở từ nút "Danh mục sản phẩm") -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="categoryOffcanvas">
-        <div class="offcanvas-header border-bottom">
-            <h6 class="offcanvas-title fw-bold">Danh mục sản phẩm</h6>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body p-0">
-            <ul class="sidebar-cat-list p-3">
-                @{
-                    var navCategories = DbContext.Categories.OrderBy(c => c.Name).ToList();
-                }
-                <li><a asp-controller="Product" asp-action="Shop">Tất cả sản phẩm</a></li>
-                @if (navCategories.Any())
-                {
-                    foreach (var cat in navCategories)
-                    {
-                        <li><a asp-controller="Product" asp-action="Shop" asp-route-category="@cat.Name">@cat.Name</a></li>
+    @if (!hideCategory)
+    {
+        <!-- Offcanvas danh mục (mở từ nút "Danh mục sản phẩm") -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="categoryOffcanvas">
+            <div class="offcanvas-header border-bottom">
+                <h6 class="offcanvas-title fw-bold">Danh mục sản phẩm</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+                <ul class="sidebar-cat-list p-3">
+                    @{
+                        var navCategories = DbContext.Categories.OrderBy(c => c.Name).ToList();
                     }
-                }
-            </ul>
+                    <li><a asp-controller="Product" asp-action="Shop">Tất cả sản phẩm</a></li>
+                    @if (navCategories.Any())
+                    {
+                        foreach (var cat in navCategories)
+                        {
+                            <li><a asp-controller="Product" asp-action="Shop" asp-route-category="@cat.Name">@cat.Name</a></li>
+                        }
+                    }
+                </ul>
+            </div>
         </div>
-    </div>
+    }
 
     <main>
         @RenderBody()
@@ -191,6 +202,9 @@
                 </div>
             </div>
             <hr class="border-secondary mt-4" />
+            <p class="footer-hotline text-center mb-2">
+                <a href="tel:19001234"><i class="bi bi-telephone-fill me-1"></i>Hotline: 1900 1234</a>
+            </p>
             <p class="text-center text-secondary small mb-0">
                 &copy; 2026 VanPhamPro &mdash; Thiết kế bởi Nhóm MVC
             </p>

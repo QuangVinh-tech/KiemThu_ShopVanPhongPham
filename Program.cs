@@ -3,6 +3,8 @@ using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models.Interfaces;
 using ShopVanPhongPham.Models.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using ShopVanPhongPham.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +16,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = false;
+   
+    options.SignIn.RequireConfirmedAccount = true;
 
-    // Th�ng b�o l?i password ti?ng Vi?t
+  
     options.Password.RequireDigit = true;
     options.Password.RequireLowercase = true;
     options.Password.RequireUppercase = true;
@@ -26,6 +29,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddRazorPages();
+
+
+builder.Services.AddMemoryCache();
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<IEmailSender, SmtpEmailSender>();
+builder.Services.AddScoped<IVerificationCodeService, VerificationCodeService>();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession(options =>
@@ -40,6 +49,13 @@ builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
 var app = builder.Build();
+var connStr = builder.Configuration.GetConnectionString("DefaultConnection") ?? "";
+if (app.Environment.IsDevelopment()
+    && connStr.Contains("localdb", StringComparison.OrdinalIgnoreCase))
+{
+    using var dbScope = app.Services.CreateScope();
+    dbScope.ServiceProvider.GetRequiredService<AppDbContext>().Database.EnsureCreated();
+}
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider

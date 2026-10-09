@@ -170,3 +170,34 @@
         border: none;
     }
 }
+.auth-input.otp-input {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.55rem;
+    padding-left: 0.55rem;
+}
+
+.auth-email-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f1f3f5;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #343a40;
+    word-break: break-all;
+}
+
+.auth-link-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: #212529;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+    .auth-link-btn:hover {
+        color: #000;
+    }

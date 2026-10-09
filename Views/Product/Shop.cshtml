@@ -111,10 +111,10 @@
                 }
                 else
                 {
-                    <div class="row g-3" id="productGrid">
+                    <div class="product-grid" id="productGrid">
                         @foreach (var product in Model)
                         {
-                            <div class="col-6 col-md-4 col-xl-3 product-item">
+                            <div class="product-item">
                                 @await Html.PartialAsync("_Product", product)
                             </div>
                         }

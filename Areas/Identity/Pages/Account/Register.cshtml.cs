@@ -1,23 +1,17 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using ShopVanPhongPham.Services;
 
 namespace ShopVanPhongPham.Areas.Identity.Pages.Account
 {
@@ -28,90 +22,54 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly IVerificationCodeService _codeService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IVerificationCodeService codeService)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _codeService = codeService;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     Họ và tên người dùng.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập họ và tên")]
             [StringLength(100, ErrorMessage = "Họ và tên tối đa {1} ký tự.")]
             public string FullName { get; set; } = "";
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập email")]
             [EmailAddress(ErrorMessage = "Email không hợp lệ")]
             public string Email { get; set; } = "";
 
-            /// <summary>
-            ///     Số điện thoại người dùng.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
             [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
             public string PhoneNumber { get; set; } = "";
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
             [StringLength(100, ErrorMessage = "Mật khẩu phải có ít nhất {2} ký tự.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             public string Password { get; set; } = "";
 
-
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required(ErrorMessage = "Vui lòng xác nhận mật khẩu")]
             [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp.")]
             [DataType(DataType.Password)]
             public string ConfirmPassword { get; set; } = "";
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -123,8 +81,30 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
+                // Email đã tồn tại?
+                var existing = await _userManager.FindByEmailAsync(Input.Email);
+                if (existing != null)
+                {
+                    if (!existing.EmailConfirmed)
+                    {
+                        // Đã đăng ký nhưng chưa xác minh -> gửi lại mã, chuyển sang trang nhập mã.
+                        var resend = await _codeService.SendAsync(Input.Email, CodePurpose.VerifyEmail);
+                        TempData["StatusMessage"] = resend.Status == SendCodeStatus.Failed
+                            ? null
+                            : "Email này đã đăng ký nhưng chưa được xác minh. Vui lòng nhập mã 6 số đã gửi tới email của bạn.";
+                        if (resend.Status == SendCodeStatus.Failed)
+                            TempData["ErrorMessage"] = "Không gửi được email lúc này. Vui lòng bấm \"Gửi lại mã\" sau ít phút.";
+
+                        return RedirectToPage("./VerifyEmail", new { email = Input.Email, returnUrl });
+                    }
+
+                    ModelState.AddModelError(string.Empty, "Email này đã được đăng ký.");
+                    return Page();
+                }
+
                 var user = CreateUser();
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -138,28 +118,16 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
                     await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                     await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim("FullName", Input.FullName));
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
+                    // Gửi mã xác minh 6 số về email, KHÔNG đăng nhập cho tới khi xác minh xong.
+                    var send = await _codeService.SendAsync(Input.Email, CodePurpose.VerifyEmail);
+                    if (send.Status == SendCodeStatus.Failed)
+                        TempData["ErrorMessage"] = "Tạo tài khoản thành công nhưng chưa gửi được email. Vui lòng bấm \"Gửi lại mã\".";
                     else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                        TempData["StatusMessage"] = "Chúng tôi đã gửi mã xác minh gồm 6 số tới email của bạn.";
+
+                    return RedirectToPage("./VerifyEmail", new { email = Input.Email, returnUrl });
                 }
+
                 foreach (var error in result.Errors)
                 {
                     var message = error.Code switch

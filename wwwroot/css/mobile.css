@@ -1,0 +1,450 @@
+﻿/* =========================================================
+   VanPhamPro — Mobile / Tablet overrides
+   Nạp SAU wireframe.css và SAU @RenderSection("Styles")
+   để ghi đè đúng thứ tự.
+   ========================================================= */
+
+/* Chặn tràn ngang toàn trang.
+   Chỉ đặt trên <html> (không đặt trên body) để header dính (sticky) trên desktop vẫn hoạt động. */
+html {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* =========================================================
+   TỰ CO GIÃN — áp dụng mọi kích thước màn hình
+   (không phụ thuộc mốc cố định, tự tính số cột)
+   ========================================================= */
+
+/* Lưới sản phẩm: tự tính số cột theo chỗ trống
+   điện thoại ≈ 2 cột, tablet ≈ 3, laptop ≈ 4 */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 138px), 1fr));
+    gap: .75rem;
+}
+
+@media (min-width: 576px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+        gap: 1rem;
+    }
+}
+
+.product-grid > .product-item {
+    min-width: 0;
+}
+
+/* Ô danh mục nổi bật trên trang chủ */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 76px), 1fr)); /* điện thoại: 4 ô / hàng */
+    gap: .75rem;
+}
+
+@media (min-width: 768px) {
+    .cat-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+    /* máy tính: ~6 ô / hàng như cũ */
+}
+
+.cat-grid > .cat-item {
+    min-width: 0;
+}
+
+/* SỬA LỖI: nút tim (position:absolute) bị văng lên góc trang, đè lên Hotline
+   vì thẻ sản phẩm chưa là mốc định vị. Cho thẻ làm mốc để tim nằm đúng trong thẻ. */
+.wf-product-card {
+    position: relative;
+}
+
+.wf-product-wish {
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Ảnh sản phẩm giữ tỉ lệ thay vì cao cố định */
+.wf-product-thumb img {
+    height: auto;
+    aspect-ratio: 4 / 3;
+}
+
+/* Chữ tiêu đề tự co theo độ rộng màn hình */
+.wf-hero h1 {
+    font-size: clamp(1.3rem, 4.2vw, 2.1rem);
+}
+
+.wf-section-title h4 {
+    font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+}
+
+.brand-text strong {
+    font-size: clamp(.95rem, 3vw, 1.15rem);
+}
+
+/* ---------------------------------------------------------
+   TABLET + MOBILE  (< 992px)
+--------------------------------------------------------- */
+@media (max-width: 991.98px) {
+
+    /* Header: logo trái – icon phải – ô tìm kiếm xuống hàng dưới */
+    .header-main-inner {
+        flex-wrap: wrap;
+        gap: .6rem .75rem;
+        padding: .6rem 0;
+    }
+
+    .brand {
+        margin-right: auto;
+    }
+
+    .header-actions {
+        gap: 1.1rem;
+    }
+
+    .header-search {
+        order: 3;
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    /* Thanh danh mục: 1 hàng, vuốt ngang thay vì xuống dòng */
+    .category-nav-inner {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: .9rem;
+        min-height: 46px;
+        padding-top: .35rem;
+        padding-bottom: .35rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+        .category-nav-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+    .category-toggle {
+        flex-shrink: 0;
+    }
+
+    .main-nav {
+        flex-wrap: nowrap;
+        gap: 1.1rem;
+        white-space: nowrap;
+    }
+
+        .main-nav a {
+            font-size: .86rem;
+        }
+}
+
+/* ---------------------------------------------------------
+   MOBILE  (< 768px)
+--------------------------------------------------------- */
+@media (max-width: 767.98px) {
+
+    /* Header không dính nữa (chiếm quá nhiều chiều cao màn hình nhỏ) */
+    .site-header {
+        position: static;
+    }
+
+    /* Topbar: ẩn hẳn trên mobile — Hotline đã chuyển xuống cuối trang (footer) */
+    .topbar {
+        display: none;
+    }
+
+    /* Header: chỉ hiện icon, ẩn chữ (Yêu thích / Giỏ hàng / tên user) */
+    .header-action-item > span:not(.action-badge) {
+        display: none;
+    }
+
+    .header-action-item i {
+        font-size: 1.45rem;
+    }
+
+    .header-actions {
+        gap: 1.25rem;
+    }
+
+    .brand-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .brand-text strong {
+        font-size: 1.02rem;
+    }
+
+    /* Chống iOS tự zoom khi chạm vào ô nhập */
+    input, select, textarea,
+    .form-control, .form-select,
+    .header-search input {
+        font-size: 16px;
+    }
+
+    .header-search input {
+        padding: .5rem .75rem;
+    }
+
+    /* Menu thả xuống của tài khoản không tràn khỏi màn hình */
+    .header-actions .dropdown-menu {
+        max-width: calc(100vw - 24px);
+    }
+
+    /* ---------- Hero / banner ---------- */
+    .wf-hero {
+        padding: 1.4rem 1.1rem;
+        min-height: 170px;
+    }
+
+        .wf-hero h1 {
+            margin-bottom: .5rem;
+        }
+
+        .wf-hero p {
+            font-size: .88rem;
+            margin-bottom: .9rem;
+        }
+
+    .wf-hero-carousel .wf-hero {
+        min-height: 190px;
+        background-position: center right;
+    }
+
+        .wf-hero-carousel .wf-hero > div:first-child {
+            max-width: 100%;
+        }
+
+    .wf-carousel-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 2.5rem;
+    }
+
+    /* ---------- Dải tiện ích: 2 cột ---------- */
+    .wf-features-strip {
+        flex-wrap: wrap;
+    }
+
+    .wf-feature {
+        flex: 1 1 50%;
+        padding: .75rem .9rem;
+        border-right: none;
+        border-bottom: 1px solid var(--wf-border);
+    }
+
+    .wf-section-title h4 {
+        font-size: 1.05rem;
+    }
+
+    /* ---------- Thẻ sản phẩm ---------- */
+    .wf-product-body {
+        padding: .6rem;
+    }
+
+    .wf-product-name {
+        font-size: .82rem;
+    }
+
+    .wf-product-price {
+        font-size: .88rem;
+    }
+
+    .wf-product-cart-btn {
+        width: 36px;
+        height: 36px;
+    }
+    /* đủ lớn để chạm */
+    .wf-product-wish {
+        width: 32px;
+        height: 32px;
+        top: .45rem;
+        right: .45rem;
+    }
+
+    /* ---------- Trang Shop ---------- */
+    .shop-page .sidebar-card {
+        padding: .85rem;
+        margin-bottom: .75rem;
+    }
+
+    /* Danh mục sidebar → chip vuốt ngang */
+    .shop-page .sidebar-cat-list {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: .5rem;
+        overflow-x: auto;
+        padding: 0 0 .25rem;
+        margin: 0;
+        list-style: none;
+        scrollbar-width: none;
+    }
+
+        .shop-page .sidebar-cat-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .shop-page .sidebar-cat-list li {
+            flex-shrink: 0;
+        }
+
+        .shop-page .sidebar-cat-list a {
+            display: inline-block;
+            white-space: nowrap;
+            padding: .35rem .85rem;
+            border: 1px solid var(--wf-border-strong);
+            border-radius: 999px;
+            font-size: .82rem;
+        }
+
+            .shop-page .sidebar-cat-list a.active {
+                background: var(--wf-black);
+                border-color: var(--wf-black);
+                color: #fff;
+            }
+
+    /* Thanh tìm kiếm / sắp xếp full-width */
+    .wf-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+        .wf-toolbar > div {
+            width: 100%;
+        }
+
+        .wf-toolbar input[name="search"] {
+            max-width: none !important;
+            flex: 1 1 auto;
+        }
+
+        .wf-toolbar .wf-select {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+    /* ---------- Chi tiết sản phẩm ---------- */
+    .product-detail img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* ---------- Giỏ hàng ---------- */
+    .cart-card {
+        overflow: hidden;
+    }
+
+    .cart-table tbody tr {
+        border-bottom: 1px solid #f0f1f3;
+    }
+
+        .cart-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+    .cart-item-thumb {
+        width: 54px;
+    }
+
+    .cart-qty-btn {
+        width: 34px;
+        height: 34px;
+    }
+
+    .cart-table-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: .75rem;
+    }
+
+    .btn-cart-update {
+        width: 100%;
+    }
+
+    /* ---------- Bảng chung (Lịch sử đơn hàng...) → vuốt ngang ---------- */
+    table.table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ---------- Banner khuyến mãi / newsletter ---------- */
+    .wf-newsletter-form {
+        width: 100%;
+    }
+
+        .wf-newsletter-form input {
+            min-width: 0;
+            flex: 1 1 100%;
+        }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+        padding-top: 1.75rem !important;
+        margin-top: 2rem !important;
+        text-align: center;
+    }
+
+        .site-footer .col-md-4 {
+            text-align: center;
+        }
+}
+
+/* Hotline cuối trang: chỉ hiện trên mobile (desktop vẫn dùng topbar) */
+.footer-hotline {
+    display: none;
+}
+
+@media (max-width: 767.98px) {
+    .footer-hotline {
+        display: block;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+        .footer-hotline a {
+            color: #fff;
+        }
+
+        .footer-hotline i {
+            color: var(--wf-accent);
+        }
+}
+
+/* ---------------------------------------------------------
+   ĐIỆN THOẠI NHỎ  (< 576px)
+--------------------------------------------------------- */
+@media (max-width: 575.98px) {
+    .container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .brand-text strong {
+        font-size: .95rem;
+    }
+
+    .wf-feature {
+        flex-basis: 100%;
+    }
+}
+
+/* Thiết bị cảm ứng: bỏ hiệu ứng nhấc thẻ khi hover (gây giật khi chạm) */
+@media (hover: none) {
+    .wf-product-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}

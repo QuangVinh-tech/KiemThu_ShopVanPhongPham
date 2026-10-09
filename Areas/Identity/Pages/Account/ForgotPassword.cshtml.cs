@@ -1,26 +1,23 @@
 ﻿#nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.WebUtilities;
+using ShopVanPhongPham.Services;
 
 namespace ShopVanPhongPham.Areas.Identity.Pages.Account
 {
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
+        private readonly IVerificationCodeService _codeService;
 
-        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<IdentityUser> userManager, IVerificationCodeService codeService)
         {
             _userManager = userManager;
-            _emailSender = emailSender;
+            _codeService = codeService;
         }
 
         [BindProperty]
@@ -35,33 +32,33 @@ namespace ShopVanPhongPham.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return Page();
+
+            var user = await _userManager.FindByEmailAsync(Input.Email);
+            if (user != null)
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null)
+                var result = await _codeService.SendAsync(Input.Email, CodePurpose.ResetPassword);
+
+                if (result.Status == SendCodeStatus.Failed)
                 {
-                   
-                    return RedirectToPage("./ForgotPasswordConfirmation");
+                    ModelState.AddModelError(string.Empty, "Không gửi được email lúc này. Vui lòng thử lại sau.");
+                    return Page();
                 }
 
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ResetPassword",
-                    pageHandler: null,
-                    values: new { area = "Identity", code, email = Input.Email },
-                    protocol: Request.Scheme);
-
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Đặt lại mật khẩu - VPP Shop",
-                    $"Vui lòng đặt lại mật khẩu của bạn bằng cách <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>nhấn vào đây</a>.");
-
-                
-                return RedirectToPage("./ForgotPasswordConfirmation", new { link = callbackUrl });
+                if (result.Status == SendCodeStatus.TooSoon)
+                {
+                    
+                    TempData["StatusMessage"] =
+                        $"Mã xác nhận vừa được gửi trước đó, vui lòng kiểm tra email. Bạn có thể gửi lại sau {result.WaitSeconds} giây.";
+                    return RedirectToPage("./ResetPassword", new { email = Input.Email });
+                }
             }
 
-            return Page();
+            
+            TempData["StatusMessage"] =
+                "Nếu email tồn tại trong hệ thống, mã xác nhận gồm 6 số đã được gửi tới hộp thư của bạn (có hiệu lực 10 phút).";
+            return RedirectToPage("./ResetPassword", new { email = Input.Email });
         }
     }
 }

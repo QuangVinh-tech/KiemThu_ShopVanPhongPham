@@ -148,7 +148,7 @@
                     <h4>Danh mục nổi bật</h4>
                     <a asp-controller="Product" asp-action="Shop">Xem tất cả <i class="bi bi-arrow-right"></i></a>
                 </div>
-                <div class="row g-3">
+                <div class="cat-grid">
                     @if (categories != null)
                     {
                         foreach (var c in categories)
@@ -156,7 +156,7 @@
                             string code = c.Name;
                             string label = catLabels.ContainsKey(code) ? catLabels[code] : code;
                             string icon = catIcons.ContainsKey(code) ? catIcons[code] : "bi-box-seam";
-                            <div class="col-4 col-md-2">
+                            <div class="cat-item">
                                 <a asp-controller="Product" asp-action="Shop" asp-route-category="@code" class="cat-icon-card text-decoration-none">
                                     <span class="cat-icon-box"><i class="bi @icon"></i></span>
                                     <span>@label</span>
@@ -173,7 +173,7 @@
                         <h3>Mua 2 tặng 1 dụng cụ học tập</h3>
                         <p>Áp dụng cho các sản phẩm dụng cụ học tập, số lượng có hạn.</p>
                     </div>
-                    <a asp-controller="Product" asp-action="Shop" asp-route-category="DungCu" class="btn btn-wf-outline btn-lg px-4">
+                    <a asp-controller="Promotion" asp-action="Index" class="btn btn-wf-outline btn-lg px-4">
                         Săn ưu đãi <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>
@@ -183,10 +183,10 @@
                     <h4>Sản phẩm nổi bật</h4>
                     <a asp-controller="Product" asp-action="Shop">Xem tất cả <i class="bi bi-arrow-right"></i></a>
                 </div>
-                <div class="row g-3">
+                <div class="product-grid">
                     @foreach (var product in featured)
                     {
-                        <div class="col-6 col-md-4">
+                        <div class="product-item">
                             @await Html.PartialAsync("_Product", product)
                         </div>
                     }
