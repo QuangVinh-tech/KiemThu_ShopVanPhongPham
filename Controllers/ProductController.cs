@@ -21,6 +21,7 @@ public class ProductController : Controller
         _wishlistRepo = wishlistRepo;
         _userManager = userManager;
     }
+
     public IActionResult Shop(string? search, string? category, decimal? minPrice, decimal? maxPrice, string? sort)
     {
         var allProducts = _productRepo.GetAllProducts();
@@ -39,8 +40,19 @@ public class ProductController : Controller
                 StringHelper.RemoveDiacritics(p.Name).Contains(keyword));
         }
 
+        string? displayCategory = category;
         if (!string.IsNullOrEmpty(category))
-            products = products.Where(p => p.Category != null && p.Category.Name == category);
+        {
+            // So sánh theo dạng bỏ dấu + bỏ khoảng trắng: "But" khớp "Bút", "DungCu" khớp "Dụng cụ"
+            var catKey = StringHelper.RemoveDiacritics(category).Replace(" ", "");
+
+            // Lấy tên danh mục thật (có dấu) để hiển thị tiêu đề và tô sáng menu bên trái
+            displayCategory = categories.FirstOrDefault(c =>
+                StringHelper.RemoveDiacritics(c).Replace(" ", "") == catKey) ?? category;
+
+            products = products.Where(p => p.Category != null &&
+                StringHelper.RemoveDiacritics(p.Category.Name).Replace(" ", "") == catKey);
+        }
 
         if (minPrice.HasValue)
             products = products.Where(p => p.Price >= minPrice.Value);
@@ -58,7 +70,7 @@ public class ProductController : Controller
         };
 
         ViewBag.Search = search;
-        ViewBag.Category = category;
+        ViewBag.Category = displayCategory;
         ViewBag.Categories = categories;
         ViewBag.MinPrice = minPrice;
         ViewBag.MaxPrice = maxPrice;

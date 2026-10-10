@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using ShopVanPhongPham.Data;
 using ShopVanPhongPham.Models;
 using ShopVanPhongPham.Models.Interfaces;
@@ -45,11 +45,15 @@ builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("Mo
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
+// OTP qua email (lưu mã trong bộ nhớ, không cần migration)
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IOtpService, OtpService>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-   
+
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopVanPhongPham.Data;
+using ShopVanPhongPham.Helpers;
 using ShopVanPhongPham.Models;
 using ShopVanPhongPham.Models.Interfaces;
 
@@ -121,7 +122,7 @@ public class HomeController : Controller
 
         if (!sent)
         {
-            // Đã lưu email vào DB thành công, chỉ gửi mail xác nhận thất bại (không chặn đăng ký)
+          
             return Json(new { success = true, message = "Đăng ký thành công! (Không gửi được email xác nhận, vui lòng kiểm tra cấu hình SMTP)" });
         }
 
@@ -130,11 +131,13 @@ public class HomeController : Controller
 
     public IActionResult TuuTruong()
     {
-        // Danh mục thuộc chủ đề "Mùa tựu trường": Bút, Sổ, Dụng cụ học tập, Giấy in
-        var schoolCategories = new[] { "But", "So", "DungCu", "Giay" };
+        
+        var schoolCategories = new[] { "but", "so", "dungcu", "giay" };
 
         var products = _productRepo.GetAllProducts()
-            .Where(p => p.Category != null && schoolCategories.Contains(p.Category.Name))
+            .AsEnumerable()
+            .Where(p => p.Category != null &&
+                schoolCategories.Contains(StringHelper.RemoveDiacritics(p.Category.Name).Replace(" ", "")))
             .OrderBy(p => p.Price)
             .ToList();
 

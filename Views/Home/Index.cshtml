@@ -1,25 +1,28 @@
 ﻿@model IEnumerable<ShopVanPhongPham.Models.Product>
+@using ShopVanPhongPham.Helpers
 
 @{
     ViewData["Title"] = "Trang chủ - Shop Văn Phòng Phẩm";
     var categories = ViewBag.Categories as IEnumerable<dynamic>;
     var featured = Model.Take(6);
 
-    // Nhãn hiển thị + icon thân thiện cho từng mã danh mục
+    // Nhãn + icon cho từng danh mục. Tra theo tên đã bỏ dấu và bỏ khoảng trắng
+    // nên "Bút" hay "But", "Dụng cụ" hay "DungCu" đều khớp.
     var catLabels = new Dictionary<string, string>
-    {
-        ["But"] = "Bút viết",
-        ["So"] = "Sổ tay",
-        ["DungCu"] = "Dụng cụ",
-        ["Giay"] = "Giấy in"
-    };
+            {
+                ["but"] = "Bút viết",
+                ["so"] = "Sổ tay",
+                ["dungcu"] = "Dụng cụ",
+                ["giay"] = "Giấy in"
+            };
     var catIcons = new Dictionary<string, string>
-    {
-        ["But"] = "bi-pencil-fill",
-        ["So"] = "bi-journal-bookmark-fill",
-        ["DungCu"] = "bi-tools",
-        ["Giay"] = "bi-file-earmark-fill"
-    };
+            {
+                ["but"] = "bi-pencil-fill",
+                ["so"] = "bi-journal-bookmark-fill",
+                ["dungcu"] = "bi-tools",
+                ["giay"] = "bi-file-earmark-fill"
+            };
+    string CatKey(string name) => StringHelper.RemoveDiacritics(name).Replace(" ", "");
 }
 
 <section class="py-4">
@@ -35,7 +38,8 @@
                             foreach (var c in categories)
                             {
                                 string code = c.Name;
-                                string label = catLabels.ContainsKey(code) ? catLabels[code] : code;
+                                string key = CatKey(code);
+                                string label = catLabels.ContainsKey(key) ? catLabels[key] : code;
                                 <li>
                                     <a asp-controller="Product" asp-action="Shop" asp-route-category="@code">
                                         @label <span class="count">(@c.Count)</span>
@@ -55,7 +59,7 @@
                     <div class="text-uppercase small fw-semibold text-muted mb-1">Ưu đãi mùa tựu trường</div>
                     <div class="promo-badge">Giảm đến 20%</div>
                     <p class="small text-muted mt-2 mb-3">Áp dụng cho một số sản phẩm</p>
-                    <a asp-controller="Product" asp-action="Shop" class="btn btn-wf-dark btn-sm px-4">Xem ngay</a>
+                    <a asp-controller="Promotion" asp-action="Index" class="btn btn-wf-dark btn-sm px-4">Xem ngay</a>
                 </div>
             </div>
 
@@ -80,7 +84,7 @@
                                     <span class="wf-hero-tag">Ưu đãi mùa tựu trường</span>
                                     <h1>Giảm đến 20%<br />Đồ dùng học tập</h1>
                                     <p>Chuẩn bị năm học mới với giá ưu đãi trên hàng loạt sản phẩm.</p>
-                                    <a href="/Product/Shop" class="btn btn-wf-dark btn-lg px-4">Xem ưu đãi</a>
+                                    <a asp-controller="Promotion" asp-action="Index" class="btn btn-wf-dark btn-lg px-4">Xem ưu đãi</a>
                                 </div>
                             </div>
                         </div>
@@ -154,8 +158,9 @@
                         foreach (var c in categories)
                         {
                             string code = c.Name;
-                            string label = catLabels.ContainsKey(code) ? catLabels[code] : code;
-                            string icon = catIcons.ContainsKey(code) ? catIcons[code] : "bi-box-seam";
+                            string key = CatKey(code);
+                            string label = catLabels.ContainsKey(key) ? catLabels[key] : code;
+                            string icon = catIcons.ContainsKey(key) ? catIcons[key] : "bi-box-seam";
                             <div class="col-4 col-md-2">
                                 <a asp-controller="Product" asp-action="Shop" asp-route-category="@code" class="cat-icon-card text-decoration-none">
                                     <span class="cat-icon-box"><i class="bi @icon"></i></span>
@@ -173,7 +178,7 @@
                         <h3>Mua 2 tặng 1 dụng cụ học tập</h3>
                         <p>Áp dụng cho các sản phẩm dụng cụ học tập, số lượng có hạn.</p>
                     </div>
-                    <a asp-controller="Product" asp-action="Shop" asp-route-category="DungCu" class="btn btn-wf-outline btn-lg px-4">
+                    <a asp-controller="Promotion" asp-action="Index" class="btn btn-wf-outline btn-lg px-4">
                         Săn ưu đãi <i class="bi bi-arrow-right ms-1"></i>
                     </a>
                 </div>

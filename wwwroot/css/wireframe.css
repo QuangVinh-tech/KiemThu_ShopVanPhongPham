@@ -821,6 +821,7 @@ a {
    Product cards (grid)
 --------------------------------------------------------- */
 .wf-product-card {
+    position: relative; /* neo nút yêu thích (absolute) vào đúng thẻ sản phẩm */
     border: 1px solid var(--wf-border);
     border-radius: var(--wf-radius);
     overflow: hidden;
@@ -1330,5 +1331,331 @@ a {
 
     .category-nav-inner {
         gap: 1rem;
+    }
+}
+/* =========================================================
+   RESPONSIVE — iPhone / iPad
+   ========================================================= */
+
+/* Chống iOS tự phóng chữ khi xoay ngang */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+img {
+    max-width: 100%;
+}
+
+.site-footer {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom)) !important;
+}
+
+/* ---------- iPad dọc và nhỏ hơn (≤ 991px) ---------- */
+@media (max-width: 991.98px) {
+    /* Header: logo + nút tài khoản trên 1 hàng, ô tìm kiếm xuống hàng riêng */
+    .header-main-inner {
+        flex-wrap: wrap;
+        gap: .75rem 1rem;
+        padding: .75rem 0;
+    }
+
+    .brand {
+        margin-right: auto;
+    }
+
+    .header-actions {
+        gap: 1.1rem;
+    }
+
+    .header-search {
+        order: 3;
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    /* Menu chính: vuốt ngang thay vì xuống nhiều dòng */
+    .category-nav-inner {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 1rem;
+        padding-top: .4rem;
+        padding-bottom: .4rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+        .category-nav-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+    .category-toggle {
+        flex-shrink: 0;
+    }
+
+    .main-nav {
+        flex-wrap: nowrap;
+        flex-shrink: 0;
+        gap: 1.1rem;
+    }
+
+        .main-nav a {
+            display: inline-block;
+            white-space: nowrap;
+            padding: .5rem 0;
+        }
+}
+
+/* ---------- iPhone (≤ 767px) ---------- */
+@media (max-width: 767.98px) {
+    /* Header cao nên không dính trên đầu màn hình điện thoại */
+    .site-header {
+        position: static;
+    }
+
+    .topbar {
+        font-size: .75rem;
+    }
+
+    .topbar-inner {
+        justify-content: center;
+    }
+
+        .topbar-inner > span:first-child {
+            display: none;
+        }
+
+    .topbar-right {
+        gap: 1rem;
+    }
+
+    .brand-text strong {
+        font-size: 1.05rem;
+    }
+
+    .header-action-item,
+    .header-action-item.nav-link {
+        font-size: .68rem;
+    }
+
+    /* Email dài ở nút tài khoản: cắt gọn bằng dấu ... */
+    .header-actions .header-action-item > span:not(.action-badge) {
+        max-width: 72px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Banner */
+    .wf-hero {
+        padding: 1.5rem 1.25rem;
+        min-height: 0;
+    }
+
+        .wf-hero h1 {
+            font-size: 1.45rem;
+        }
+
+        .wf-hero p {
+            font-size: .9rem;
+            margin-bottom: 1rem;
+        }
+
+    .wf-hero-carousel .wf-hero {
+        min-height: 240px;
+        background-position: center;
+    }
+
+        .wf-hero-carousel .wf-hero > div:first-child {
+            max-width: 100%;
+            background: rgba(255, 255, 255, .82);
+            padding: 1rem 1.1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .wf-hero-carousel .wf-hero p {
+            color: #4b5058;
+        }
+
+    /* Trên điện thoại vuốt để chuyển slide, ẩn mũi tên */
+    .wf-hero-carousel .carousel-control-prev,
+    .wf-hero-carousel .carousel-control-next {
+        display: none;
+    }
+
+    /* Dải 4 ô tiện ích: chia 2 x 2 */
+    .wf-features-strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 1rem;
+    }
+
+    .wf-feature {
+        min-width: 0;
+        gap: .6rem;
+        padding: .75rem .85rem;
+        border-right: none;
+        border-bottom: 1px solid var(--wf-border);
+    }
+
+        .wf-feature:nth-child(odd) {
+            border-right: 1px solid var(--wf-border);
+        }
+
+        .wf-feature:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .wf-feature i {
+            font-size: 1.2rem;
+        }
+
+        .wf-feature strong {
+            font-size: .8rem;
+        }
+
+    /* Tiêu đề mục, danh mục, banner, bản tin */
+    .wf-section-title {
+        margin: 1.75rem 0 1rem;
+    }
+
+        .wf-section-title h4 {
+            font-size: 1.15rem;
+        }
+
+    .cat-icon-card {
+        padding: .75rem .25rem;
+    }
+
+        .cat-icon-card .cat-icon-box {
+            width: 46px;
+            height: 46px;
+            font-size: 1.25rem;
+        }
+
+    .wf-promo-banner,
+    .wf-newsletter {
+        padding: 1.25rem;
+        margin-top: 1.75rem;
+    }
+
+        .wf-promo-banner .btn {
+            width: 100%;
+        }
+
+    .wf-newsletter-form {
+        width: 100%;
+    }
+
+        .wf-newsletter-form input {
+            min-width: 0;
+            flex: 1 1 100%;
+        }
+
+        .wf-newsletter-form .btn {
+            width: 100%;
+        }
+
+    /* Thẻ sản phẩm */
+    .wf-product-thumb img {
+        height: 140px;
+    }
+
+    .wf-product-body {
+        padding: .65rem;
+    }
+
+    .wf-product-name {
+        font-size: .82rem;
+    }
+
+    /* iPhone tự phóng to trang khi chạm vào ô nhập có chữ nhỏ hơn 16px */
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    /* Thanh các bước thanh toán */
+    .wf-step {
+        min-width: 64px;
+        font-size: .72rem;
+    }
+
+    .wf-step-line {
+        max-width: 28px;
+        margin-left: .2rem;
+        margin-right: .2rem;
+    }
+
+    /* Chi tiết sản phẩm: ảnh lớn trên, ảnh nhỏ xếp ngang bên dưới */
+    .pd-gallery {
+        flex-direction: column-reverse;
+    }
+
+    .pd-thumbs {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    .pd-main-image {
+        min-height: 260px;
+    }
+
+        .pd-main-image img {
+            max-height: 320px;
+        }
+
+    /* Trang đăng nhập / đăng ký / OTP */
+    .auth-section {
+        padding: 28px 0;
+    }
+
+    .auth-card {
+        padding: 28px 20px !important;
+    }
+}
+
+/* ---------- Thiết bị cảm ứng (iPhone, iPad) ---------- */
+@media (hover: none) {
+    .wf-product-card:hover,
+    .wf-promo-card:hover,
+    .cat-icon-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+@media (pointer: coarse) {
+    .wf-product-cart-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .wf-product-wish {
+        width: 36px;
+        height: 36px;
+    }
+
+    .pd-qty button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .pd-qty input {
+        height: 44px;
+    }
+
+    .sidebar-cat-list a {
+        min-height: 40px;
     }
 }
