@@ -1311,6 +1311,16 @@ a {
     background: var(--wf-black) !important;
 }
 
+    .site-footer a {
+        color: #cfd2d6;
+        text-decoration: none;
+        transition: color .15s;
+    }
+
+        .site-footer a:hover {
+            color: #ffffff;
+        }
+
 @media (max-width: 991.98px) {
     .header-search {
         order: 3;

@@ -2,22 +2,33 @@
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container py-4">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card shadow-sm mb-3" style="position: sticky; top: 1rem;">
-                <div class="card-body">
-                    <h6 class="fw-bold mb-3">
-                        <i class="bi bi-person me-2"></i>Tài khoản của tôi
+<section class="account-page py-4">
+    <div class="container">
+
+        <nav class="wf-breadcrumb">
+            <a asp-controller="Home" asp-action="Index" asp-area="">Trang chủ</a> <span>&rsaquo;</span>
+            <a asp-controller="Account" asp-action="Index" asp-area="">Tài khoản</a> <span>&rsaquo;</span>
+            <span class="active">@ViewData["Title"]</span>
+        </nav>
+
+        <div class="row g-4">
+            <div class="col-lg-3">
+                <div class="sidebar-card" style="position: sticky; top: 1rem;">
+                    <h6>
+                        <a asp-controller="Account" asp-action="Index" asp-area=""
+                           class="text-decoration-none" style="color:inherit">
+                            <i class="bi bi-person me-2"></i>Tài khoản của tôi
+                        </a>
                     </h6>
                     <partial name="_ManageNav" />
                 </div>
             </div>
+            <div class="col-lg-9">
+                @RenderBody()
+            </div>
         </div>
-        <div class="col-md-9">
-            @RenderBody()
-        </div>
+
     </div>
-</div>
+</section>
 
 @RenderSection("Scripts", required: false)

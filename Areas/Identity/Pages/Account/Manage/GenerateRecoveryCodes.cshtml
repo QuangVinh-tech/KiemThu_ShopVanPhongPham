@@ -5,16 +5,14 @@
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
 }
 
-<div class="card shadow-sm">
-    <div class="card-body p-4">
-        <h5 class="card-title mb-4"><i class="bi bi-arrow-clockwise me-2"></i>@ViewData["Title"]</h5>
+<div class="sidebar-card">
+    <h6><i class="bi bi-arrow-clockwise me-2"></i>@ViewData["Title"]</h6>
 
-        <div class="alert alert-warning">
-            <strong>Tạo bộ mã khôi phục mới sẽ làm vô hiệu toàn bộ mã khôi phục cũ.</strong>
-        </div>
-
-        <form method="post">
-            <button class="btn btn-danger" type="submit">Tạo bộ mã khôi phục mới</button>
-        </form>
+    <div class="alert alert-warning">
+        <strong>Tạo bộ mã khôi phục mới sẽ làm vô hiệu toàn bộ mã khôi phục cũ.</strong>
     </div>
+
+    <form method="post">
+        <button class="btn btn-danger" type="submit">Tạo bộ mã khôi phục mới</button>
+    </form>
 </div>

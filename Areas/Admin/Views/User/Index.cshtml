@@ -51,7 +51,7 @@
                             {
                                 foreach (var r in roles)
                                 {
-                                    <span class="badge @(r == "Admin" ? "bg-danger" : "bg-primary") fs-6">
+                                    <span class="badge @(r == "Admin" ? "bg-danger" : "bg-dark") fs-6">
                                         @r
                                     </span>
                                 }
@@ -68,8 +68,8 @@
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="userId" value="@user.Id" />
                                 <select name="role" class="form-select form-select-sm">
-                                    <option value="Admin" selected="@(cur == "Admin" ? "selected" : null)">Admin</option>
-                                    <option value="User" selected="@(cur == "User" ? "selected" : null)">User</option>
+                                    <option value="Admin" selected="@(cur == "Admin")">Admin</option>
+                                    <option value="User" selected="@(cur == "User")">User</option>
                                 </select>
                                 <button type="submit" class="btn btn-sm btn-warning text-nowrap">
                                     Lưu
